@@ -254,14 +254,130 @@ a   { color: inherit; text-decoration: none; }
 }
 .page-hero .hero__headline { font-size: clamp(2rem, 4vw, 3rem); }
 
+/* ── COMPENSATION TABLE ───────────────────────────────────── */
+.comp-table {
+  max-width: 700px; margin: 0 auto;
+  border: 1px solid var(--border); border-radius: 12px;
+  overflow: hidden; background: var(--surface);
+}
+.comp-table__caption {
+  background: var(--stone); padding: 14px 24px;
+  font-size: .82rem; color: var(--muted); font-weight: 500;
+  border-bottom: 1px solid var(--border);
+}
+.comp-table__row {
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  padding: 16px 24px; border-bottom: 1px solid var(--border);
+  font-size: .95rem; align-items: center; gap: 12px;
+}
+.comp-table__row--head {
+  font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted); background: var(--stone);
+}
+.comp-table__row--highlight {
+  background: #f0f9e0; font-weight: 700;
+  color: var(--ink);
+}
+.comp-table__row--highlight div:nth-child(2) {
+  color: var(--brand-dark); font-size: 1.1rem;
+}
+.comp-table__note { font-size: .8rem; color: var(--muted); font-weight: 400; }
+.comp-table__footer {
+  padding: 16px 24px; display: flex; flex-wrap: wrap;
+  align-items: center; gap: 16px; background: var(--stone);
+}
+.comp-table__diff {
+  font-weight: 700; font-size: .95rem; color: var(--brand-dark);
+}
+
+/* ── PULLQUOTE ────────────────────────────────────────────── */
+.pullquote {
+  max-width: 680px; margin: 0 auto; text-align: center;
+  padding: 48px 32px;
+  border-left: 4px solid var(--brand); border-radius: 4px;
+  background: var(--stone);
+}
+.pullquote__text {
+  font-size: 1.2rem; font-weight: 500; line-height: 1.7;
+  color: var(--ink); margin-bottom: 20px;
+  font-style: italic;
+}
+.pullquote__attr {
+  font-size: .82rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* ── TRAINING BADGE ───────────────────────────────────────── */
+.training-badge {
+  aspect-ratio: 1; border-radius: 14px;
+  background: var(--ink); display: flex;
+  flex-direction: column; align-items: center; justify-content: center;
+  gap: 20px; padding: 48px;
+}
+.training-badge__icon {
+  width: 80px; height: 80px;
+  display: flex; align-items: center; justify-content: center;
+}
+.training-badge__icon svg { width: 100%; height: 100%; }
+.training-badge__label {
+  font-family: var(--font-display);
+  font-size: 1.3rem; font-weight: 800;
+  color: var(--brand); letter-spacing: -.01em; text-align: center;
+}
+
+/* ── TRAINING LIST ────────────────────────────────────────── */
+.training-list {
+  list-style: none; margin: 0 0 28px; padding: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.training-list li {
+  padding-left: 20px; position: relative;
+  font-size: .95rem; color: var(--muted); line-height: 1.5;
+}
+.training-list li::before {
+  content: '';
+  position: absolute; left: 0; top: 8px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--brand);
+}
+
+/* ── INTRO TEXT ───────────────────────────────────────────── */
+.intro-text {
+  max-width: 720px; margin: 0 auto;
+  font-size: 1.05rem; color: var(--muted); line-height: 1.8;
+  text-align: center;
+}
+
+/* ── TESTIMONIALS ─────────────────────────────────────────── */
+.testimonials {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.testimonial {
+  background: var(--stone); border: 1px solid var(--border);
+  border-radius: 12px; padding: 32px;
+}
+.testimonial__text {
+  font-size: .95rem; line-height: 1.75; color: var(--ink);
+  font-style: italic; margin-bottom: 20px;
+}
+.testimonial__attr {
+  font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--brand-dark);
+}
+
 /* ── RESPONSIVE ───────────────────────────────────────────── */
 @media (max-width: 800px) {
   .hero__grid, .leader__grid { grid-template-columns: 1fr; }
   .hero__video { order: -1; }
   .why__grid   { grid-template-columns: 1fr 1fr; }
   .stats__grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .testimonials { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 500px) {
-  .why__grid   { grid-template-columns: 1fr; }
-  .stats__grid { grid-template-columns: repeat(2, 1fr); }
+  .why__grid    { grid-template-columns: 1fr; }
+  .stats__grid  { grid-template-columns: repeat(2, 1fr); }
+  .testimonials { grid-template-columns: 1fr; }
+  .comp-table__row { grid-template-columns: 1fr 1fr; }
+  .comp-table__row--head div:first-child,
+  .comp-table__row div:first-child { grid-column: 1 / -1; }
 }
