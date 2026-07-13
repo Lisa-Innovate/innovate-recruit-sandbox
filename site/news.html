@@ -3,11 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Latest News — INNOVATE Real Estate</title>
+  <title>The Latest News - INNOVATE Real Estate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
+  <style>
+  .blog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+  .post-card { background:#fff; border:1px solid #e6e7e8; border-radius:12px; overflow:hidden; display:flex; flex-direction:column; }
+  .post-card__img { aspect-ratio:16/9; overflow:hidden; background:#f4f5f1; }
+  .post-card__img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .3s; }
+  .post-card:hover .post-card__img img { transform:scale(1.03); }
+  .post-card__body { padding:28px; display:flex; flex-direction:column; flex:1; }
+  .post-card__meta { font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#5b8e0d; margin-bottom:10px; }
+  .post-card__title { font-family:'Inter',sans-serif; font-size:1.15rem; font-weight:800; line-height:1.25; margin-bottom:12px; }
+  .post-card__excerpt { font-size:.9rem; color:#5b5b5b; line-height:1.7; flex:1; margin-bottom:20px; }
+  .post-card__btn { display:inline-block; background:#82C112; color:#fff; font-weight:600; font-size:.85rem; padding:10px 20px; border-radius:6px; border:none; cursor:pointer; align-self:flex-start; transition:background .15s; }
+  .post-card__btn:hover { background:#5b8e0d; }
+  @media(max-width:800px){ .blog-grid{ grid-template-columns:1fr 1fr; } }
+  @media(max-width:500px){ .blog-grid{ grid-template-columns:1fr; } }
+  .lb-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.75); z-index:1000; align-items:center; justify-content:center; padding:24px; }
+  .lb-overlay.is-open { display:flex; }
+  .lb-modal { background:#fff; border-radius:14px; max-width:780px; width:100%; max-height:90vh; overflow-y:auto; position:relative; }
+  .lb-modal__img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; border-radius:14px 14px 0 0; }
+  .lb-modal__body { padding:40px; }
+  .lb-modal__meta { font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#5b8e0d; margin-bottom:10px; }
+  .lb-modal__title { font-family:'Inter',sans-serif; font-size:1.7rem; font-weight:800; line-height:1.2; margin-bottom:24px; }
+  .lb-modal__content { font-size:.97rem; color:#333; line-height:1.85; }
+  .lb-modal__content p { margin-bottom:1.2em; }
+  .lb-modal__content p:last-child { margin-bottom:0; }
+  .lb-modal__content blockquote { border-left:3px solid #82C112; padding-left:20px; margin:24px 0; font-style:italic; color:#5b5b5b; }
+  .lb-close { position:absolute; top:16px; right:16px; width:36px; height:36px; border-radius:50%; background:rgba(0,0,0,.55); color:#fff; font-size:1.3rem; display:flex; align-items:center; justify-content:center; cursor:pointer; border:none; line-height:1; }
+  .lb-close:hover { background:rgba(0,0,0,.85); }
+  </style>
 </head>
 <body>
   <div id="nav-placeholder"></div>
@@ -17,19 +45,120 @@
     <div class="container">
       <p class="hero__eyebrow">INNOVATE</p>
       <h1 class="hero__headline">The Latest News</h1>
-      <p class="hero__sub">Placeholder — add your content here.</p>
+      <p class="hero__sub">Updates, announcements, and stories from across the INNOVATE community.</p>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--stone">
     <div class="container">
-      <p style="color:var(--muted)">Page content goes here.</p>
+      <div class="blog-grid">
+
+        <article class="post-card">
+          <div class="post-card__img">
+            <img src="/images/conway-sc.png" alt="Hello, Conway, South Carolina" />
+          </div>
+          <div class="post-card__body">
+            <p class="post-card__meta">2026 &middot; Office Opening</p>
+            <h2 class="post-card__title">Hello, Conway, South Carolina!</h2>
+            <p class="post-card__excerpt">We are excited to announce the opening of our newest INNOVATE office in Conway, South Carolina. OMNI Real Estate has merged with INNOVATE, bringing Gerry Gilbert as BIC and a new office at 314 Laurel Street in historic downtown Conway.</p>
+            <button class="post-card__btn" onclick="openPost('conway')">Read More</button>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-card__img">
+            <img src="/images/manny-menezes.png" alt="Welcome Manny Menezes" />
+          </div>
+          <div class="post-card__body">
+            <p class="post-card__meta">2026 &middot; Leadership</p>
+            <h2 class="post-card__title">Welcome, Manny Menezes</h2>
+            <p class="post-card__excerpt">Manny Menezes joins INNOVATE Real Estate as Market Leader and Broker of Record for Rhode Island, Massachusetts, and New Hampshire, bringing more than 20 years of real estate experience including ownership of RE/MAX and EXIT Realty franchises.</p>
+            <button class="post-card__btn" onclick="openPost('manny')">Read More</button>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-card__img">
+            <img src="/images/michael-blum.png" alt="Welcome Michael Blum" />
+          </div>
+          <div class="post-card__body">
+            <p class="post-card__meta">2026 &middot; Leadership</p>
+            <h2 class="post-card__title">Meet Michael Blum, National Director of Agent Development</h2>
+            <p class="post-card__excerpt">INNOVATE Real Estate welcomes Michael Blum as National Director of Agent Development. Michael brings 13 years of real estate experience alongside a background in coaching, education, and nonprofit leadership to support agents at every stage of their careers.</p>
+            <button class="post-card__btn" onclick="openPost('michael')">Read More</button>
+          </div>
+        </article>
+
+      </div>
     </div>
   </section>
+
+  <div class="lb-overlay" id="lb-overlay" onclick="closeLightboxOnOverlay(event)">
+    <div class="lb-modal" id="lb-modal">
+      <button class="lb-close" onclick="closePost()" aria-label="Close">&times;</button>
+      <img class="lb-modal__img" id="lb-img" src="" alt="" />
+      <div class="lb-modal__body">
+        <p class="lb-modal__meta" id="lb-meta"></p>
+        <h2 class="lb-modal__title" id="lb-title"></h2>
+        <div class="lb-modal__content" id="lb-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  var posts = {
+    conway: {
+      img: '/images/conway-sc.png',
+      meta: '2026 &middot; Office Opening',
+      title: 'Hello, Conway, South Carolina!',
+      content: '<p>We are excited to announce the opening of our newest INNOVATE office in Conway, South Carolina!</p><p>OMNI Real Estate has merged with INNOVATE bringing Gerry Gilbert as the BIC and a new INNOVATE office located at 314 Laurel Street in historic downtown Conway.</p><p>We are incredibly thankful for the trust Jeff, Gerry, and all of the agents there have placed in us.</p><p>Watch for all of the new agent announcements coming soon on Facebook and give them a warm INNOVATE welcome!</p>'
+    },
+    manny: {
+      img: '/images/manny-menezes.png',
+      meta: '2026 &middot; Leadership',
+      title: 'Welcome, Manny Menezes',
+      content: '<p>Manny Menezes is a real estate broker, entrepreneur, and business leader with more than 20 years of experience in the real estate industry. Throughout his career, he has built, led, and grown successful real estate organizations across New England, developing extensive expertise in brokerage ownership, franchise development, agent recruiting, leadership, and business growth.</p><p>Manny has owned and operated multiple real estate brokerages under nationally recognized brands, including RE/MAX and EXIT Realty franchises. These leadership roles provided him with deep experience in brokerage operations, agent development, recruiting, marketing, and the systems required to build and scale successful real estate businesses.</p><p>Beyond brokerage ownership, Manny has remained actively involved in the real estate industry through local Realtor associations and Multiple Listing Services, serving on committees and participating in initiatives that strengthened his understanding of the evolving needs of both agents and consumers.</p><p>Driven by an entrepreneurial mindset and a passion for innovation, Manny founded REALTY NEW ENGLAND, an independent brokerage built on personalized support, local expertise, and opportunities for agents to grow thriving businesses. While expanding REALTY NEW ENGLAND, he continued seeking innovative solutions that would better serve agents and clients alike.</p><p>That pursuit led him to INNOVATE Real Estate, a company whose vision, technology, leadership, and growth strategy closely aligned with his outlook on the future of the real estate industry. Recognizing the opportunity to combine strong local leadership with a forward-thinking growth platform, Manny joined INNOVATE Real Estate to help lead its expansion across Rhode Island, Massachusetts, and New Hampshire.</p><p>Today, Manny serves as Market Leader and Broker of Record for INNOVATE Real Estate throughout Rhode Island, Massachusetts, and New Hampshire, focusing on attracting top talent, expanding the company footprint across New England, and helping agents leverage innovative technology, modern marketing, professional development, revenue-sharing programs, and equity-building opportunities.</p>'
+    },
+    michael: {
+      img: '/images/michael-blum.png',
+      meta: '2026 &middot; Leadership',
+      title: 'Meet Michael Blum, National Director of Agent Development',
+      content: '<p>INNOVATE Real Estate is proud to announce the addition of Michael Blum as National Director of Agent Development, further strengthening the company commitment to providing exceptional education, coaching, and long-term career development for agents across its growing national footprint.</p><p>Michael brings a unique combination of real estate production, brokerage leadership, coaching, and education to the position. A Pennsylvania Associate Broker, he has spent the past 13 years helping buyers and sellers throughout the Philadelphia suburbs while simultaneously serving as a sales manager, productivity coach, technology trainer, and mentor to agents at every stage of their careers.</p><p>His professional journey actually began outside of real estate. Before entering the industry, Michael spent more than a decade in nonprofit leadership, focusing on informal education, youth development, and community leadership. Although the industries have changed, his mission has remained remarkably consistent: helping people navigate change, build confidence, and achieve meaningful growth.</p><p>That philosophy aligns naturally with INNOVATE commitment to investing in its agents, not simply through technology or tools, but through ongoing education, mentorship, and practical support.</p><p>Unlike many industry trainers who have stepped away from active sales, Michael continues to work directly with buyers and sellers. Remaining in production allows him to bring current market insight, real-world experience, and proven business strategies into every coaching conversation. His guidance reflects the realities agents face today, providing practical solutions they can immediately implement in their businesses.</p><p>As National Director of Agent Development, Michael will lead the company onboarding initiatives, training curriculum, coaching systems, and scalable development pathways designed to support agents from their first transaction through every stage of their careers.</p><blockquote>"Throughout my career, the common thread has always been helping people grow. I am excited to join a company that genuinely invests in its agents and believes education should be practical, relevant, and empowering. I look forward to helping every INNOVATE agent build the skills, systems, and confidence needed to achieve their version of success." - Michael Blum</blockquote><p>Michael lives in Montgomery County, Pennsylvania, with his wife, Rachel, and daughter, Molly. He remains actively involved in his local community through leadership, volunteerism, and charitable organizations.</p>'
+    }
+  };
+
+  function openPost(id) {
+    var p = posts[id];
+    document.getElementById('lb-img').src = p.img;
+    document.getElementById('lb-img').alt = p.title;
+    document.getElementById('lb-meta').innerHTML = p.meta;
+    document.getElementById('lb-title').textContent = p.title;
+    document.getElementById('lb-content').innerHTML = p.content;
+    var overlay = document.getElementById('lb-overlay');
+    overlay.classList.add('is-open');
+    document.getElementById('lb-modal').scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePost() {
+    document.getElementById('lb-overlay').classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  function closeLightboxOnOverlay(e) {
+    if (e.target === document.getElementById('lb-overlay')) closePost();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePost();
+  });
+  </script>
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 INNOVATE Real Estate. All rights reserved.</p>
+      <p>&copy; 2026 INNOVATE Real Estate. All rights reserved.
+        &nbsp;&middot;&nbsp; <a href="/index.html">Home</a>
+      </p>
     </div>
   </footer>
 </body>
