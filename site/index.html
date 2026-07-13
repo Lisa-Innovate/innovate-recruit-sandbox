@@ -8,6 +8,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
+  <style>
+  .reasons{padding:80px 0;background:#f4f5f1;}
+  .reasons__grid{display:flex;flex-direction:row;gap:56px;}
+  .reasons__item{flex:1;min-width:0;border-left:3px solid #82C112;padding-left:28px;}
+  .reasons__heading{font-family:'Inter',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800;line-height:1.15;letter-spacing:-.02em;margin-bottom:20px;}
+  .reasons__body{font-size:.97rem;color:#5b5b5b;line-height:1.8;}
+  @media(max-width:800px){.reasons__grid{flex-direction:column;gap:40px;}}
+  </style>
 </head>
 <body>
 
@@ -71,27 +79,9 @@
   </section>
 
   <!-- WHY INNOVATE / WHY NOW -->
-  <section style=”padding:80px 0; background:#f4f5f1;”>
-    <div class=”container”>
-      <div style=”display:flex; flex-direction:row; gap:56px;”>
+  <section class="reasons"><div class="container"><div class="reasons__grid"><div class="reasons__item"><p class="section-eyebrow">Why INNOVATE?</p><h2 class="reasons__heading">Because who you work with matters.</h2><p class="reasons__body">Great brokerages are built around great people. Our agents aren't just producers, they're partners in building something meaningful together. We've created a brokerage for the modern agent: strong leadership, powerful technology, and a culture rooted in generosity and collaboration, all committed to helping you grow your business, build your brand, and create long-term opportunity through ownership and revenue share.</p></div><div class="reasons__item"><p class="section-eyebrow">Why Now?</p><h2 class="reasons__heading">Because the real estate industry is changing.</h2><p class="reasons__body">Agents today need more than a place to hang their license. They need the right support, technology, and opportunities to thrive in a rapidly evolving market. INNOVATE was built for this moment. A hybrid model that combines the best of traditional brokerage support with the flexibility modern agents expect. And as we expand across the country, our agents benefit through stronger networks, broader opportunities, and a platform built for the future.</p></div></div></div></section>
 
-        <div style=”flex:1; min-width:0; border-left:3px solid #82C112; padding-left:28px;”>
-          <p class=”section-eyebrow”>Why INNOVATE?</p>
-          <h2 style=”font-family:'Inter',sans-serif; font-size:clamp(1.4rem,3vw,1.9rem); font-weight:800; line-height:1.15; letter-spacing:-.02em; margin-bottom:20px;”>Because who you work with matters.</h2>
-          <p style=”font-size:.97rem; color:#5b5b5b; line-height:1.8;”>Great brokerages are built around great people. Our agents aren't just producers, they're partners in building something meaningful together. We've created a brokerage for the modern agent: strong leadership, powerful technology, and a culture rooted in generosity and collaboration, all committed to helping you grow your business, build your brand, and create long-term opportunity through ownership and revenue share.</p>
-        </div>
-
-        <div style=”flex:1; min-width:0; border-left:3px solid #82C112; padding-left:28px;”>
-          <p class=”section-eyebrow”>Why Now?</p>
-          <h2 style=”font-family:'Inter',sans-serif; font-size:clamp(1.4rem,3vw,1.9rem); font-weight:800; line-height:1.15; letter-spacing:-.02em; margin-bottom:20px;”>Because the real estate industry is changing.</h2>
-          <p style=”font-size:.97rem; color:#5b5b5b; line-height:1.8;”>Agents today need more than a place to hang their license. They need the right support, technology, and opportunities to thrive in a rapidly evolving market. INNOVATE was built for this moment. A hybrid model that combines the best of traditional brokerage support with the flexibility modern agents expect. And as we expand across the country, our agents benefit through stronger networks, broader opportunities, and a platform built for the future.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY INNOVATE CARDS -->
+    <!-- WHY INNOVATE CARDS -->
   <section class=”section section--stone” id=”why”>
     <div class="container">
       <div class="why__header">
