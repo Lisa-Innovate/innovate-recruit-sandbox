@@ -341,10 +341,13 @@ a   { color: inherit; text-decoration: none; }
 
 /* ── WHY TWO-COL ──────────────────────────────────────────── */
 .why-two-col__grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  display: flex;
+  flex-direction: row;
+  gap: 56px;
 }
 .why-two-col__item {
+  flex: 1 1 0;
+  min-width: 0;
   border-left: 3px solid var(--brand);
   padding-left: 28px;
 }
@@ -477,7 +480,7 @@ a   { color: inherit; text-decoration: none; }
   .why__grid        { grid-template-columns: 1fr 1fr; }
   .stats__grid      { grid-template-columns: repeat(2, 1fr); gap: 32px; }
   .testimonials     { grid-template-columns: 1fr 1fr; }
-  .why-two-col__grid { grid-template-columns: 1fr; gap: 40px; }
+  .why-two-col__grid { flex-direction: column; gap: 40px; }
 }
 @media (max-width: 500px) {
   .why__grid    { grid-template-columns: 1fr; }
