@@ -99,6 +99,123 @@
     </div>
   </section>
 
+  <!-- Build a Growth Network calculator -->
+  <section class="section">
+    <div class="container">
+      <div class="why__header">
+        <p class="section-eyebrow">Residual Referral Income</p>
+        <h2 class="section-heading">Build a growth network.</h2>
+        <p class="intro-text" style="margin-top:12px">Model how revenue share compounds as you sponsor agents and your network grows.</p>
+      </div>
+
+      <div class="network-calc">
+
+        <div class="network-calc__inputs">
+
+          <div class="slider-field">
+            <div class="slider-field__labels">
+              <label class="slider-field__label" for="tier1">Agents you personally sponsor</label>
+              <span class="slider-field__value" id="tier1-val">5</span>
+            </div>
+            <input class="slider-field__range" type="range" id="tier1" min="1" max="20" value="5" />
+            <div class="slider-field__minmax"><span>1</span><span>20</span></div>
+          </div>
+
+          <div class="slider-field">
+            <div class="slider-field__labels">
+              <label class="slider-field__label" for="dup">Average agents each sponsor (duplication)</label>
+              <span class="slider-field__value" id="dup-val">2&times;</span>
+            </div>
+            <input class="slider-field__range" type="range" id="dup" min="1" max="5" value="2" step="0.5" />
+            <div class="slider-field__minmax"><span>1&times;</span><span>5&times;</span></div>
+          </div>
+
+          <div class="slider-field">
+            <div class="slider-field__labels">
+              <label class="slider-field__label" for="cocd">Average company dollar per agent / year</label>
+              <span class="slider-field__value" id="cocd-val">$9,000</span>
+            </div>
+            <input class="slider-field__range" type="range" id="cocd" min="1500" max="15000" value="9000" step="500" />
+            <div class="slider-field__minmax"><span>$1,500</span><span>$15,000</span></div>
+          </div>
+
+          <p class="slider-field__note">A capping agent contributes $15,000 of company dollar. Revenue share pays 15% of that across 5 tiers (5 / 4 / 3 / 2 / 1%).</p>
+
+        </div>
+
+        <div class="network-calc__results">
+          <div class="network-result-total">
+            <p class="network-result-total__label">Estimated annual revenue share</p>
+            <p class="network-result-total__number" id="total-rs">$25,650</p>
+            <p class="network-result-total__sub" id="total-agents">Network of 155 agents across 5 tiers</p>
+          </div>
+
+          <table class="network-table">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Agents</th>
+                <th>Share</th>
+                <th>/ year</th>
+              </tr>
+            </thead>
+            <tbody id="tier-rows">
+              <!-- filled by JS -->
+            </tbody>
+          </table>
+
+          <p class="network-disclaimer">Illustrative estimate only. Actual revenue share depends on the number of active, producing agents in your network and their results. This is not a guarantee or projection of income.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var TIER_PCT = [0.05, 0.04, 0.03, 0.02, 0.01];
+
+      function fmt(n) {
+        return '$' + Math.round(n).toLocaleString('en-US');
+      }
+
+      function calc() {
+        var t1   = parseFloat(document.getElementById('tier1').value);
+        var dup  = parseFloat(document.getElementById('dup').value);
+        var cocd = parseFloat(document.getElementById('cocd').value);
+
+        document.getElementById('tier1-val').textContent = Math.round(t1);
+        document.getElementById('dup-val').innerHTML = dup + '&times;';
+        document.getElementById('cocd-val').textContent = fmt(cocd);
+
+        var tiers = [];
+        var agents = t1;
+        for (var i = 0; i < 5; i++) {
+          tiers.push({ agents: Math.round(agents), pct: TIER_PCT[i], rs: agents * TIER_PCT[i] * cocd });
+          agents = agents * dup;
+        }
+
+        var totalRs = tiers.reduce(function (s, t) { return s + t.rs; }, 0);
+        var totalAgents = tiers.reduce(function (s, t) { return s + t.agents; }, 0);
+
+        document.getElementById('total-rs').textContent = fmt(totalRs);
+        document.getElementById('total-agents').textContent =
+          'Network of ' + totalAgents + ' agents across 5 tiers';
+
+        var tbody = document.getElementById('tier-rows');
+        tbody.innerHTML = tiers.map(function (t, i) {
+          return '<tr><td>Tier ' + (i + 1) + '</td><td>' + t.agents + '</td><td>' + (TIER_PCT[i] * 100) + '%</td><td>' + fmt(t.rs) + '</td></tr>';
+        }).join('');
+      }
+
+      ['tier1', 'dup', 'cocd'].forEach(function (id) {
+        document.getElementById(id).addEventListener('input', calc);
+      });
+
+      calc();
+    })();
+  </script>
+
   <!-- Quote -->
   <section class="section">
     <div class="container">
