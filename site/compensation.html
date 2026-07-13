@@ -179,10 +179,26 @@
         return '$' + Math.round(n).toLocaleString('en-US');
       }
 
+      function updateFill(el) {
+        var min = parseFloat(el.min);
+        var max = parseFloat(el.max);
+        var val = parseFloat(el.value);
+        var pct = ((val - min) / (max - min) * 100).toFixed(1) + '%';
+        el.style.setProperty('--pct', pct);
+      }
+
       function calc() {
-        var t1   = parseFloat(document.getElementById('tier1').value);
-        var dup  = parseFloat(document.getElementById('dup').value);
-        var cocd = parseFloat(document.getElementById('cocd').value);
+        var t1El   = document.getElementById('tier1');
+        var dupEl  = document.getElementById('dup');
+        var cocdEl = document.getElementById('cocd');
+
+        updateFill(t1El);
+        updateFill(dupEl);
+        updateFill(cocdEl);
+
+        var t1   = parseFloat(t1El.value);
+        var dup  = parseFloat(dupEl.value);
+        var cocd = parseFloat(cocdEl.value);
 
         document.getElementById('tier1-val').textContent = Math.round(t1);
         document.getElementById('dup-val').innerHTML = dup + '&times;';
