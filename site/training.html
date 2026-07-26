@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,6 +8,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .page-hero { background: #111; }
+    .page-hero .hero__eyebrow { color: #82C112; }
+    .page-hero .hero__headline { color: #fff; }
+    .page-hero .hero__sub { color: rgba(255,255,255,0.72); }
+    .section--stone .card { background: #fff; box-shadow: 0 2px 16px rgba(0,0,0,.07); }
+    .testimonials { grid-template-columns: repeat(2, 1fr); }
+    .training-path { max-width: 680px; margin: 0 auto; }
+    .training-path__sub { font-size: 1.05rem; color: #444; line-height: 1.75; margin-bottom: 2rem; }
+    .training-checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.1rem; }
+    .training-checklist li { display: flex; gap: 1rem; align-items: flex-start; font-size: 1rem; color: #222; line-height: 1.55; }
+    .training-checklist li::before { content: ""; flex-shrink: 0; width: 22px; height: 22px; margin-top: 1px; border-radius: 50%; background: #82C112 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='9' viewBox='0 0 11 9'%3E%3Cpolyline points='1 4 4 7 10 1' stroke='%23fff' stroke-width='1.7' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center; }
+  </style>
 </head>
 <body>
   <div id="nav-placeholder"></div>
@@ -16,8 +29,8 @@
   <section class="page-hero">
     <div class="container">
       <p class="hero__eyebrow">How We INNOVATE</p>
-      <h1 class="hero__headline">Training &amp; Development</h1>
-      <p class="hero__sub">If you aren't growing and evolving, you're standing still. INNOVATE invests in you from day one and never stops.</p>
+      <h1 class="hero__headline">&ldquo;Sink or Swim&rdquo; Isn&rsquo;t a Development Plan</h1>
+      <p class="hero__sub">Most agents are left to figure it out alone. Training is a one-time orientation that&rsquo;s forgotten by week two, and there&rsquo;s no obvious next rung once you&rsquo;re producing. Growth stalls; not from a lack of talent, but from a lack of a system. INNOVATE invests in you from day one and never stops.</p>
     </div>
   </section>
 
@@ -25,15 +38,7 @@
   <section class="section">
     <div class="container">
       <div class="leader__grid">
-        <div class="training-badge">
-          <div class="training-badge__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-            </svg>
-          </div>
-          <p class="training-badge__label">INNOVATE University</p>
-        </div>
+        <img src="/images/Training-image.png" alt="INNOVATE University" style="width:100%; border-radius:14px; display:block;" />
         <div class="leader__body">
           <p class="section-eyebrow">INNOVATE University</p>
           <h2 class="section-heading">A curriculum built around your career, not a checklist.</h2>
@@ -123,15 +128,50 @@
         </div>
 
       </div>
+
+      <div style="text-align:center; margin-top:3rem;">
+        <p style="font-size:1rem; font-weight:700; color:#222; margin-bottom:0.4rem;">Want the full picture?</p>
+        <p style="font-size:0.95rem; color:#666; margin-bottom:1.25rem;">View our full presentation.</p>
+        <a href="/deck.html" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Dig Deeper</a>
+      </div>
+
     </div>
   </section>
 
   <!-- Quote -->
   <section class="section">
     <div class="container">
-      <div class="pullquote">
-        <p class="pullquote__text">"I've been in the industry for 12 years and I learned more in my first 90 days at INNOVATE than I had in the previous five. The training is real, not just onboarding paperwork."</p>
-        <p class="pullquote__attr">INNOVATE Agent</p>
+      <div class="training-path">
+        <h2 class="section-heading" style="margin-bottom:1rem;">A Clear Path From Day One</h2>
+        <p class="training-path__sub">Development at INNOVATE is a ladder, not a one-time event. Wherever you are, you can see exactly where you stand and what&rsquo;s next.</p>
+        <ul class="training-checklist">
+          <li><span><strong>Launch:</strong> Get producing fast with structured new-agent training.</span></li>
+          <li><span><strong>Broker Training:</strong> Sharpen the skills that grow your business.</span></li>
+          <li><span><strong>Team Leader Masterminds:</strong> Learn to scale, lead, and build your own team.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agent testimonials -->
+  <section class="section section--stone">
+    <div class="container">
+      <div class="why__header">
+        <p class="section-eyebrow">From the Field</p>
+        <h2 class="section-heading">In their own words.</h2>
+      </div>
+      <div class="testimonials">
+
+        <div class="testimonial">
+          <p class="testimonial__text">"Their core values align with mine and my family&rsquo;s and within just 3 short years (of starting a career in real estate), I have reached top producer status with the company. They are fantastic, they offer a top level of support, and I wouldn&rsquo;t be where I am today without them. I know that I have people routing for me in every corner of INNOVATE."</p>
+          <p class="testimonial__attr">Jennifer Young, INNOVATE Agent</p>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial__text">"INNOVATE has been a blessing for us! From the technology to the leadership and the partnership, there is no other Brokerage in town like it. I know we will thrive here and everyday are reminded of the &ldquo;SKY&rsquo;S THE LIMIT LET US HELP YOU GET THERE.&rdquo;"</p>
+          <p class="testimonial__attr">Courtney Graham, INNOVATE Agent</p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -140,15 +180,34 @@
     <div class="container">
       <h2>See what the training looks like in practice.</h2>
       <p>Schedule a call and your local Market Center Leader will walk you through the full curriculum.</p>
-      <a href="https://calendly.com/innovate-darren/innovate-discovery" target="_blank" rel="noopener" class="btn btn--white">Schedule a Call</a>
+      <a href="/talk.html" class="btn btn--white">Schedule a Call</a>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 INNOVATE Real Estate. All rights reserved.
-        &nbsp;&middot;&nbsp; <a href="/index.html">Home</a>
-      </p>
+      <div class="footer__inner">
+        <p class="footer__copy">&copy; 2026 INNOVATE Real Estate. All rights reserved.</p>
+        <div class="footer__social">
+
+          <a href="https://www.facebook.com/INNOVATErealestatecompany" target="_blank" rel="noopener" aria-label="Facebook" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+
+          <a href="https://www.instagram.com/innovaterealestatecompany/" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.youtube.com/@InnovateRealEstateCompany" target="_blank" rel="noopener" aria-label="YouTube" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.linkedin.com/company/innovateonline-real-estate/" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+
+        </div>
+      </div>
     </div>
   </footer>
 </body>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,6 +8,92 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .page-hero { background: #111; }
+    .page-hero .hero__eyebrow { color: #82C112; }
+    .page-hero .hero__headline { color: #fff; }
+    .page-hero .hero__sub { color: rgba(255,255,255,0.72); }
+    .hero__bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .hero__bullets li {
+      color: rgba(255,255,255,0.72);
+      font-size: 1.05rem;
+      line-height: 1.5;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+    .hero__bullets li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #82C112;
+    }
+    .ob-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 2.5rem;
+    }
+    .ob-split__block h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 1rem;
+      letter-spacing: -.02em;
+    }
+    .ob-split__block p {
+      font-size: 0.975rem;
+      color: #555;
+      line-height: 1.7;
+    }
+    .ob-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .ob-checklist li {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+      font-size: 0.975rem;
+      color: #222;
+      line-height: 1.55;
+    }
+    .ob-checklist li::before {
+      content: "";
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+      border-radius: 50%;
+      background: #82C112;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='9' viewBox='0 0 11 9'%3E%3Cpolyline points='1 4 4 7 10 1' stroke='%23fff' stroke-width='1.7' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    @media (max-width: 800px) {
+      .ob-split { grid-template-columns: 1fr; gap: 40px; }
+    }
+  
+  /* Floating Dig Deeper pop-out tab */
+  .page-float-cta{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:200;overflow:hidden;}
+  .page-float-cta__link{display:flex;align-items:center;gap:10px;background:#82C112;color:#fff;text-decoration:none;font-family:inherit;font-weight:700;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;padding:15px 14px;border-radius:8px 0 0 8px;box-shadow:-4px 0 20px rgba(0,0,0,.18);transform:translateX(calc(100% - 42px));transition:transform .3s cubic-bezier(.25,.46,.45,.94);}
+  .page-float-cta__link:hover{transform:translateX(0);background:#74ad0f;}
+  .page-float-cta__chevron{flex-shrink:0;font-size:1.1rem;line-height:1;}</style>
 </head>
 <body>
   <div id="nav-placeholder"></div>
@@ -15,52 +101,42 @@
 
   <section class="page-hero">
     <div class="container">
-      <p class="hero__eyebrow">How We INNOVATE</p>
-      <h1 class="hero__headline">High-Split Compensation</h1>
-      <p class="hero__sub">Be well-compensated for your work. Be fully supported with the best systems and people. Build your retirement plan.</p>
+      <p class="hero__eyebrow">Three Ways to Build Wealth</p>
+      <h1 class="hero__headline">Your income doesn't have to stop at the closing table.</h1>
+      <p class="hero__sub">Three income streams working for you at once.</p>
+      <ul class="hero__bullets">
+        <li>85/15 split from day one with a low annual cap.</li>
+        <li>Revenue share that grows as your network does.</li>
+        <li>Equity in a company you help build.</li>
+      </ul>
     </div>
   </section>
 
-  <!-- Three pillars -->
+  <!-- Keep More / Problem / Solution -->
   <section class="section">
     <div class="container">
       <div class="why__header">
-        <p class="section-eyebrow">Three Ways to Build Wealth</p>
-        <h2 class="section-heading">Your income doesn't have to stop at the closing table.</h2>
+        <p class="section-eyebrow">High-Split Compensation</p>
+        <h2 class="section-heading">Keep More of What You Earn</h2>
+        <p class="intro-text" style="margin-top:12px;">You did the work. You should keep the reward. INNOVATE's compensation model is built so that the harder you produce, the more you keep, with no hidden fees buried in the fine print.</p>
       </div>
-      <div class="why__grid">
+      <div class="ob-split">
 
-        <div class="card">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-              <polyline points="17 6 23 6 23 12"/>
-            </svg>
-          </div>
-          <h3 class="card__title">Residual Referral Income</h3>
-          <p class="card__body">The most aggressive revenue share in the industry. Income that keeps paying beyond the closing. When you sponsor an agent, you earn a percentage of their production. As they grow, your income grows.</p>
+        <div class="ob-split__block">
+          <p class="section-eyebrow">The Problem</p>
+          <h3>"High Split" Means Nothing If the Fees Eat It</h3>
+          <p>A headline split looks great...until you add up desk fees, tech fees, transaction fees, and surprise charges. Agents shop on the split number but get nickel-and-dimed everywhere else. The real question isn't the split, it's what actually lands in your account.</p>
         </div>
 
-        <div class="card">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-              <polyline points="9 22 9 12 15 12 15 22"/>
-            </svg>
-          </div>
-          <h3 class="card__title">Company Ownership</h3>
-          <p class="card__body">Share in the growth of the company you help build. Equity opportunities let every agent participate in long-term upside that goes well beyond a commission check.</p>
-        </div>
-
-        <div class="card">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="1" x2="12" y2="23"/>
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-            </svg>
-          </div>
-          <h3 class="card__title">High-Split, Low-Cap</h3>
-          <p class="card__body">85/15 split from day one with a $15,000 annual cap. Once you hit it, you keep 100% for the rest of the year. Transparent fees, no surprises, and same-day payments when available.</p>
+        <div class="ob-split__block">
+          <p class="section-eyebrow">The INNOVATE Model</p>
+          <h3>Know Exactly What You Keep</h3>
+          <p style="margin-bottom:1.25rem;">We'll show you the whole math before you ever sign.</p>
+          <ul class="ob-checklist">
+            <li>A high split that rewards production, not tenure politics</li>
+            <li>Clear, upfront fees and a straightforward doc-review structure. No surprises at closing.</li>
+            <li>The more you produce, the more favorable your economics become</li>
+          </ul>
         </div>
 
       </div>
@@ -99,8 +175,46 @@
     </div>
   </section>
 
+  <!-- Plant Roots Now -->
+  <section class="section" id="plant-roots">
+    <div class="container">
+      <div class="why__header">
+        <p class="section-eyebrow">Build for the Long Term</p>
+        <h2 class="section-heading">Plant Roots Now. Earn for Years.</h2>
+        <p class="intro-text" style="margin-top:12px;">Commission is what you earn. Ownership is what you build.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:28px; max-width:720px; margin:0 auto;">
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V12"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
+              <path d="M12 12C12 7 7 4 7 4s1 5 5 8z"/><path d="M12 12C12 7 17 4 17 4s-1 5-5 8z"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Roots</h3>
+          <p class="card__body">What you build into INNOVATE now: your production, the agents you attract, and your stake in the company's growth.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/>
+              <rect x="9" y="11" width="14" height="10" rx="2"/>
+              <path d="M16 11v-1a2 2 0 0 0-2-2H9"/>
+              <line x1="13" y1="15.5" x2="18" y2="15.5"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Runway</h3>
+          <p class="card__body">What it pays back over time: revenue share, equity, and passive income that compounds as your network grows.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Build a Growth Network calculator -->
-  <section class="section">
+  <section class="section section--stone">
     <div class="container">
       <div class="why__header">
         <p class="section-eyebrow">Residual Referral Income</p>
@@ -232,30 +346,87 @@
     })();
   </script>
 
-  <!-- Quote -->
+  <!-- Own a Piece of the Upside -->
   <section class="section">
     <div class="container">
-      <div class="pullquote">
-        <p class="pullquote__text">"I never thought I could earn this much and still have the support systems I needed. The cap changed everything for how I plan my year."</p>
-        <p class="pullquote__attr">INNOVATE Agent</p>
+      <div class="why__header">
+        <p class="section-eyebrow">Company Ownership</p>
+        <h2 class="section-heading">Own a Piece of the Upside</h2>
+      </div>
+      <div style="max-width:720px; margin:0 auto; background:#f4f9ec; border-radius:14px; padding:2.5rem 3rem; border-left:5px solid #82C112;">
+        <p style="font-size:1.05rem; color:#2a3a12; line-height:1.8; margin:0;">As INNOVATE grows, the agents who helped build it are positioned to share in that growth. We have ambitions well beyond a single brokerage and joining now means getting in early, while the company is still being built. Equity and revenue share are real and active today; any future milestones will be shared openly with our agents as they come.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section section--stone">
+    <div class="container">
+      <div class="why__header">
+        <p class="section-eyebrow">What Agents Say</p>
+        <h2 class="section-heading">In their own words.</h2>
+      </div>
+      <div class="testimonials">
+
+        <div class="testimonial">
+          <p class="testimonial__text">"I'm not just an agent with INNOVATE, I'm a shareholder. And anyone that comes over to INNOVATE, they'll be a shareholder too."</p>
+          <p class="testimonial__attr">Earl Caffrey, INNOVATE Agent</p>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial__text">"The training, the brokers, the whole package is great, but I think what really sealed it for me was the fact that it offered a revenue share program and private equity shares so that in the future, I could have financial stability...and that's what I was looking for."</p>
+          <p class="testimonial__attr">Yvonne Guthrie, INNOVATE Agent</p>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial__text">"What stood out to me isn't just the growth, it's the technology, the agent-first model, and one of the lowest fee structures in the industry."</p>
+          <p class="testimonial__attr">Chris Hennessy, INNOVATE Agent</p>
+        </div>
+
       </div>
     </div>
   </section>
 
   <section class="cta-band">
     <div class="container">
-      <h2>Ready to run your own numbers?</h2>
+      <h2>Start Building Something That Lasts.</h2>
       <p>Schedule a call and we'll build a personalized comparison based on your actual production.</p>
-      <a href="https://calendly.com/innovate-darren/innovate-discovery" target="_blank" rel="noopener" class="btn btn--white">Schedule a Call</a>
+      <a href="/talk.html" class="btn btn--white">Schedule a Call</a>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 INNOVATE Real Estate. All rights reserved.
-        &nbsp;&middot;&nbsp; <a href="/index.html">Home</a>
-      </p>
+      <div class="footer__inner">
+        <p class="footer__copy">&copy; 2026 INNOVATE Real Estate. All rights reserved.</p>
+        <div class="footer__social">
+
+          <a href="https://www.facebook.com/INNOVATErealestatecompany" target="_blank" rel="noopener" aria-label="Facebook" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+
+          <a href="https://www.instagram.com/innovaterealestatecompany/" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.youtube.com/@InnovateRealEstateCompany" target="_blank" rel="noopener" aria-label="YouTube" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.linkedin.com/company/innovateonline-real-estate/" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+
+        </div>
+      </div>
     </div>
   </footer>
-</body>
+
+  <!-- Floating Dig Deeper tab -->
+  <div class="page-float-cta">
+    <a href="/deck.html" target="_blank" rel="noopener noreferrer" class="page-float-cta__link">
+      <span class="page-float-cta__chevron">&#171;</span>
+      <span class="page-float-cta__text">Dig Deeper</span>
+    </a>
+  </div></body>
 </html>

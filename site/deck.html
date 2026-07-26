@@ -1,0 +1,1172 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INNOVATE Real Estate - Agent Overview</title>
+  <script>if(localStorage.getItem('innovate-deck-access')==='granted'&&location.search.indexOf('preview')===-1){document.documentElement.setAttribute('data-unlocked','');}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:#111;}
+
+    /* ===== GATE ===== */
+    .gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;position:relative;}
+    .gate::before{content:"";position:absolute;inset:0;background:url("/images/capture-bg.png") center/cover no-repeat;filter:blur(7px);transform:scale(1.08);z-index:0;}
+    [data-unlocked] .gate{display:none;}
+    .gate__card{background:#fff;border-radius:14px;padding:48px 40px;max-width:480px;width:100%;box-shadow:0 12px 48px rgba(0,0,0,.35);position:relative;z-index:1;}
+    .gate__logo{height:44px;display:block;margin-bottom:36px;}
+    .gate__heading{font-size:1.75rem;font-weight:900;letter-spacing:-.03em;color:#111;margin-bottom:10px;}
+    .gate__sub{color:#666;font-size:.93rem;line-height:1.65;margin-bottom:32px;}
+    .gate__field{margin-bottom:18px;}
+    .gate__field label{display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#555;margin-bottom:6px;}
+    .gate__field input,.gate__field select{width:100%;padding:11px 13px;border:1.5px solid #ddd;border-radius:7px;font-family:'Inter',sans-serif;font-size:.93rem;color:#111;background:#fff;transition:border-color .2s;}
+    .gate__field input:focus,.gate__field select:focus{outline:none;border-color:#82C112;}
+    .gate__btn{width:100%;padding:13px;font-size:1rem;font-family:'Inter',sans-serif;font-weight:700;background:#82C112;color:#fff;border:none;border-radius:7px;cursor:pointer;margin-top:8px;transition:background .2s;}
+    .gate__btn:hover{background:#6ea80e;}
+    .gate__btn:disabled{opacity:.6;cursor:default;}
+    .gate__privacy{text-align:center;font-size:.76rem;color:#bbb;margin-top:14px;}
+    .gate__error{color:#c0392b;font-size:.84rem;margin-top:10px;text-align:center;}
+
+    /* ===== DECK ===== */
+    .deck{display:none;}
+    [data-unlocked] .deck{display:block;}
+
+    /* Nav */
+    .ds-nav{position:sticky;top:0;z-index:100;background:#1a1a1a;border-bottom:1px solid #2a2a2a;}
+    .ds-nav__inner{display:flex;align-items:center;padding:0 28px;overflow-x:auto;gap:2px;}
+    .ds-nav__logo{height:26px;filter:brightness(0) invert(1);flex-shrink:0;margin-right:16px;}
+    .ds-nav__link{display:block;padding:13px 12px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888;text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;flex-shrink:0;}
+    .ds-nav__link:hover,.ds-nav__link.is-active{color:#82C112;border-bottom-color:#82C112;}
+    .ds-nav__link--cta{margin-left:auto;color:#82C112;border:1.5px solid #82C112;border-radius:6px;padding:7px 14px;margin-top:7px;margin-bottom:7px;border-bottom:1.5px solid #82C112;font-size:.72rem;}
+    .ds-nav__link--cta:hover{background:#82C112;color:#fff;border-color:#82C112;}
+
+    /* Layout */
+    .ds-section{padding:80px 0;}
+    .ds-section--dark{background:#111;}
+    .ds-section--darker{background:#0d0d0d;}
+    .ds-section--stone{background:#f4f5f1;}
+    .ds-section--white{background:#fff;}
+    .ds-container{max-width:1100px;margin:0 auto;padding:0 36px;}
+    .ds-split{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+    .ds-split--wide{grid-template-columns:3fr 2fr;}
+
+    /* Typography */
+    .ds-eyebrow{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:#82C112;margin-bottom:.65rem;display:block;}
+    .ds-headline{font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:1.25rem;}
+    .ds-headline--white{color:#fff;}
+    .ds-headline--ink{color:#111;}
+    .ds-sub{font-size:1rem;line-height:1.8;margin-bottom:1.25rem;}
+    .ds-sub--muted{color:rgba(255,255,255,.65);}
+    .ds-sub--ink{color:#555;}
+    .ds-green{color:#82C112;}
+    .ds-section-header{text-align:center;margin-bottom:3rem;}
+    .ds-section-header .ds-sub{max-width:680px;margin-left:auto;margin-right:auto;}
+
+    /* Cards */
+    .ds-grid{display:grid;gap:22px;}
+    .ds-grid--3{grid-template-columns:repeat(3,1fr);}
+    .ds-grid--2{grid-template-columns:repeat(2,1fr);}
+    .ds-card{background:#fff;border-radius:12px;padding:1.75rem;box-shadow:0 2px 16px rgba(0,0,0,.06);}
+    .ds-card--dark{background:#1c1c1c;box-shadow:none;}
+    .ds-card__num{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#82C112;margin-bottom:.5rem;display:block;}
+    .ds-card__title{font-size:1rem;font-weight:800;color:#111;margin-bottom:.5rem;letter-spacing:-.01em;}
+    .ds-card__title--white{color:#fff;}
+    .ds-card__body{font-size:.9rem;color:#555;line-height:1.7;}
+    .ds-card__body--muted{color:#999;}
+
+    /* Tech cards */
+    .ds-tech{background:#1c1c1c;border-radius:12px;padding:2rem;border-left:4px solid #82C112;}
+    .ds-tech__name{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:.3rem;}
+    .ds-tech__role{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#82C112;margin-bottom:.85rem;}
+    .ds-tech__desc{font-size:.9rem;color:#aaa;line-height:1.7;margin-bottom:.85rem;}
+    .ds-tech__list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.45rem;}
+    .ds-tech__list li{font-size:.85rem;color:#ccc;display:flex;gap:.6rem;align-items:flex-start;line-height:1.45;}
+    .ds-tech__list li::before{content:"";flex-shrink:0;width:15px;height:15px;margin-top:1px;border-radius:50%;background:#82C112 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='7' viewBox='0 0 9 7'%3E%3Cpolyline points='1 3.5 3 5.5 8 1' stroke='%23fff' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C%2Fsvg%3E") no-repeat center;}
+
+    /* L.A.U.N.C.H. */
+    .ds-launch{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:2rem;}
+    .ds-launch__cell{background:#1c1c1c;border-radius:8px;padding:1.5rem .75rem;text-align:center;border-top:3px solid #82C112;}
+    .ds-launch__letter{font-size:2.5rem;font-weight:900;color:#82C112;line-height:1;display:block;margin-bottom:.4rem;}
+    .ds-launch__word{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#ccc;}
+
+    /* Tables */
+    .ds-table-wrap{overflow-x:auto;border-radius:10px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.12);}
+    .ds-table{width:100%;border-collapse:collapse;font-size:.9rem;}
+    .ds-table th{background:#82C112;color:#111;padding:13px 18px;text-align:left;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;}
+    .ds-table td{padding:13px 18px;border-bottom:1px solid #2a2a2a;color:#ddd;}
+    .ds-table tr:last-child td{border-bottom:none;}
+    .ds-table tr:nth-child(even) td{background:#1a1a1a;}
+    .ds-table td:first-child{font-weight:700;color:#fff;}
+    .ds-table--light td{border-bottom-color:#eee;color:#444;}
+    .ds-table--light tr:nth-child(even) td{background:#f8f8f8;}
+    .ds-table--light td:first-child{color:#111;}
+
+    /* Revenue share income examples */
+    .ds-income-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:2.5rem;}
+    .ds-income-card{background:#1c1c1c;border-radius:10px;padding:1.5rem;text-align:center;border-top:3px solid #82C112;}
+    .ds-income-card__agents{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#82C112;margin-bottom:.4rem;}
+    .ds-income-card__amount{font-size:1.6rem;font-weight:900;color:#fff;margin-bottom:.25rem;letter-spacing:-.02em;}
+    .ds-income-card__label{font-size:.78rem;color:#777;}
+
+    /* Equity awards */
+    .ds-award-group{margin-bottom:2.5rem;}
+    .ds-award-group__title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#82C112;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid #2a2a2a;}
+    .ds-award-row{display:flex;align-items:flex-start;gap:1rem;padding:.85rem 0;border-bottom:1px solid #1e1e1e;}
+    .ds-award-row:last-child{border-bottom:none;}
+    .ds-award-title{flex:1;font-size:.925rem;font-weight:700;color:#fff;line-height:1.4;}
+    .ds-award-desc{font-size:.82rem;color:#888;font-weight:400;display:block;margin-top:.2rem;}
+    .ds-award-badge{flex-shrink:0;background:#82C112;color:#111;font-size:.75rem;font-weight:800;padding:.35rem .7rem;border-radius:6px;white-space:nowrap;text-align:center;line-height:1.3;}
+
+    /* Support pillars */
+    .ds-pillar{display:flex;gap:1.25rem;align-items:flex-start;padding:1.5rem;background:#1c1c1c;border-radius:10px;}
+    .ds-pillar__num{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:#82C112;color:#111;font-weight:900;font-size:.875rem;display:flex;align-items:center;justify-content:center;}
+    .ds-pillar h4{font-size:1rem;font-weight:800;color:#fff;margin-bottom:.35rem;}
+    .ds-pillar p{font-size:.875rem;color:#888;line-height:1.65;}
+
+    /* States */
+    .ds-states{display:flex;flex-wrap:wrap;gap:.5rem;}
+    .ds-state{background:rgba(130,193,18,.15);color:#82C112;font-size:.78rem;font-weight:700;padding:.3rem .8rem;border-radius:100px;border:1px solid rgba(130,193,18,.3);}
+
+    /* Core values */
+    .ds-values{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .ds-value{border-left:3px solid #82C112;padding:1.25rem 1.5rem;}
+    .ds-value h4{font-size:1rem;font-weight:800;color:#fff;margin-bottom:.4rem;}
+    .ds-value p{font-size:.875rem;color:#888;line-height:1.7;}
+
+    /* Pull quote */
+    .ds-pullquote{max-width:780px;margin:0 auto;text-align:center;}
+    .ds-pullquote__mark{font-size:5rem;color:#82C112;line-height:.5;display:block;margin-bottom:24px;}
+    .ds-pullquote__text{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:800;color:#fff;line-height:1.4;letter-spacing:-.02em;}
+
+    /* Video */
+    .ds-video-wrap{border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.5);}
+    .ds-video-wrap video{width:100%;display:block;}
+
+    /* Checklist */
+    .ds-checklist{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.75rem;}
+    .ds-checklist li{display:flex;gap:.85rem;align-items:flex-start;font-size:.95rem;color:rgba(255,255,255,.8);line-height:1.55;}
+    .ds-checklist li::before{content:"";flex-shrink:0;width:20px;height:20px;margin-top:1px;border-radius:50%;background:#82C112 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='9' viewBox='0 0 11 9'%3E%3Cpolyline points='1 4 4 7 10 1' stroke='%23fff' stroke-width='1.7' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C%2Fsvg%3E") no-repeat center;}
+    .ds-checklist--light li{color:#444;}
+
+    /* Footnote */
+    .ds-footnote{font-size:.78rem;color:#666;margin-top:1rem;line-height:1.6;}
+
+    /* Fade animation */
+    .ds-fade{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
+    .ds-fade.is-visible{opacity:1;transform:none;}
+
+    /* Responsive */
+    @media(max-width:900px){
+      .ds-split,.ds-split--wide{grid-template-columns:1fr;gap:40px;}
+      .ds-grid--3{grid-template-columns:repeat(2,1fr);}
+      .ds-income-grid{grid-template-columns:repeat(2,1fr);}
+      .ds-launch{grid-template-columns:repeat(3,1fr);}
+      .ds-values{grid-template-columns:repeat(2,1fr);}
+    }
+    @media(max-width:600px){
+      .ds-grid--3,.ds-grid--2{grid-template-columns:1fr;}
+      .ds-income-grid{grid-template-columns:1fr 1fr;}
+      .ds-launch{grid-template-columns:repeat(2,1fr);}
+      .ds-values{grid-template-columns:1fr;}
+      .ds-container{padding:0 20px;}
+      .ds-section{padding:60px 0;}
+    }
+
+    /* Revenue share calculator */
+    .rs-calc{margin-top:2.5rem;}
+    .rs-calc__heading{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:1.5rem;}
+    .rs-calc__controls{background:#1a1a1a;border-radius:12px;padding:1.75rem;margin-bottom:1.5rem;}
+    .rs-calc__row{margin-bottom:1.25rem;}
+    .rs-calc__row:last-child{margin-bottom:0;}
+    .rs-calc__label{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;}
+    .rs-calc__val{color:#82C112;font-weight:800;font-size:.9rem;}
+    .rs-calc__range{width:100%;accent-color:#82C112;cursor:pointer;}
+    .rs-calc__result{text-align:center;padding:1.75rem;background:linear-gradient(135deg,#1c1c1c,#252525);border-radius:12px;border-top:3px solid #82C112;margin-bottom:1.5rem;}
+    .rs-calc__result-label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#82C112;margin-bottom:.5rem;}
+    .rs-calc__result-amount{font-size:2.8rem;font-weight:900;color:#fff;letter-spacing:-.03em;}
+
+    /* Pulse beacon */
+    .pulse-beacon{position:absolute;right:-14px;top:calc(100% - 12px);display:flex;flex-direction:column;align-items:center;text-decoration:none;z-index:20;}
+    .pulse-beacon__dot{width:24px;height:24px;border-radius:50%;background:#82C112;flex-shrink:0;position:relative;}
+    .pulse-beacon__dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2.5px solid #82C112;animation:pulse-ring 1.8s ease-out infinite;}
+    @keyframes pulse-ring{0%{transform:scale(1);opacity:.8;}100%{transform:scale(2.4);opacity:0;}}
+    .pulse-beacon__line{width:1px;height:40px;background:rgba(255,255,255,.2);display:block;}
+    .pulse-beacon__text{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.8);white-space:nowrap;letter-spacing:.04em;margin-top:2px;}
+    .pulse-beacon:hover .pulse-beacon__text{color:#82C112;}
+    /* Story beacon - inline variant */
+    .story-beacon{display:flex;flex-direction:column;align-items:flex-start;margin-top:1.25rem;}
+    .story-beacon__dot{width:20px;height:20px;border-radius:50%;background:#82C112;flex-shrink:0;position:relative;cursor:pointer;}
+    .story-beacon__dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #82C112;animation:pulse-ring 1.8s ease-out infinite;}
+    .story-beacon__line{width:1px;height:32px;background:rgba(255,255,255,.2);}
+    .story-beacon__btn{background:none;border:none;font-family:inherit;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.8);cursor:pointer;letter-spacing:.04em;padding:2px 0;text-align:left;}
+    .story-beacon__btn:hover{color:#82C112;}
+
+    /* Story modal */
+    .story-modal{position:fixed;inset:0;z-index:9000;display:none;align-items:center;justify-content:center;padding:24px;}
+    .story-modal.is-open{display:flex;}
+    .story-modal__overlay{position:absolute;inset:0;background:rgba(0,0,0,.78);}
+    .story-modal__box{position:relative;background:#1a1a1a;border-radius:16px;max-width:680px;width:100%;max-height:88vh;overflow-y:auto;padding:2.5rem;box-shadow:0 30px 80px rgba(0,0,0,.6);}
+    .story-modal__close{position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;color:#666;font-size:1.6rem;cursor:pointer;line-height:1;padding:4px 10px;border-radius:4px;}
+    .story-modal__close:hover{color:#fff;background:rgba(255,255,255,.08);}
+    .story-modal__eyebrow{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#82C112;margin-bottom:.75rem;}
+    .story-modal__headline{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:900;color:#fff;margin-bottom:1.5rem;line-height:1.2;}
+    .story-modal__body p{font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.85;margin-bottom:1rem;}
+    .story-modal__list{list-style:none;padding:0;margin:.5rem 0 1rem 0;}
+    .story-modal__list li{font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.85;padding-left:1.25rem;position:relative;margin-bottom:.2rem;}
+    .story-modal__list li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:50%;background:#82C112;}
+    .story-modal__mission{background:linear-gradient(135deg,#222,#2a2a2a);border-radius:10px;padding:1.25rem 1.5rem;border-left:3px solid #82C112;font-size:.92rem;color:#fff;font-style:italic;line-height:1.75;margin-top:1.25rem;}
+    .rs-calc__disclaimer{font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.6;margin-bottom:1.25rem;border-left:2px solid rgba(130,193,18,.3);padding-left:.75rem;}
+    .rs-calc .ds-table--light tr:nth-child(odd) td{color:rgba(255,255,255,.8);}
+    .rs-calc .ds-table--light td:first-child{color:#fff;}
+    /* Development track */
+    .ds-track{max-width:680px;}
+    .ds-track__item{display:flex;gap:1.5rem;}
+    .ds-track__left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:44px;}
+    .ds-track__badge{width:44px;height:44px;border-radius:50%;background:#82C112;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:#fff;letter-spacing:.04em;flex-shrink:0;}
+    .ds-track__connector{width:2px;flex:1;background:rgba(130,193,18,.25);margin:6px 0;min-height:28px;}
+    .ds-track__body{padding-bottom:2rem;}
+    .ds-track__tier{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#82C112;margin-bottom:.4rem;}
+    .ds-track__name{font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:.4rem;line-height:1.2;}
+    .ds-track__desc{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7;}
+    .ds-track__plus{margin-top:.5rem;padding:1.1rem 1.4rem;background:#1c1c1c;border-radius:10px;border-left:3px solid rgba(130,193,18,.35);}
+    .ds-track__plus-label{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#82C112;margin-bottom:.65rem;}
+    .ds-track__tags{display:flex;flex-wrap:wrap;gap:.45rem;}
+    .ds-track__tag{font-size:.75rem;color:rgba(255,255,255,.65);background:rgba(255,255,255,.06);border-radius:20px;padding:.3rem .85rem;border:1px solid rgba(255,255,255,.1);}  </style>
+</head>
+<body>
+
+  <!-- ===== GATE ===== -->
+  <div class="gate">
+    <div class="gate__card">
+      <img src="/images/innovate-logo.png" alt="INNOVATE Real Estate" class="gate__logo" />
+      <h1 class="gate__heading">See the Full Picture</h1>
+      <p class="gate__sub">Enter your info below for instant access to our agent overview presentation.</p>
+      <form id="gate-form" action="https://formspree.io/f/mojgjenk" method="POST" novalidate>
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+        <div class="gate__field">
+          <label for="g-name">Full Name</label>
+          <input type="text" id="g-name" name="name" required placeholder="Jane Smith" autocomplete="name" />
+        </div>
+        <div class="gate__field">
+          <label for="g-email">Email Address</label>
+          <input type="email" id="g-email" name="email" required placeholder="jane@example.com" autocomplete="email" />
+        </div>
+        <div class="gate__field">
+          <label for="g-state">State Licensed / Working In</label>
+          <select id="g-state" name="state" required>
+            <option value="">Select a state...</option>
+            <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+            <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+            <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+            <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+            <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+            <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+            <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+            <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+            <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+            <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+            <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+            <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+            <option>Wisconsin</option><option>Wyoming</option><option>District of Columbia</option><option>Other</option>
+          </select>
+        </div>
+        <div class="gate__field">
+          <label for="g-referral">How did you hear about INNOVATE? <span style="font-weight:400;color:#aaa;">(optional)</span></label>
+          <input type="text" id="g-referral" name="referral_source" placeholder="e.g. Agent name, recruiter, social media..." autocomplete="off" />
+        </div>
+        <button type="submit" class="gate__btn" id="gate-submit">View Presentation</button>
+        <p class="gate__privacy">No spam, ever. Your info stays private.</p>
+        <p class="gate__error" id="gate-error" style="display:none">Something went wrong. Please try again.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== DECK ===== -->
+  <div class="deck">
+    <!-- NAV -->
+    <nav class="ds-nav">
+      <div class="ds-nav__inner">
+        <img src="/images/innovate-logo.png" alt="INNOVATE" class="ds-nav__logo" />
+        <a href="#model" class="ds-nav__link" data-nav="model">The Model</a>
+        <a href="#offer" class="ds-nav__link" data-nav="offer">What We Offer</a>
+        <a href="#technology" class="ds-nav__link" data-nav="technology">Technology</a>
+        <a href="#training" class="ds-nav__link" data-nav="training">Training</a>
+        <a href="#marketing" class="ds-nav__link" data-nav="marketing">Marketing</a>
+        <a href="#support" class="ds-nav__link" data-nav="support">Support</a>
+        <a href="#compensation" class="ds-nav__link" data-nav="compensation">Compensation</a>
+        <a href="#revenue-share" class="ds-nav__link" data-nav="revenue-share">Revenue Share</a>
+        <a href="#equity" class="ds-nav__link" data-nav="equity">Equity</a>
+        <a href="#values" class="ds-nav__link" data-nav="values">Values</a>
+        <a href="#contact" class="ds-nav__link ds-nav__link--cta">Schedule a Call</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="ds-section ds-section--darker" id="hero" style="padding:100px 0 80px;">
+      <div class="ds-container">
+        <div class="ds-split">
+          <div class="ds-fade">
+            <span class="ds-eyebrow">Agent Overview</span>
+            <h1 class="ds-headline ds-headline--white">Welcome to a <span class="ds-green">new era</span> of real estate.</h1>
+            <p class="ds-sub ds-sub--muted">The industry&rsquo;s first and only real Hybrid Growth Model, built for agents who want hands-on support, modern technology, and income that goes well beyond the closing table.</p>
+            <a href="#model" class="btn btn--primary" style="display:inline-block;padding:13px 28px;background:#82C112;color:#fff;text-decoration:none;border-radius:8px;font-weight:700;font-size:.95rem;">See How It Works &darr;</a>
+          </div>
+          <div class="ds-fade" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div style="background:#1c1c1c;border-radius:10px;padding:1.5rem;border-top:3px solid #82C112;">
+              <p style="font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.03em;">85/15</p>
+              <p style="font-size:.8rem;color:#888;margin-top:.25rem;">Split from day one</p>
+            </div>
+            <div style="background:#1c1c1c;border-radius:10px;padding:1.5rem;border-top:3px solid #82C112;">
+              <p style="font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.03em;">$15K</p>
+              <p style="font-size:.8rem;color:#888;margin-top:.25rem;">Annual cap</p>
+            </div>
+            <div style="background:#1c1c1c;border-radius:10px;padding:1.5rem;border-top:3px solid #82C112;position:relative;overflow:visible;">
+              <p style="font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.03em;">5-Tier</p>
+              <p style="font-size:.8rem;color:#888;margin-top:.25rem;">Revenue share</p>
+              <a href="#revenue-share" class="pulse-beacon" aria-label="See Revenue Share calculator">
+                <span class="pulse-beacon__dot"></span>
+                <span class="pulse-beacon__line"></span>
+                <span class="pulse-beacon__text">See it in Action</span>
+              </a>
+            </div>
+            <div style="background:#1c1c1c;border-radius:10px;padding:1.5rem;border-top:3px solid #82C112;">
+              <p style="font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.03em;">14</p>
+              <p style="font-size:.8rem;color:#888;margin-top:.25rem;">States &amp; growing</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE MODEL -->
+    <section class="ds-section ds-section--dark" id="model">
+      <div class="ds-container">
+        <div class="ds-section-header ds-fade">
+          <span class="ds-eyebrow">The Hybrid Growth Model</span>
+          <h2 class="ds-headline ds-headline--white">The industry&rsquo;s first and only real Hybrid Growth Model.</h2>
+          <p class="ds-sub ds-sub--muted">For years, agents were told to choose: hands-on local support OR technology and financial opportunity. INNOVATE was built to end that trade-off.</p>
+        </div>
+        <div class="ds-grid ds-grid--2 ds-fade">
+          <div class="ds-card ds-card--dark">
+            <span class="ds-card__num">Traditional Brokerage</span>
+            <h3 class="ds-card__title ds-card__title--white">Local support. Limited upside.</h3>
+            <p class="ds-card__body ds-card__body--muted">Culture and local broker relationships, but often missing modern technology, scalability, and meaningful financial opportunity beyond the transaction.</p>
+          </div>
+          <div class="ds-card ds-card--dark">
+            <span class="ds-card__num">Cloud Brokerage</span>
+            <h3 class="ds-card__title ds-card__title--white">Revenue opportunity. Disconnected support.</h3>
+            <p class="ds-card__body ds-card__body--muted">Technology and revenue share programs, but many agents find themselves without real leadership, broker support, or local accountability.</p>
+          </div>
+        </div>
+        <div class="ds-fade" style="margin-top:2rem;background:#1c1c1c;border-radius:12px;padding:2.5rem;border:1px solid rgba(130,193,18,.3);">
+          <span class="ds-eyebrow" style="margin-bottom:1rem;">The INNOVATE Difference</span>
+          <div class="ds-grid ds-grid--2" style="gap:1.5rem;">
+            <ul class="ds-checklist">
+              <li>Hands-on broker support + modern, scalable technology</li>
+              <li>Real relationships + real expansion opportunity</li>
+            </ul>
+            <ul class="ds-checklist">
+              <li>Income beyond just transactions</li>
+              <li>Long-term wealth through revenue share + equity ownership</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- OUR STORY -->
+        <div style="margin-top:5rem;" class="ds-fade">
+          <div class="ds-split">
+            <div>
+              <span class="ds-eyebrow">Our Story</span>
+              <h2 class="ds-headline ds-headline--white" style="font-size:clamp(1.5rem,2.5vw,2.2rem);">INNOVATE didn&rsquo;t begin with a national expansion plan.</h2>
+              <p class="ds-sub ds-sub--muted">It began with two agents and team leaders who believed the brokerage model had stopped serving agents the way it should.</p>
+              <p class="ds-sub ds-sub--muted">Co-founders Darren Woodard and Jeff Casterline believed agents deserved both the culture and local support of a traditional brokerage AND the technology and financial upside of a cloud model. So they built one.</p>
+              <p class="ds-sub ds-sub--muted">What started as a small independent brokerage in Myrtle Beach grew quickly because agents responded to a model that felt different: more connected, more collaborative, and more aligned with where the industry was heading.</p>
+              <p style="font-size:.9rem;font-style:italic;color:rgba(255,255,255,.5);margin-top:.5rem;">"A brokerage should do more than house agents, it should help them build something meaningful."</p>
+              <div class="story-beacon">
+                <span class="story-beacon__dot" onclick="openStoryModal()"></span>
+                <span class="story-beacon__line"></span>
+                <button class="story-beacon__btn" onclick="openStoryModal()">Read the Full Story</button>
+              </div>
+            </div>
+            <div>
+              <span class="ds-eyebrow">Current Locations, July 2026</span>
+              <div class="ds-states" style="margin-top:.75rem;">
+                <span class="ds-state">New Hampshire</span>
+                <span class="ds-state">Massachusetts</span>
+                <span class="ds-state">Rhode Island</span>
+                <span class="ds-state">Pennsylvania</span>
+                <span class="ds-state">New Jersey</span>
+                <span class="ds-state">Maryland</span>
+                <span class="ds-state">Delaware</span>
+                <span class="ds-state">Ohio</span>
+                <span class="ds-state">Tennessee</span>
+                <span class="ds-state">Virginia</span>
+                <span class="ds-state">North Carolina</span>
+                <span class="ds-state">South Carolina</span>
+                <span class="ds-state">Georgia</span>
+                <span class="ds-state">Florida</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PULL QUOTE -->
+    <section class="ds-section ds-section--darker" style="padding:80px 0;">
+      <div class="ds-container">
+        <div class="ds-pullquote ds-fade">
+          <span class="ds-pullquote__mark">&ldquo;</span>
+          <p class="ds-pullquote__text">We&rsquo;re not looking to be your next brokerage. We want to be your <span class="ds-green">forever</span> brokerage.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT WE OFFER -->
+    <section class="ds-section ds-section--dark" id="offer">
+      <div class="ds-container">
+        <div class="ds-section-header ds-fade">
+          <span class="ds-eyebrow">What We Offer</span>
+          <h2 class="ds-headline ds-headline--white">We&rsquo;ve got you covered.</h2>
+          <p class="ds-sub ds-sub--muted">From your website to your paycheck, every piece of your business is supported.</p>
+        </div>
+        <div class="ds-grid ds-grid--3 ds-fade">
+
+          <div class="ds-card ds-card--dark">
+            <span class="ds-card__num">01</span>
+            <h3 class="ds-card__title ds-card__title--white">Agent Websites</h3>
+            <p class="ds-card__body ds-card__body--muted">Professional website with IDX search, neighborhood reports, lead gen tools, blog, and custom URL. Live from day one.</p>
+          </div>
+
+          <div class="ds-card ds-card--dark">
+            <span class="ds-card__num">02</span>
+            <h3 class="ds-card__title ds-card__title--white">Showing Schedule</h3>
+            <p class="ds-card__body ds-card__body--muted">Admin staff handles daytime showing appointments; appointment center covers after-hours, holidays, and weekends. Listings on auto-pilot.</p>
+          </div>
+
+          <div class="ds-card ds-card--dark">
+            <span class="ds-card__num">03</span>
+            <h3 class="ds-card__title ds-card__title--white">Lead Generation</h3>
+            <p class="ds-card__body ds-card__body--muted">Company leads provided plus access to Google Display, Google PPC, Facebook Buyer, Facebook AI Retargeting, and Facebook Boost Ads.</p>
+          </div>
+
+          <div class="ds-card ds-card--dark">
+            <span class="ds-card__num">04</span>
+            <h3 class="ds-card__title ds-card__title--white">Marketing Platform</h3>
+            <p class="ds-card__body ds-card__body--muted">Full marketing platform with quick access to all branded materials plus a design department for major custom projects.</p>
+          </div>
+
+          <div class="ds-card ds-card--dark">
+            <span class="ds-card__num">05</span>
+            <h3 class="ds-card__title ds-card__title--white">Same-Day Payouts</h3>
+            <p class="ds-card__body ds-card__body--muted">E-check system that allows for fast commission payments, same day in many cases. No waiting around for your money.</p>
+          </div>
+
+          <div class="ds-card ds-card--dark">
+            <span class="ds-card__num">06</span>
+            <h3 class="ds-card__title ds-card__title--white">Culture</h3>
+            <p class="ds-card__body ds-card__body--muted">Tech-Forward. Agent-Centric. Client-Focused. Family-First. We&rsquo;re a family, and that&rsquo;s not just a catch phrase.</p>
+          </div>
+
+          <div class="ds-card ds-card--dark">
+            <span class="ds-card__num">07</span>
+            <h3 class="ds-card__title ds-card__title--white">CRM &amp; Follow-Up</h3>
+            <p class="ds-card__body ds-card__body--muted">Automated buyer and seller campaigns via email, SMS, and phone. Daily task reminders and ongoing lead generation training built in.</p>
+          </div>
+
+          <div class="ds-card ds-card--dark">
+            <span class="ds-card__num">08</span>
+            <h3 class="ds-card__title ds-card__title--white">Onboarding</h3>
+            <p class="ds-card__body ds-card__body--muted">Customized onboarding so every agent gets the tools, training, marketing materials, and support to hit the ground running.</p>
+          </div>
+
+          <div class="ds-card ds-card--dark">
+            <span class="ds-card__num">09</span>
+            <h3 class="ds-card__title ds-card__title--white">Training &amp; Education</h3>
+            <p class="ds-card__body ds-card__body--muted">Weekly, quarterly, and annual education events with local and national experts. Always connected, always growing.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGY -->
+    <section class="ds-section ds-section--stone" id="technology">
+      <div class="ds-container">
+        <div class="ds-section-header ds-fade">
+          <span class="ds-eyebrow">Best-in-Class Technology</span>
+          <h2 class="ds-headline ds-headline--ink">Tech stacks don&rsquo;t work unless they make life easier.</h2>
+          <p class="ds-sub ds-sub--ink">At INNOVATE, our tech stack was built to automate your workflow so you can focus on your clients.</p>
+        </div>
+
+        <div class="ds-grid ds-grid--3 ds-fade" style="margin-bottom:22px;">
+
+          <div class="ds-tech">
+            <p class="ds-tech__name">Constellation1</p>
+            <p class="ds-tech__role">Agent Websites</p>
+            <p class="ds-tech__desc">Mobile-friendly IDX website ready from day one. Built for simplicity, speed, and SEO. Vanity domain support included.</p>
+            <ul class="ds-tech__list">
+              <li>IDX pre-built and ready</li>
+              <li>Lead capture built in</li>
+              <li>Vanity domain support</li>
+            </ul>
+          </div>
+
+          <div class="ds-tech">
+            <p class="ds-tech__name">RealScout</p>
+            <p class="ds-tech__role">Home Search &amp; Seller Alerts</p>
+            <p class="ds-tech__desc">Agent-powered home search with natural language listing alerts. Home value alerts capture seller leads automatically.</p>
+            <ul class="ds-tech__list">
+              <li>Natural language listing alerts</li>
+              <li>Multiple home valuations</li>
+              <li>Integrates with FUB &amp; website</li>
+            </ul>
+          </div>
+
+          <div class="ds-tech">
+            <p class="ds-tech__name">Listings to Leads</p>
+            <p class="ds-tech__role">Marketing &amp; Lead Generation</p>
+            <p class="ds-tech__desc">100+ tools to market listings for buyer and seller leads. Get more listings fast.</p>
+            <ul class="ds-tech__list">
+              <li>90+ social media ads ready in 1 click</li>
+              <li>84+ landing pages ready to use</li>
+              <li>Google Ads with lead capture</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="ds-grid ds-grid--2 ds-fade" style="margin-bottom:22px;">
+
+          <div class="ds-tech">
+            <p class="ds-tech__name">Follow Up Boss</p>
+            <p class="ds-tech__role">CRM &amp; Lead Conversion</p>
+            <p class="ds-tech__desc">More than a CRM. A flexible, open platform with custom follow-up campaigns written by top real estate professionals, not canned responses.</p>
+            <ul class="ds-tech__list">
+              <li>Email campaigns + call recording</li>
+              <li>Texting + personal FUB number</li>
+              <li>Calendar sync &amp; batch emails</li>
+              <li>Integrates with RealScout, L2L, Zillow, and more</li>
+            </ul>
+          </div>
+
+          <div class="ds-tech">
+            <p class="ds-tech__name">Dotloop</p>
+            <p class="ds-tech__role">Transaction Management</p>
+            <p class="ds-tech__desc">Complete transaction management that saves time and creates a positive client experience from contract to close.</p>
+            <ul class="ds-tech__list">
+              <li>Automated workflows</li>
+              <li>Document placeholders</li>
+              <li>Real-time notifications</li>
+              <li>Full activity logs</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="ds-grid ds-grid--2 ds-fade">
+
+          <div class="ds-tech">
+            <p class="ds-tech__name">Maxa / Market Center</p>
+            <p class="ds-tech__role">Marketing Design Platform</p>
+            <p class="ds-tech__desc">All marketing needs in one place. INNOVATE&rsquo;s strategic partnership with Maxa Designs gives agents instant access to fully branded, customizable marketing materials.</p>
+            <ul class="ds-tech__list">
+              <li>Social media posts + print campaigns</li>
+              <li>Buyer &amp; seller presentations</li>
+              <li>Direct mail, signs, business cards</li>
+              <li>New content added constantly</li>
+            </ul>
+          </div>
+
+          <div class="ds-tech">
+            <p class="ds-tech__name">AgentEdge + Darwin</p>
+            <p class="ds-tech__role">Reporting &amp; Payments</p>
+            <p class="ds-tech__desc">Automated tracking for goals, production, revenue share, and financials. E-commission payments built in.</p>
+            <ul class="ds-tech__list">
+              <li>Goal &amp; production tracking</li>
+              <li>Revenue share tracking</li>
+              <li>Financial &amp; stat reporting</li>
+              <li>E-commission payments</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- TRAINING -->
+    <section class="ds-section ds-section--dark" id="training">
+      <div class="ds-container">
+        <div class="ds-section-header ds-fade">
+          <span class="ds-eyebrow">Training &amp; Development</span>
+          <h2 class="ds-headline ds-headline--white">A clear path from day one.</h2>
+          <p class="ds-sub ds-sub--muted">Development at INNOVATE is a ladder, not a one-time event. Wherever you are, there&rsquo;s a structured program for where you&rsquo;re going.</p>
+        </div>
+
+        <div class="ds-track ds-fade" style="margin-bottom:3.5rem;">
+          <div class="ds-track__item">
+            <div class="ds-track__left">
+              <div class="ds-track__badge">01</div>
+              <div class="ds-track__connector"></div>
+            </div>
+            <div class="ds-track__body">
+              <p class="ds-track__tier">Launch</p>
+              <h3 class="ds-track__name">Build Your Foundation</h3>
+              <p class="ds-track__desc">For new agents and those restarting their business.</p>
+            </div>
+          </div>
+          <div class="ds-track__item">
+            <div class="ds-track__left">
+              <div class="ds-track__badge">02</div>
+              <div class="ds-track__connector"></div>
+            </div>
+            <div class="ds-track__body">
+              <p class="ds-track__tier">Accelerate</p>
+              <h3 class="ds-track__name">Create Consistent Production</h3>
+              <p class="ds-track__desc">For agents who know the basics but want predictable appointments, listings, and closings.</p>
+            </div>
+          </div>
+          <div class="ds-track__item">
+            <div class="ds-track__left">
+              <div class="ds-track__badge">03</div>
+            </div>
+            <div class="ds-track__body">
+              <p class="ds-track__tier">Growth</p>
+              <h3 class="ds-track__name">Scale with Intention</h3>
+              <p class="ds-track__desc">For productive agents ready to increase profitability, leverage systems, and build a business that supports their life.</p>
+            </div>
+          </div>
+          <div class="ds-track__plus">
+            <p class="ds-track__plus-label">Also Available</p>
+            <div class="ds-track__tags">
+              <span class="ds-track__tag">Broker &amp; Leadership Training</span>
+              <span class="ds-track__tag">Masterminds</span>
+              <span class="ds-track__tag">Luxury Specialists</span>
+              <span class="ds-track__tag">Commercial</span>
+              <span class="ds-track__tag">Investment</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-split ds-fade" style="margin-bottom:3.5rem;align-items:start;">
+          <div>
+            <span class="ds-eyebrow">INNOVATE University</span>
+            <h3 style="font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:1rem;letter-spacing:-.02em;">Hundreds of resources. 24/7 access.</h3>
+            <p class="ds-sub ds-sub--muted">Agents focused on goal setting, mindset, working with buyers, landing more listings, and business planning will thrive when they log in and dive in.</p>
+            <ul class="ds-checklist">
+              <li>Database Building</li>
+              <li>Time Management &amp; Goal Setting</li>
+              <li>The Ultimate Guide to Working with Buyers</li>
+              <li>The Ultimate Guide to Working with Sellers</li>
+              <li>Marketing Rules of the Road</li>
+              <li>Contract to Close</li>
+              <li>Setting Up Your Business Legally</li>
+              <li>Mastering the Open House</li>
+            </ul>
+          </div>
+          <div>
+            <span class="ds-eyebrow">Professional Development</span>
+            <h3 style="font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:1rem;letter-spacing:-.02em;">A constant stream of live education.</h3>
+            <p class="ds-sub ds-sub--muted">Online and in-person training events from industry coaches, agents, and vendors. Mastermind groups, workshops, and events that keep you sharp.</p>
+            <ul class="ds-checklist">
+              <li>Weekly online workshops</li>
+              <li>Quarterly in-person events</li>
+              <li>Industry coach guest sessions</li>
+              <li>Team Leader Masterminds</li>
+              <li>Annual company-wide events</li>
+              <li>Systems &amp; Technology Training</li>
+              <li>Mentorships</li>
+              <li>Attract and Empower Masterminds</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARKETING -->
+    <section class="ds-section ds-section--stone" id="marketing">
+      <div class="ds-container">
+        <div class="ds-section-header ds-fade">
+          <span class="ds-eyebrow">Marketing &amp; Promotion</span>
+          <h2 class="ds-headline ds-headline--ink">Your brand, amplified.</h2>
+          <p class="ds-sub ds-sub--ink">INNOVATE&rsquo;s strategic partnership with Maxa Designs, the real estate industry&rsquo;s premier brand and marketing platform, gives every agent instant access to a professional marketing department.</p>
+        </div>
+
+        <div class="ds-split ds-fade" style="margin-bottom:3rem;">
+          <div>
+            <span class="ds-eyebrow" style="color:#6aa00e;">INNOVATE Design Studio</span>
+            <h3 style="font-size:1.3rem;font-weight:800;color:#111;margin-bottom:.85rem;">Hundreds of branded templates. Ready to customize and publish.</h3>
+            <ul class="ds-checklist ds-checklist--light">
+              <li>Social media posts for every occasion</li>
+              <li>Just Listed, Just Sold, Open House flyers</li>
+              <li>Buyer &amp; seller presentation templates</li>
+              <li>Direct mail campaigns managed for you</li>
+              <li>Business cards, signs, brochures, and more</li>
+              <li>In-house design team for custom projects</li>
+            </ul>
+          </div>
+          <div>
+            <span class="ds-eyebrow" style="color:#6aa00e;">Agent Promotion</span>
+            <h3 style="font-size:1.3rem;font-weight:800;color:#111;margin-bottom:.85rem;">We put you in the spotlight.</h3>
+            <p style="font-size:.95rem;color:#555;line-height:1.7;margin-bottom:1rem;">From featured listings to sales awards and personal accomplishments, INNOVATE&rsquo;s social media accounts actively promote our agents, welcoming new members, celebrating milestones, and amplifying your production.</p>
+            <ul class="ds-checklist ds-checklist--light">
+              <li>Welcome posts for every new agent</li>
+              <li>Monthly top producer recognition</li>
+              <li>Listing promotion across platforms</li>
+              <li>Production milestone celebrations</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ds-fade">
+          <div class="ds-video-wrap" style="max-width:860px;margin:0 auto;">
+            <video controls preload="metadata" style="width:100%;display:block;">
+              <source src="/videos/marketing-promo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AGENT SUPPORT -->
+    <section class="ds-section ds-section--dark" id="support">
+      <div class="ds-container">
+        <div class="ds-section-header ds-fade">
+          <span class="ds-eyebrow">Agent Support</span>
+          <h2 class="ds-headline ds-headline--white">You&rsquo;re never figuring it out alone.</h2>
+          <p class="ds-sub ds-sub--muted">Six layers of support built around you, so the right resource is always within reach.</p>
+        </div>
+        <div class="ds-grid ds-grid--2 ds-fade" style="gap:16px;">
+          <div class="ds-pillar">
+            <div class="ds-pillar__num">1</div>
+            <div class="ds-pillar__body">
+              <h4>Local Brokers</h4>
+              <p>Committed to hiring local brokers in all operating areas with a healthy agent-to-broker ratio. Your broker is someone you know, trust, and can reach, with a real understanding of local market conditions.</p>
+            </div>
+          </div>
+          <div class="ds-pillar">
+            <div class="ds-pillar__num">2</div>
+            <div class="ds-pillar__body">
+              <h4>Broker Hotline</h4>
+              <p>When your broker is unavailable, the Broker Hotline connects you with a qualified broker fast. For the things you need answered right away.</p>
+            </div>
+          </div>
+          <div class="ds-pillar">
+            <div class="ds-pillar__num">3</div>
+            <div class="ds-pillar__body">
+              <h4>Administrative Support</h4>
+              <p>All administrative staff are well-trained and matched to agent support using DISC profiling to ensure their strengths align with helping you succeed.</p>
+            </div>
+          </div>
+          <div class="ds-pillar">
+            <div class="ds-pillar__num">4</div>
+            <div class="ds-pillar__body">
+              <h4>Marketing Support</h4>
+              <p>Full suite of professionally designed, customizable marketing materials plus an in-house design team for specialized custom branding and marketing projects.</p>
+            </div>
+          </div>
+          <div class="ds-pillar">
+            <div class="ds-pillar__num">5</div>
+            <div class="ds-pillar__body">
+              <h4>Onboarding</h4>
+              <p>A refined, customized onboarding process ensures every agent receives the tools, training, marketing materials, and support they need to hit the ground running from day one.</p>
+            </div>
+          </div>
+          <div class="ds-pillar">
+            <div class="ds-pillar__num">6</div>
+            <div class="ds-pillar__body">
+              <h4>Tech Hotline</h4>
+              <p>Fast, dedicated support for your tools and platforms. Get help with your CRM, marketing suite, transaction management, or any technology issue so you can stay focused on your clients.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPENSATION -->
+    <section class="ds-section ds-section--stone" id="compensation">
+      <div class="ds-container">
+        <div class="ds-section-header ds-fade">
+          <span class="ds-eyebrow">Compensation Structure</span>
+          <h2 class="ds-headline ds-headline--ink">A plan that sets you up for success.</h2>
+          <p class="ds-sub ds-sub--ink">High split, low cap, transparent fees. Commission is what you earn. The structure is what you keep.</p>
+        </div>
+        <div class="ds-table-wrap ds-fade" style="border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.1);">
+          <table class="ds-table ds-table--light">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Individual Agents</th>
+                <th>Team Leaders</th>
+                <th>Team Members</th>
+                <th>Spouse Team</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Commission Split</td><td>85/15</td><td>85/15</td><td>85/15*</td><td>85/15</td></tr>
+              <tr><td>Annual Cap</td><td>$15,000</td><td>$15,000</td><td>$7,500</td><td>$15,000</td></tr>
+              <tr><td>Broker Admin Fee</td><td>$250</td><td>$250</td><td>$250</td><td>$250</td></tr>
+              <tr><td>System Fee</td><td>$100</td><td>$100</td><td>$100</td><td>$100</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ds-footnote ds-fade">* Team member compensation amount based on Team Agreement. &nbsp;&nbsp; ** Broker Admin fees are collected on the first 20 transactions only (per year) per individual.</p>
+      </div>
+    </section>
+
+    <!-- REVENUE SHARE -->
+    <section class="ds-section ds-section--dark" id="revenue-share">
+      <div class="ds-container">
+        <div class="ds-section-header ds-fade">
+          <span class="ds-eyebrow">5-Tier Revenue Share Program</span>
+          <h2 class="ds-headline ds-headline--white">Income that keeps paying beyond the closing.</h2>
+          <p class="ds-sub ds-sub--muted" style="max-width:720px;">You introduce an agent to INNOVATE, we do the heavy lifting, and you reap the rewards. No unlocking. No obscure stipulations. It&rsquo;s that simple.</p>
+        </div>
+
+        <div class="ds-table-wrap ds-fade" style="margin-bottom:2.5rem;">
+          <table class="ds-table">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Revenue Share % of INNOVATE Commission Income</th>
+                <th>Annual Passive Income Potential Per Referred Agent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Tier 1: Agents You Sponsor</td><td>5%</td><td>$750 per agent</td></tr>
+              <tr><td>Tier 2: Their Recruits</td><td>4%</td><td>$600 per agent</td></tr>
+              <tr><td>Tier 3: Their Recruits</td><td>3%</td><td>$450 per agent</td></tr>
+              <tr><td>Tier 4: Their Recruits</td><td>2%</td><td>$300 per agent</td></tr>
+              <tr><td>Tier 5: Their Recruits</td><td>1%</td><td>$150 per agent</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ds-fade">
+          <span class="ds-eyebrow">The Compounding Effect</span>
+          <p class="ds-sub ds-sub--muted">When your network grows, your income grows with it, across all five tiers, automatically.</p>
+          <div class="rs-calc ds-fade">
+            <h3 class="rs-calc__heading">Estimate Your Revenue Share</h3>
+            <div class="rs-calc__controls">
+              <div class="rs-calc__row">
+                <label class="rs-calc__label" for="rs-t1">Agents you personally sponsor <span class="rs-calc__val" id="rs-t1-val">5</span></label>
+                <input type="range" class="rs-calc__range" id="rs-t1" min="1" max="20" value="5">
+              </div>
+              <div class="rs-calc__row">
+                <label class="rs-calc__label" for="rs-mult">Average agents each person sponsors <span class="rs-calc__val" id="rs-mult-val">2</span></label>
+                <input type="range" class="rs-calc__range" id="rs-mult" min="1" max="10" value="2">
+              </div>
+              <div class="rs-calc__row">
+                <label class="rs-calc__label" for="rs-dollar">Avg company dollar per agent / year <span class="rs-calc__val" id="rs-dollar-val">$9,000</span></label>
+                <input type="range" class="rs-calc__range" id="rs-dollar" min="3000" max="20000" step="500" value="9000">
+              </div>
+            </div>
+            <p class="rs-calc__disclaimer">A capping agent contributes $15,000 of company dollar. Revenue share pays 15% of that across 5 tiers (5 / 4 / 3 / 2 / 1%).</p>
+            <div class="rs-calc__result">
+              <p class="rs-calc__result-label">Estimated Annual Revenue Share</p>
+              <p class="rs-calc__result-amount" id="rs-total">$0</p>
+            </div>
+            <div class="ds-table-wrap">
+              <table class="ds-table ds-table--light">
+                <thead>
+                  <tr><th>Tier</th><th>Agents in Network</th><th>Rate</th><th>Est. Annual Earnings</th></tr>
+                </thead>
+                <tbody id="rs-tbody"></tbody>
+              </table>
+            </div>
+            <p class="ds-footnote">Illustrative estimate only. Actual earnings depend on active, producing agents in your network and their individual production.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- EQUITY OWNERSHIP -->
+    <section class="ds-section ds-section--darker" id="equity">
+      <div class="ds-container">
+        <div class="ds-section-header ds-fade">
+          <span class="ds-eyebrow">Company Ownership</span>
+          <h2 class="ds-headline ds-headline--white">A seat at the table. Every agent.</h2>
+          <p class="ds-sub ds-sub--muted" style="max-width:720px;">Giving private equity shares of INNOVATE Real Estate to our agents means they share in our growth in every possible way. Our agents don&rsquo;t work for us. We work for them.</p>
+        </div>
+
+        <div class="ds-split ds-fade">
+          <div>
+            <div class="ds-award-group">
+              <p class="ds-award-group__title">Production Awards: Annual Achievement</p>
+              <div class="ds-award-row">
+                <div><p class="ds-award-title">Mid-Level Producer<span class="ds-award-desc">$3M net volume</span></p></div>
+                <div class="ds-award-badge">500<br>Options</div>
+              </div>
+              <div class="ds-award-row">
+                <div><p class="ds-award-title">High Producer<span class="ds-award-desc">$6M+ net volume</span></p></div>
+                <div class="ds-award-badge">1,000<br>Options</div>
+              </div>
+              <div class="ds-award-row">
+                <div><p class="ds-award-title">Top 1% Producer<span class="ds-award-desc">Company level</span></p></div>
+                <div class="ds-award-badge">2,000<br>Options</div>
+              </div>
+            </div>
+
+            <div class="ds-award-group">
+              <p class="ds-award-group__title">Recruitment Awards (New for 2026)</p>
+              <div class="ds-award-row">
+                <div><p class="ds-award-title">Emerging Agent Recruited<span class="ds-award-desc">First-year or new licensee</span></p></div>
+                <div class="ds-award-badge">300<br>Options</div>
+              </div>
+              <div class="ds-award-row">
+                <div><p class="ds-award-title">Mid-Level Producer Recruited<span class="ds-award-desc">$1M to $3M volume</span></p></div>
+                <div class="ds-award-badge">750<br>Options</div>
+              </div>
+              <div class="ds-award-row">
+                <div><p class="ds-award-title">Top Producer Recruited<span class="ds-award-desc">$3M+ per year</span></p></div>
+                <div class="ds-award-badge">1,500<br>Options</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="ds-award-group">
+              <p class="ds-award-group__title">Mentorship &amp; Leadership Awards</p>
+              <div class="ds-award-row">
+                <div><p class="ds-award-title">Mentorship Milestone<span class="ds-award-desc">Mentored agent closes first 3 transactions</span></p></div>
+                <div class="ds-award-badge">500<br>Options</div>
+              </div>
+              <div class="ds-award-row">
+                <div><p class="ds-award-title">Leadership Contribution<span class="ds-award-desc">Teach a LAUNCH class, lead a mastermind, or host a training</span></p></div>
+                <div class="ds-award-badge">200<br>Options</div>
+              </div>
+              <div class="ds-award-row">
+                <div><p class="ds-award-title">Small Group Facilitator<span class="ds-award-desc">Facilitate a small group for 1+ year</span></p></div>
+                <div class="ds-award-badge">1,000<br>Options</div>
+              </div>
+              <div class="ds-award-row">
+                <div><p class="ds-award-title">Office / Market Builder<span class="ds-award-desc">Grow a market to 15+ agents OR lead to $60M+ combined volume</span></p></div>
+                <div class="ds-award-badge">2,500<br>Options</div>
+              </div>
+            </div>
+
+            <div class="ds-award-group">
+              <p class="ds-award-group__title">Branding &amp; Media Awards</p>
+              <div class="ds-award-row">
+                <div><p class="ds-award-title">Create or Star in an Agent Attraction Video</p></div>
+                <div class="ds-award-badge">250<br>Options</div>
+              </div>
+              <div class="ds-award-row">
+                <div><p class="ds-award-title">Participate in a Company Video or Interview</p></div>
+                <div class="ds-award-badge">250<br>Options</div>
+              </div>
+              <div class="ds-award-row">
+                <div><p class="ds-award-title">Produce Monthly Value-Based Content for INNOVATE University</p></div>
+                <div class="ds-award-badge">150<br>Options</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-fade" style="margin-top:3rem;background:#1c1c1c;border-radius:12px;padding:2.5rem;border:1px solid rgba(130,193,18,.25);">
+          <span class="ds-eyebrow">Post-Cap Stock Purchase Program (2026)</span>
+          <p style="font-size:.95rem;color:#ccc;line-height:1.7;margin-bottom:1.5rem;">Agents may elect to convert a portion of post-cap or company-side earnings into INNOVATE equity.</p>
+          <div class="ds-grid ds-grid--3" style="gap:16px;">
+            <div style="text-align:center;">
+              <p style="font-size:1.5rem;font-weight:900;color:#82C112;">$0.10</p>
+              <p style="font-size:.8rem;color:#888;margin-top:.2rem;">Purchase price per share</p>
+            </div>
+            <div style="text-align:center;">
+              <p style="font-size:1.5rem;font-weight:900;color:#82C112;">3-Year</p>
+              <p style="font-size:.8rem;color:#888;margin-top:.2rem;">Vesting schedule</p>
+            </div>
+            <div style="text-align:center;">
+              <p style="font-size:1.5rem;font-weight:900;color:#82C112;">5% GCI</p>
+              <p style="font-size:.8rem;color:#888;margin-top:.2rem;">Annual purchase limit (max $1,000)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE VALUES -->
+    <section class="ds-section ds-section--dark" id="values">
+      <div class="ds-container">
+        <div class="ds-section-header ds-fade">
+          <span class="ds-eyebrow">Core Values</span>
+          <h2 class="ds-headline ds-headline--white">What we stand for.</h2>
+          <p class="ds-sub ds-sub--muted">Not a poster on the wall. The actual way we operate every day.</p>
+        </div>
+        <div class="ds-values ds-fade">
+          <div class="ds-value">
+            <h4>Agent Centric</h4>
+            <p>Every tool, every system, every decision exists for one purpose: making your job as a real estate professional easier, better, and more rewarding.</p>
+          </div>
+          <div class="ds-value">
+            <h4>Client Focused</h4>
+            <p>The most important element of any transaction is the agent-client relationship. We train and support agents to deliver the very best in service.</p>
+          </div>
+          <div class="ds-value">
+            <h4>Family First</h4>
+            <p>Whether an agent or staff member, we strive to support financial, physical, and mental well-being. Family comes first, always.</p>
+          </div>
+          <div class="ds-value">
+            <h4>Tech Forward</h4>
+            <p>Constantly monitoring, researching, and implementing new technology so agents run the most efficient, result-oriented business possible.</p>
+          </div>
+          <div class="ds-value">
+            <h4>Growth Minded</h4>
+            <p>"If you aren&rsquo;t growing and evolving, you&rsquo;re standing still." We embrace challenges, learn from criticism, and find inspiration in others&rsquo; success.</p>
+          </div>
+          <div class="ds-value">
+            <h4>Culture of Generosity</h4>
+            <p>Sharing ideas, knowledge, education, and financial benefit. Our goal is a true feeling of teamwork, family, and company ownership throughout INNOVATE.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="ds-section ds-section--darker" id="contact" style="padding:100px 0;text-align:center;">
+      <div class="ds-container">
+        <div class="ds-fade">
+          <span class="ds-eyebrow">Ready to Talk?</span>
+          <h2 class="ds-headline ds-headline--white" style="max-width:700px;margin:0 auto 1.25rem;">If you&rsquo;re open to exploring, we welcome a conversation.</h2>
+          <p class="ds-sub ds-sub--muted" style="max-width:580px;margin:0 auto 2.5rem;">We know that your success is our success. Let&rsquo;s build a personalized comparison and talk about how INNOVATE fits where you&rsquo;re headed.</p>
+          <a href="/talk.html" style="display:inline-block;padding:16px 36px;background:#82C112;color:#fff;text-decoration:none;border-radius:8px;font-weight:700;font-size:1rem;letter-spacing:-.01em;">Schedule a Discovery Call</a>
+          
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /deck -->
+
+  <script>
+    (function () {
+      var KEY = 'innovate-deck-access';
+
+      // Gate form
+      var form = document.getElementById('gate-form');
+      var btn = document.getElementById('gate-submit');
+      var err = document.getElementById('gate-error');
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (!form.checkValidity()) { form.reportValidity(); return; }
+          btn.disabled = true;
+          btn.textContent = 'Submitting...';
+          err.style.display = 'none';
+          var data = new FormData(form);
+          fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+            .then(function (r) {
+              if (r.ok) {
+                localStorage.setItem(KEY, 'granted');
+                document.documentElement.setAttribute('data-unlocked', '');
+                window.scrollTo(0, 0);
+              } else {
+                btn.disabled = false;
+                btn.textContent = 'View Presentation';
+                err.style.display = 'block';
+              }
+            })
+            .catch(function () {
+              btn.disabled = false;
+              btn.textContent = 'View Presentation';
+              err.style.display = 'block';
+            });
+        });
+      }
+
+      // Nav scroll spy
+      var navLinks = document.querySelectorAll('.ds-nav__link[data-nav]');
+      var sections = document.querySelectorAll('section[id]');
+      function updateNav() {
+        var scrollY = window.scrollY + 100;
+        sections.forEach(function (sec) {
+          if (sec.offsetTop <= scrollY && sec.offsetTop + sec.offsetHeight > scrollY) {
+            navLinks.forEach(function (l) { l.classList.remove('is-active'); });
+            var active = document.querySelector('.ds-nav__link[data-nav="' + sec.id + '"]');
+            if (active) active.classList.add('is-active');
+          }
+        });
+      }
+      window.addEventListener('scroll', updateNav, { passive: true });
+
+      // Smooth scroll nav
+      navLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          var target = document.querySelector(link.getAttribute('href'));
+          if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+      });
+
+      // Fade-in on scroll
+      var faders = document.querySelectorAll('.ds-fade');
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) { entry.target.classList.add('is-visible'); obs.unobserve(entry.target); }
+          });
+        }, { threshold: 0.1 });
+        faders.forEach(function (el) { obs.observe(el); });
+      } else {
+        faders.forEach(function (el) { el.classList.add('is-visible'); });
+      }
+    })();
+
+    // Revenue share calculator
+    (function() {
+      function rsCalc() {
+        var t1 = parseInt(document.getElementById('rs-t1').value,10);
+        var mult = parseInt(document.getElementById('rs-mult').value,10);
+        var dollar = parseInt(document.getElementById('rs-dollar').value,10);
+        document.getElementById('rs-t1-val').textContent = t1;
+        document.getElementById('rs-mult-val').textContent = mult;
+        document.getElementById('rs-dollar-val').textContent = '$' + dollar.toLocaleString();
+        var rates=[0.05,0.04,0.03,0.02,0.01], counts=[], total=0, rows='';
+        for(var i=0;i<5;i++){counts.push(i===0?t1:Math.round(counts[i-1]*mult));}
+        rates.forEach(function(r,i){
+          var earn=Math.round(counts[i]*dollar*r);
+          total+=earn;
+          rows+='<tr><td>Tier '+(i+1)+'</td><td>'+counts[i].toLocaleString()+'</td><td>'+(r*100).toFixed(0)+'%</td><td>$'+earn.toLocaleString()+'</td></tr>';
+        });
+        document.getElementById('rs-tbody').innerHTML=rows;
+        document.getElementById('rs-total').textContent='$'+total.toLocaleString();
+      }
+      ['rs-t1','rs-mult','rs-dollar'].forEach(function(id){
+        var el=document.getElementById(id);
+        if(el) el.addEventListener('input',rsCalc);
+      });
+      rsCalc();
+    })();
+    // Story modal
+    function openStoryModal(){document.getElementById('story-modal').classList.add('is-open');document.body.style.overflow='hidden';}
+    function closeStoryModal(){document.getElementById('story-modal').classList.remove('is-open');document.body.style.overflow='';}
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeStoryModal();});  </script>
+  <!-- THE INNOVATE STORY MODAL -->
+  <div class="story-modal" id="story-modal" role="dialog" aria-modal="true" aria-labelledby="story-modal-title">
+    <div class="story-modal__overlay" onclick="closeStoryModal()"></div>
+    <div class="story-modal__box">
+      <button class="story-modal__close" onclick="closeStoryModal()" aria-label="Close">&times;</button>
+      <p class="story-modal__eyebrow">The INNOVATE Story</p>
+      <h2 class="story-modal__headline" id="story-modal-title">Built Different. On Purpose.</h2>
+      <div class="story-modal__body">
+        <p>INNOVATE didn&rsquo;t start with a national expansion strategy or a corporate blueprint. It started with two agents and team leaders who believed the brokerage experience could be better.</p>
+        <p>At the time, the industry forced agents into trade-offs. Traditional brokerages offered local support, culture, and accountability, but often lacked the technology, scalability, and financial alignment modern agents were looking for. On the other side, newer cloud-based models offered flexibility, revenue share, and expansion opportunities, but many agents felt disconnected from leadership, training, and hands-on support.</p>
+        <p>Jeff and Darren saw those gaps firsthand while operating as a successful team inside a large franchise system. They believed agents deserved a brokerage built around helping them grow, not simply a system where agents paid fees in exchange for a logo and basic infrastructure.</p>
+        <p>So they started building differently. They focused on creating a company where technology actually helped agents produce more. Where training wasn&rsquo;t theoretical. Where support was accessible. Where teams could scale intelligently. And where agents had the opportunity to participate financially in the growth they were helping create.</p>
+        <p>What started as a small independent brokerage in Myrtle Beach grew quickly because agents responded to something that felt different. The culture felt more connected. Leadership was accessible. The systems were practical. The environment was growth-minded without losing the personal relationships that matter in real estate.</p>
+        <p>Interestingly, expansion wasn&rsquo;t the original goal. But agents in other markets started reaching out wanting to be part of what was being built. That forced leadership to think carefully about the future. Because growth can strengthen a company, but it can also weaken culture, dilute support, and create distance between leadership and agents if it&rsquo;s done poorly.</p>
+        <p>That&rsquo;s why INNOVATE expanded intentionally. The company doubled down on the principles that built the original brokerage:</p>
+        <ul class="story-modal__list">
+          <li>Strong broker support</li>
+          <li>Practical training</li>
+          <li>Real accountability</li>
+          <li>High-level technology</li>
+          <li>A collaborative culture built around helping agents succeed</li>
+        </ul>
+        <p>Leadership recognized something happening across the industry long before many others did: the future wasn&rsquo;t going to belong entirely to traditional franchises or entirely to cloud brokerages. Agents needed a better combination of both. That realization became the foundation for INNOVATE&rsquo;s Hybrid Growth Model.</p>
+        <p>Today, INNOVATE combines the culture, support, and accountability of strong local brokerages with the scalability, systems, technology, and long-term financial opportunities of modern platforms. And unlike many companies that expand primarily for corporate growth, INNOVATE built revenue share, equity opportunities, leadership pathways, and scalable business models so agents could benefit from the growth they were helping create.</p>
+        <div class="story-modal__mission">At its core, the mission remains simple: build a brokerage that helps agents grow professionally, financially, and personally while creating a company designed for where the industry is heading next.</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -16,7 +16,37 @@
   .reasons__body{font-size:.97rem;color:#5b5b5b;line-height:1.8;}
   @media(max-width:800px){.reasons__grid{flex-direction:column;gap:40px;}}
   </style>
-</head>
+  <style>
+    .journey-layout{display:grid;grid-template-columns:2fr 3fr;gap:80px;align-items:center;}
+    .journey-layout__left .section-eyebrow{color:#82C112;}
+    .journey-layout__left p{font-size:1rem;color:#555;line-height:1.7;margin-top:1rem;}
+    .journey-rows{border-top:1px solid #e4e4e4;}
+    .journey-row{display:flex;align-items:center;gap:1.25rem;width:100%;background:none;border:none;border-bottom:1px solid #e4e4e4;padding:1.1rem 0.5rem;cursor:pointer;text-align:left;font-family:inherit;transition:background .15s;}
+    .journey-row:hover{background:#f7f9f4;}
+    .journey-row__num{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:#82C112;flex-shrink:0;width:28px;}
+    .journey-row__body{flex:1;}
+    .journey-row__title{display:block;font-size:1rem;font-weight:800;color:#111;line-height:1.3;margin-bottom:.2rem;}
+    .journey-row__desc{display:block;font-size:.85rem;color:#777;line-height:1.45;}
+    .journey-row__arrow{flex-shrink:0;font-size:1.1rem;color:#82C112;font-weight:700;}
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;justify-content:center;align-items:flex-start;padding:40px 20px;overflow-y:auto;}
+    .modal-overlay.is-open{display:flex;}
+    .modal-box{background:#fff;border-radius:16px;width:100%;max-width:720px;padding:3rem;position:relative;margin:auto;flex-shrink:0;}
+    .modal-close{position:absolute;top:1.25rem;right:1.25rem;width:36px;height:36px;border-radius:50%;background:#f0f0f0;border:none;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;color:#555;font-family:inherit;line-height:1;}
+    .modal-close:hover{background:#e0e0e0;}
+    .modal-eyebrow{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#82C112;margin-bottom:.5rem;}
+    .modal-headline{font-size:clamp(1.2rem,3vw,1.55rem);font-weight:900;color:#111;letter-spacing:-.02em;line-height:1.25;margin-bottom:.85rem;}
+    .modal-sub{font-size:1rem;color:#444;line-height:1.7;margin-bottom:1.25rem;}
+    .modal-section-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#999;margin-bottom:.75rem;margin-top:1.5rem;}
+    .modal-list{list-style:none;padding:0;margin:0 0 .5rem;display:flex;flex-direction:column;gap:.55rem;}
+    .modal-list li{font-size:.925rem;color:#333;line-height:1.5;display:flex;gap:.65rem;align-items:flex-start;}
+    .modal-list li::before{content:"";flex-shrink:0;width:18px;height:18px;margin-top:1px;border-radius:50%;background:#82C112 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpolyline points='1 4 3.5 6.5 9 1' stroke='%23fff' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C%2Fsvg%3E") no-repeat center;}
+    .modal-list--two-col{display:grid;grid-template-columns:1fr 1fr;gap:.55rem 2rem;}
+    .modal-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+    .modal-advantage{background:#f4f9ec;border-radius:10px;padding:1.25rem 1.5rem;margin-top:1.5rem;border-left:4px solid #82C112;}
+    .modal-cta{margin-top:2rem;padding-top:1.5rem;border-top:1px solid #ebebeb;text-align:center;}
+    @media(max-width:860px){.journey-layout{grid-template-columns:1fr;gap:40px;}}
+    @media(max-width:640px){.modal-box{padding:2rem 1.5rem;}.modal-list--two-col,.modal-cols{grid-template-columns:1fr;}}
+  </style></head>
 <body>
 
   <div id="nav-placeholder"></div>
@@ -59,19 +89,19 @@
     <div class="container">
       <div class="stats__grid">
         <div>
-          <div class="stats__number">300+</div>
+          <div class="stats__number" data-count="350" data-suffix="+">350+</div>
           <div class="stats__label">Agents Nationwide</div>
         </div>
         <div>
-          <div class="stats__number">15</div>
+          <div class="stats__number" data-count="15">15</div>
           <div class="stats__label">Market Centers</div>
         </div>
         <div>
-          <div class="stats__number">14</div>
+          <div class="stats__number" data-count="14">14</div>
           <div class="stats__label">States</div>
         </div>
         <div>
-          <div class="stats__number">85%</div>
+          <div class="stats__number" data-count="85" data-suffix="%">85%</div>
           <div class="stats__label">Agent Split</div>
         </div>
       </div>
@@ -102,6 +132,7 @@
             Keep 85% of every commission from day one, with a low annual cap.
             After you hit it, 100% is yours for the rest of the year.
           </p>
+          <a href="/compensation.html" class="card__link">Learn more &rarr;</a>
         </div>
 
         <div class="card">
@@ -116,6 +147,7 @@
             Build lasting wealth by growing the brokerage around you.
             Revenue share and equity opportunities are available to every agent.
           </p>
+          <a href="/compensation.html#plant-roots" class="card__link">Learn more &rarr;</a>
         </div>
 
         <div class="card">
@@ -130,6 +162,7 @@
             A full tech stack including CRM, your own agent website, and marketing tools.
             No nickel-and-diming for every feature.
           </p>
+          <a href="/technology.html" class="card__link">Learn more &rarr;</a>
         </div>
 
         <div class="card">
@@ -139,11 +172,12 @@
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </svg>
           </div>
-          <h3 class="card__title">Onboarding &amp; Training</h3>
+          <h3 class="card__title">Onboarding &amp; Tech Training</h3>
           <p class="card__body">
             A structured onboarding program so you're productive from week one,
             plus ongoing coaching and Market Center support.
           </p>
+          <a href="/onboarding.html" class="card__link">Learn more &rarr;</a>
         </div>
 
         <div class="card">
@@ -159,20 +193,20 @@
             We genuinely celebrate each other's wins. Agents collaborate here,
             not compete. It's a different kind of brokerage.
           </p>
+          <a href="/culture.html" class="card__link">Learn more &rarr;</a>
         </div>
 
         <div class="card">
           <div class="card__icon">
-            <!-- Location / market center icon -->
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/>
             </svg>
           </div>
-          <h3 class="card__title">Local Market Centers</h3>
+          <h3 class="card__title">Professional Development</h3>
           <p class="card__body">
-            15 Market Centers across 14 states. You get a real local office,
-            a local leader who knows your market, and a community around you.
+            Coaching, Masterminds, and INNOVATE University. Consistent, relevant training weekly, monthly, and 24/7 on demand.
           </p>
+          <a href="/training.html" class="card__link">Learn more &rarr;</a>
         </div>
 
       </div>
@@ -180,12 +214,390 @@
   </section>
 
   <!-- â”€â”€ LOCAL LEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
-  <section class="section" id="leader">
+    <!-- TESTIMONIALS -->
+  <!-- CHOOSE YOUR JOURNEY -->
+  <section class="section">
+    <div class="container">
+      <div class="journey-layout">
+
+        <div class="journey-layout__left">
+          <p class="section-eyebrow">Find Your Path</p>
+          <h2 class="section-heading">We meet you where you are and help you go further.</h2>
+          <p>Whether you&rsquo;re just getting started or ready to build a legacy, INNOVATE has a path designed for exactly where you are right now.</p>
+        </div>
+
+        <div class="journey-layout__right">
+          <div class="journey-rows">
+
+            <button class="journey-row" data-modal="modal-new-agents">
+              <span class="journey-row__num">01</span>
+              <div class="journey-row__body">
+                <span class="journey-row__title">Newly Licensed Agents</span>
+                <span class="journey-row__desc">From your first closing to a thriving career.</span>
+              </div>
+              <span class="journey-row__arrow">&rarr;</span>
+            </button>
+
+            <button class="journey-row" data-modal="modal-experienced">
+              <span class="journey-row__num">02</span>
+              <div class="journey-row__body">
+                <span class="journey-row__title">Experienced Agents</span>
+                <span class="journey-row__desc">Turn your track record into more income and less stress.</span>
+              </div>
+              <span class="journey-row__arrow">&rarr;</span>
+            </button>
+
+            <button class="journey-row" data-modal="modal-team">
+              <span class="journey-row__num">03</span>
+              <div class="journey-row__body">
+                <span class="journey-row__title">Starting a Team</span>
+                <span class="journey-row__desc">Scale your business with the right systems and support.</span>
+              </div>
+              <span class="journey-row__arrow">&rarr;</span>
+            </button>
+
+            <button class="journey-row" data-modal="modal-mega">
+              <span class="journey-row__num">04</span>
+              <div class="journey-row__body">
+                <span class="journey-row__title">Developing a Mega Team</span>
+                <span class="journey-row__desc">Build at scale while we handle the daily operations.</span>
+              </div>
+              <span class="journey-row__arrow">&rarr;</span>
+            </button>
+
+            <button class="journey-row" data-modal="modal-leaders">
+              <span class="journey-row__num">05</span>
+              <div class="journey-row__body">
+                <span class="journey-row__title">Market Leaders</span>
+                <span class="journey-row__desc">Build a legacy and inspire others to do the same.</span>
+              </div>
+              <span class="journey-row__arrow">&rarr;</span>
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal: Newly Licensed Agents -->
+  <div class="modal-overlay" id="modal-new-agents" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <p class="modal-eyebrow">Newly Licensed Agents</p>
+      <h2 class="modal-headline">You&rsquo;ve got your license, now what?</h2>
+      <p class="modal-sub">Get the knowledge and experience you need to get into production as soon as possible.</p>
+      <div class="modal-cols">
+        <div>
+          <p class="modal-section-title">Development Programs</p>
+          <ul class="modal-list">
+            <li>One-to-One Onboarding</li>
+            <li>Technology Set-Up and Training</li>
+            <li>L.A.U.N.C.H. Training</li>
+            <li>Coaching &amp; Mentoring</li>
+            <li>Lead Team</li>
+            <li>Training &amp; Development</li>
+          </ul>
+        </div>
+        <div>
+          <p class="modal-section-title">Community &amp; Advancement</p>
+          <ul class="modal-list">
+            <li>Collaboration</li>
+            <li>Social/Networking Events</li>
+            <li>Open House Opportunities</li>
+            <li>INNOVATE University</li>
+            <li>Revenue Share</li>
+            <li>Equity Ownership</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-advantage">
+        <p class="modal-section-title" style="margin-top:0;">The INNOVATE Advantage</p>
+        <ul class="modal-list">
+          <li>Low CAP Structure</li>
+          <li>15% Given Back to Agents</li>
+          <li>Ground Level Equity Opportunities</li>
+          <li>Superior Broker Support</li>
+          <li>Advanced Technology Support &amp; Training</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <a href="/talk.html" class="btn btn--primary">Schedule a Discovery Call</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Experienced Agents -->
+  <div class="modal-overlay" id="modal-experienced" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <p class="modal-eyebrow">Experienced Agents</p>
+      <h2 class="modal-headline">You&rsquo;ve got the experience&hellip;</h2>
+      <p class="modal-sub">We provide the support, tools, advanced training, and financial opportunities to leverage your experience into more money without sacrificing more time.</p>
+      <p class="modal-section-title">What We Provide</p>
+      <ul class="modal-list modal-list--two-col">
+        <li>One-to-One Onboarding</li>
+        <li>Technology Set-Up and Training</li>
+        <li>Advanced Marketing &amp; Branding</li>
+        <li>Systems &amp; Automation Tools</li>
+        <li>Accountability Coaching</li>
+        <li>Collaboration &amp; Masterminds</li>
+        <li>Social/Networking Events</li>
+        <li>INNOVATE University Advanced Series</li>
+        <li>Revenue Share</li>
+        <li>Equity Ownership</li>
+      </ul>
+      <div class="modal-advantage">
+        <p class="modal-section-title" style="margin-top:0;">The INNOVATE Advantage</p>
+        <ul class="modal-list">
+          <li>Low CAP Structure</li>
+          <li>15% Given Back to Agents</li>
+          <li>Ground Level Equity Opportunities</li>
+          <li>Superior Broker Support</li>
+          <li>Advanced Technology Support &amp; Training</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <a href="/talk.html" class="btn btn--primary">Schedule a Discovery Call</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Starting a Team -->
+  <div class="modal-overlay" id="modal-team" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <p class="modal-eyebrow">Starting a Team</p>
+      <h2 class="modal-headline">You&rsquo;ve got the experience and the drive.</h2>
+      <p class="modal-sub">We provide the knowledge, support, tools, and leadership you need to scale that experience into a productive team.</p>
+      <p class="modal-section-title">What We Provide</p>
+      <ul class="modal-list modal-list--two-col">
+        <li>One-to-One Onboarding for Members</li>
+        <li>Team Technology Set-Up and Training</li>
+        <li>Team Building Foundation Training</li>
+        <li>Hiring &amp; Compensation Models</li>
+        <li>Revenue Share</li>
+        <li>CRM Setup &amp; Team Accountability Systems</li>
+        <li>Team Branding &amp; Marketing</li>
+        <li>Team Leader Masterminds</li>
+        <li>INNOVATE University Team Series</li>
+        <li>Equity Ownership</li>
+      </ul>
+      <div class="modal-advantage">
+        <p class="modal-section-title" style="margin-top:0;">The INNOVATE Advantage</p>
+        <ul class="modal-list">
+          <li>Low CAP Structure</li>
+          <li>15% Given Back to Agents</li>
+          <li>Ground Level Equity Opportunities</li>
+          <li>Superior Broker Support</li>
+          <li>Advanced Technology Support &amp; Training</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <a href="/talk.html" class="btn btn--primary">Schedule a Discovery Call</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Mega Team -->
+  <div class="modal-overlay" id="modal-mega" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <p class="modal-eyebrow">Developing a Mega Team</p>
+      <h2 class="modal-headline">Focus on the things that move you.</h2>
+      <p class="modal-sub">We&rsquo;ll take care of the rest. Our exclusive designation allows you to continue to build the brand you&rsquo;ve worked so hard to establish, while we handle the daily grind behind the scenes.</p>
+      <p class="modal-section-title">What We Provide</p>
+      <ul class="modal-list modal-list--two-col">
+        <li>One-to-One Onboarding for Members</li>
+        <li>Team Technology Set-Up and Training</li>
+        <li>Recruiting Support &amp; Resources</li>
+        <li>Compensation &amp; Profitability Workshops</li>
+        <li>Revenue Share</li>
+        <li>Admin &amp; VA Network Access</li>
+        <li>Advanced Branding &amp; Marketing Services</li>
+        <li>Leadership Masterminds</li>
+        <li>INNOVATE University for Team Growth</li>
+        <li>Equity Ownership</li>
+      </ul>
+      <div class="modal-advantage">
+        <p class="modal-section-title" style="margin-top:0;">The INNOVATE Advantage</p>
+        <ul class="modal-list">
+          <li>Low CAP Structure</li>
+          <li>15% Given Back to Agents</li>
+          <li>Ground Level Equity Opportunities</li>
+          <li>Superior Broker Support</li>
+          <li>Advanced Technology Support &amp; Training</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <a href="/talk.html" class="btn btn--primary">Schedule a Discovery Call</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Market Leaders -->
+  <div class="modal-overlay" id="modal-leaders" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <p class="modal-eyebrow">Market Leaders</p>
+      <h2 class="modal-headline">Ready to build a legacy; a future where innovation meets empowerment?</h2>
+      <p class="modal-sub">&ldquo;Great leaders aren&rsquo;t just concerned with what they accomplish in their life, but what they inspire others to accomplish in theirs.&rdquo;</p>
+      <div class="modal-cols">
+        <div>
+          <p class="modal-section-title">Development &amp; Support</p>
+          <ul class="modal-list">
+            <li>Exclusive Leadership Development Path</li>
+            <li>Market Launch Playbook</li>
+            <li>Broker Operations Support</li>
+            <li>Expansion Coaching &amp; Accountability</li>
+            <li>Expanded Revenue Share</li>
+          </ul>
+        </div>
+        <div>
+          <p class="modal-section-title">Business Growth</p>
+          <ul class="modal-list">
+            <li>Market Positioning</li>
+            <li>Recruiting Systems &amp; Automation</li>
+            <li>Collaborations &amp; Influence Opportunities</li>
+            <li>Equity Ownership</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-advantage">
+        <p class="modal-section-title" style="margin-top:0;">The INNOVATE Advantage</p>
+        <ul class="modal-list">
+          <li>Low CAP Structure</li>
+          <li>15% Given Back to Agents</li>
+          <li>Ground Level Equity Opportunities</li>
+          <li>Superior Broker Support</li>
+          <li>Advanced Technology Support &amp; Training</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <a href="/talk.html" class="btn btn--primary">Schedule a Discovery Call</a>
+      </div>
+    </div>
+  </div>
+  <section class="agent-stories">
+    <div class="container">
+      <div class="agent-stories__layout">
+
+        <div class="agent-stories__headline">
+          <p class="section-eyebrow">Hear From Our Agents</p>
+          <h2 class="agent-stories__heading">
+            <span class="agent-stories__heading--green">Their story</span><br>
+            is our story.
+          </h2>
+          <p class="agent-stories__sub">Click any photo to watch their story.</p>
+        </div>
+
+        <div class="agent-stories__grid">
+
+          <div class="t-item" onclick="openVideo('chris-hennessey')">
+            <img src="/images/chris-hennessey-thumb.png" alt="Chris Hennessey" />
+            <div class="t-item__overlay">
+              <div class="t-item__play"><svg viewBox="0 0 24 24" fill="#111"><polygon points="6,3 20,12 6,21"/></svg></div>
+            </div>
+            <p class="t-item__name">Chris Hennessey</p>
+            <a href="/training.html" class="card__link">Learn more &rarr;</a>
+        </div>
+
+          <div class="t-item" onclick="openVideo('josh-stevens')">
+            <img src="/images/josh-stevens-thumb.png" alt="Josh Stevens" />
+            <div class="t-item__overlay">
+              <div class="t-item__play"><svg viewBox="0 0 24 24" fill="#111"><polygon points="6,3 20,12 6,21"/></svg></div>
+            </div>
+            <p class="t-item__name">Josh Stevens</p>
+            <a href="/culture.html" class="card__link">Learn more &rarr;</a>
+        </div>
+
+          <div class="t-item" onclick="openVideo('dan-brown')">
+            <img src="/images/dan-brown-thumb.png" alt="Dan Brown" />
+            <div class="t-item__overlay">
+              <div class="t-item__play"><svg viewBox="0 0 24 24" fill="#111"><polygon points="6,3 20,12 6,21"/></svg></div>
+            </div>
+            <p class="t-item__name">Dan Brown</p>
+            <a href="/onboarding.html" class="card__link">Learn more &rarr;</a>
+        </div>
+
+          <div class="t-item" onclick="openVideo('jennifer-young')">
+            <img src="/images/jennifer-young-thumb.png" alt="Jennifer Young" />
+            <div class="t-item__overlay">
+              <div class="t-item__play"><svg viewBox="0 0 24 24" fill="#111"><polygon points="6,3 20,12 6,21"/></svg></div>
+            </div>
+            <p class="t-item__name">Jennifer Young</p>
+            <a href="/technology.html" class="card__link">Learn more &rarr;</a>
+        </div>
+
+          <div class="t-item" onclick="openVideo('juliann-deforrest')">
+            <img src="/images/juliann-deforrest-thumb.png" alt="Juliann DeForrest" />
+            <div class="t-item__overlay">
+              <div class="t-item__play"><svg viewBox="0 0 24 24" fill="#111"><polygon points="6,3 20,12 6,21"/></svg></div>
+            </div>
+            <p class="t-item__name">Juliann DeForrest</p>
+            <a href="/compensation.html" class="card__link">Learn more &rarr;</a>
+        </div>
+
+          <div class="t-item" onclick="openVideo('yvonne-guthrie')">
+            <img src="/images/yvonne-guthrie-thumb.png" alt="Yvonne Guthrie" />
+            <div class="t-item__overlay">
+              <div class="t-item__play"><svg viewBox="0 0 24 24" fill="#111"><polygon points="6,3 20,12 6,21"/></svg></div>
+            </div>
+            <p class="t-item__name">Yvonne Guthrie</p>
+            <a href="/compensation.html" class="card__link">Learn more &rarr;</a>
+        </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="vid-overlay" id="vid-overlay" onclick="closeVideo()">
+      <div class="vid-modal" id="vid-modal" onclick="event.stopPropagation()">
+        <button class="vid-close" onclick="closeVideo()">&times;</button>
+        <video id="vid-player" controls playsinline></video>
+        <p class="vid-name" id="vid-name"></p>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        var agents = {
+          'chris-hennessey':   { name: 'Chris Hennessey',   video: '/videos/chris-hennessey.mp4' },
+          'josh-stevens':      { name: 'Josh Stevens',      video: '/videos/josh-stevens.mp4' },
+          'dan-brown':         { name: 'Dan Brown',          video: '/videos/dan-brown.mp4' },
+          'jennifer-young':    { name: 'Jennifer Young',    video: '/videos/jennifer-young.mp4' },
+          'juliann-deforrest': { name: 'Juliann DeForrest', video: '/videos/juliann-deforrest.mp4' },
+          'yvonne-guthrie':    { name: 'Yvonne Guthrie',    video: '/videos/yvonne-guthrie.mp4' }
+        };
+        window.openVideo = function(id) {
+          var a = agents[id];
+          var player = document.getElementById('vid-player');
+          player.src = a.video;
+          document.getElementById('vid-name').textContent = a.name;
+          document.getElementById('vid-overlay').classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+          player.play().catch(function(){});
+        };
+        window.closeVideo = function() {
+          var player = document.getElementById('vid-player');
+          player.pause();
+          player.src = '';
+          document.getElementById('vid-overlay').classList.remove('is-open');
+          document.body.style.overflow = '';
+        };
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') window.closeVideo();
+        });
+      })();
+    </script>
+
+  </section>
+<section class="section" id="leader">
     <div class="container">
       <div class="leader__grid">
-        <div class="leader__img leader__img--placeholder">
-          <!-- Replace with actual leader photo: <img src="images/leader.jpg" alt="Your Name"> -->
-          <span>Leader photo goes here</span>
+        <div class="leader__img">
+          <img src="/images/local-leader.jpg" alt="Local Leader" />
         </div>
         <div class="leader__body">
           <p class="section-eyebrow">Meet Your Local Leader</p>
@@ -196,7 +608,7 @@
             figure out if INNOVATE is the right fit. Completely confidential,
             no pressure.
           </p>
-          <a href="#contact" class="btn btn--primary">Schedule a Call</a>
+          <a href="/talk.html" class="btn btn--primary">Schedule a Call</a>
         </div>
       </div>
     </div>
@@ -215,12 +627,77 @@
   <!-- â”€â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 INNOVATE Real Estate. All rights reserved.
-        &nbsp;&middot;&nbsp; <a href="#">Privacy Policy</a>
-        &nbsp;&middot;&nbsp; <a href="#">Terms</a>
-      </p>
+      <div class="footer__inner">
+        <p class="footer__copy">&copy; 2026 INNOVATE Real Estate. All rights reserved.</p>
+        <div class="footer__social">
+
+          <a href="https://www.facebook.com/INNOVATErealestatecompany" target="_blank" rel="noopener" aria-label="Facebook" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+
+          <a href="https://www.instagram.com/innovaterealestatecompany/" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.youtube.com/@InnovateRealEstateCompany" target="_blank" rel="noopener" aria-label="YouTube" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.linkedin.com/company/innovateonline-real-estate/" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+
+        </div>
+      </div>
     </div>
   </footer>
 
-</body>
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.stats__number[data-count]');
+      function countUp(el) {
+        var target = parseInt(el.getAttribute('data-count'));
+        var suffix = el.getAttribute('data-suffix') || '';
+        var duration = 1800;
+        var start = null;
+        function step(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / duration, 1);
+          var ease = 1 - Math.pow(1 - p, 4);
+          el.textContent = Math.round(ease * target) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { countUp(e.target); observer.unobserve(e.target); }
+        });
+      }, { threshold: 0.5 });
+      els.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+  <script>
+    (function() {
+      document.querySelectorAll('[data-modal]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var overlay = document.getElementById(btn.getAttribute('data-modal'));
+          if (overlay) { overlay.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
+        });
+      });
+      function closeModal(overlay) {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+      document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+        overlay.addEventListener('click', function(e) { if (e.target === overlay) closeModal(overlay); });
+      });
+      document.querySelectorAll('.modal-close').forEach(function(btn) {
+        btn.addEventListener('click', function() { closeModal(btn.closest('.modal-overlay')); });
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.is-open').forEach(closeModal);
+      });
+    })();
+  </script></body>
 </html>

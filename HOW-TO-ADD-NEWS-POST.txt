@@ -1,0 +1,85 @@
+﻿HOW TO ADD A NEW NEWS POST
+==========================
+
+There are two things to add each time: a card (the visual tile on the page)
+and a post entry (the full content that opens when someone clicks Read More).
+
+
+STEP 1 - Save your image
+-------------------------
+Drop the photo into:
+  Documents > innovate-recruit-sandbox > site > images
+
+Give it a simple filename with no spaces, like: jane-smith.png
+
+The rendered image size on the card is 290x163 pixels.
+Crop or resize your photo to those dimensions before saving for best results.
+
+
+STEP 2 - Open news.html
+------------------------
+Go to:
+  Documents > innovate-recruit-sandbox > site > news.html
+
+Right-click it and open with Notepad (or VS Code).
+
+
+STEP 3 - Add the card
+----------------------
+Find this line near the bottom of the existing cards:
+
+      </div>
+    </div>
+  </section>
+
+Just ABOVE that block, paste a new card using this template:
+
+        <article class="post-card">
+          <div class="post-card__img">
+            <img src="/images/jane-smith.png" alt="Welcome Jane Smith" />
+          </div>
+          <div class="post-card__body">
+            <p class="post-card__meta">2026 &middot; Leadership</p>
+            <h2 class="post-card__title">Your post title here</h2>
+            <p class="post-card__excerpt">One or two sentences that preview the post. Keep it short.</p>
+            <button class="post-card__btn" onclick="openPost('jane')">Read More</button>
+          </div>
+        </article>
+
+IMPORTANT: The word inside openPost('jane') is your post ID.
+Pick anything short with no spaces. You will use the same word in Step 4.
+
+
+STEP 4 - Add the post content
+------------------------------
+In the same news.html file, scroll down and find this line:
+
+  var posts = {
+
+Add a new entry BEFORE the closing }; using this template:
+
+    jane: {
+      img: '/images/jane-smith.png',
+      meta: '2026 &middot; Leadership',
+      title: 'Your post title here',
+      content: '<p>First paragraph of the full post.</p><p>Second paragraph.</p>'
+    },
+
+IMPORTANT: The word before the colon (jane:) must match exactly what you
+put in openPost('jane') in Step 3.
+
+
+STEP 5 - Save and refresh
+--------------------------
+1. Save news.html
+2. Double-click refresh.bat in the innovate-recruit-sandbox folder
+3. Refresh localhost:8080/news.html in your browser
+
+
+RULES TO REMEMBER
+-----------------
+- No spaces in the post ID or image filename
+- Wrap all paragraph text in <p> and </p> inside the content string
+- End every entry in the posts object with a comma (,) except the very last one
+- To change the category label, edit the text after &middot; in the meta line
+  Examples: Leadership, Office Opening, Company News, Agent Spotlight

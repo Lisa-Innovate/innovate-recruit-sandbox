@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,6 +8,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .page-hero { background: #111; }
+    .page-hero .hero__eyebrow { color: #82C112; }
+    .page-hero .hero__headline { color: #fff; }
+    .page-hero .hero__sub { color: rgba(255,255,255,0.72); }
+    .section--stone .card { background: #fff; box-shadow: 0 2px 16px rgba(0,0,0,.07); }
+    .testimonials { grid-template-columns: repeat(2, 1fr); }
+    .marketing-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    @media (max-width: 860px) { .marketing-intro { grid-template-columns: 1fr; gap: 40px; } }
+  </style>
 </head>
 <body>
   <div id="nav-placeholder"></div>
@@ -24,11 +34,16 @@
   <!-- Intro -->
   <section class="section">
     <div class="container">
-      <div class="why__header">
-        <p class="section-eyebrow">Your Brand, Amplified</p>
-        <h2 class="section-heading">Marketing that makes you look like the professional you are.</h2>
+      <div class="marketing-intro">
+        <div class="marketing-intro__text">
+          <p class="section-eyebrow">Your Brand, Amplified</p>
+          <h2 class="section-heading">Marketing that makes you look like the professional you are.</h2>
+          <p class="intro-text" style="margin-top:1.25rem;">At most brokerages, you get a template and a logo. At INNOVATE, you get a full marketing department. Custom materials, digital advertising, social content, print campaigns, and a platform to manage it all. Everything is designed to put you in front of the right clients and keep you top of mind.</p>
+        </div>
+        <div class="marketing-intro__image">
+          <img src="/images/maxa.png" alt="INNOVATE Marketing Platform" style="width:100%; border-radius:14px; display:block; box-shadow:0 4px 24px rgba(0,0,0,.08);" />
+        </div>
       </div>
-      <p class="intro-text">At most brokerages, you get a template and a logo. At INNOVATE, you get a full marketing department. Custom materials, digital advertising, social content, print campaigns, and a platform to manage it all. Everything is designed to put you in front of the right clients and keep you top of mind.</p>
     </div>
   </section>
 
@@ -101,6 +116,13 @@
         </div>
 
       </div>
+
+      <div style="text-align:center; margin-top:3rem;">
+        <p style="font-size:1rem; font-weight:700; color:#222; margin-bottom:0.4rem;">Want the full picture?</p>
+        <p style="font-size:0.95rem; color:#666; margin-bottom:1.25rem;">View our full presentation.</p>
+        <a href="/deck.html" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Dig Deeper</a>
+      </div>
+
     </div>
   </section>
 
@@ -109,23 +131,18 @@
     <div class="container">
       <div class="why__header">
         <p class="section-eyebrow">From the Field</p>
-        <h2 class="section-heading">Agents who've put it to work.</h2>
+        <h2 class="section-heading">Agents who&rsquo;ve put it to work.</h2>
       </div>
       <div class="testimonials">
 
         <div class="testimonial">
-          <p class="testimonial__text">"The listing presentation alone paid for itself on my first appointment. I showed up looking like the biggest agent in town and the sellers signed the same day."</p>
-          <p class="testimonial__attr">INNOVATE Agent</p>
+          <p class="testimonial__text">"Content this month is Gold!! Thank you for all you do!"</p>
+          <p class="testimonial__attr">Jennifer Young, REALTOR&reg; &mdash; Florida</p>
         </div>
 
         <div class="testimonial">
-          <p class="testimonial__text">"I used to spend Sunday nights making my own social content. Now I spend that time with my family. The content library has everything I need and it actually looks good."</p>
-          <p class="testimonial__attr">INNOVATE Agent</p>
-        </div>
-
-        <div class="testimonial">
-          <p class="testimonial__text">"My direct mail campaign generated two listings in 90 days. I would have had no idea how to set that up on my own. INNOVATE made it simple."</p>
-          <p class="testimonial__attr">INNOVATE Agent</p>
+          <p class="testimonial__text">"Even though it&rsquo;s an independently owned brokerage, I feel like we have the backing of a huge name. On a daily basis, I use the marketing tools, whether for open houses, new listings, price reductions, holidays, activities...there&rsquo;s always something there right at my fingertips."</p>
+          <p class="testimonial__attr">Josh Stevens, REALTOR&reg; &mdash; South Carolina</p>
         </div>
 
       </div>
@@ -136,15 +153,34 @@
     <div class="container">
       <h2>See the full marketing platform.</h2>
       <p>Schedule a call and we'll show you what your brand could look like at INNOVATE.</p>
-      <a href="https://calendly.com/innovate-darren/innovate-discovery" target="_blank" rel="noopener" class="btn btn--white">Schedule a Call</a>
+      <a href="/talk.html" class="btn btn--white">Schedule a Call</a>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 INNOVATE Real Estate. All rights reserved.
-        &nbsp;&middot;&nbsp; <a href="/index.html">Home</a>
-      </p>
+      <div class="footer__inner">
+        <p class="footer__copy">&copy; 2026 INNOVATE Real Estate. All rights reserved.</p>
+        <div class="footer__social">
+
+          <a href="https://www.facebook.com/INNOVATErealestatecompany" target="_blank" rel="noopener" aria-label="Facebook" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+
+          <a href="https://www.instagram.com/innovaterealestatecompany/" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.youtube.com/@InnovateRealEstateCompany" target="_blank" rel="noopener" aria-label="YouTube" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.linkedin.com/company/innovateonline-real-estate/" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+
+        </div>
+      </div>
     </div>
   </footer>
 </body>

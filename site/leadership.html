@@ -3,11 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leadership — INNOVATE Real Estate</title>
+  <title>Leadership - INNOVATE Real Estate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .leader{display:flex;gap:56px;align-items:flex-start;padding:64px 0;border-bottom:1px solid var(--border);}
+    .leader:last-child{border-bottom:none;}
+    .leader--flip{flex-direction:row-reverse;}
+    .leader__photo{flex:0 0 260px;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.1);}
+    .leader__photo img{width:100%;display:block;object-fit:cover;}
+    .leader__content{flex:1;}
+    .leader__name{font-size:1.7rem;font-weight:900;letter-spacing:-.02em;color:#111;margin-bottom:4px;}
+    .leader__title{font-size:.9rem;font-weight:700;color:#82C112;text-transform:uppercase;letter-spacing:.06em;margin-bottom:20px;}
+    .leader__bio p{font-size:.95rem;color:#444;line-height:1.8;margin-bottom:14px;}
+    .leader__bio p:last-child{margin-bottom:0;}
+    .leader__more{overflow:hidden;max-height:0;transition:max-height .4s ease;}
+    .leader__more.is-open{max-height:1200px;}
+    .leader__toggle{margin-top:16px;background:none;border:none;color:#82C112;font-family:'Inter',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;padding:0;letter-spacing:.02em;}
+    .leader__toggle:hover{color:#6ea80e;}
+    @media(max-width:760px){.leader,.leader--flip{flex-direction:column;gap:28px;}.leader__photo{flex:none;width:100%;max-width:300px;}}
+    .locations__hero{text-align:center;}
+    .locations__count{display:flex;align-items:center;justify-content:center;gap:16px;margin:16px 0 36px;}
+    .locations__number{font-size:6rem;font-weight:900;line-height:1;color:#82C112;letter-spacing:-.04em;}
+    .locations__count-text{text-align:left;}
+    .locations__count-text strong{display:block;font-size:2rem;font-weight:900;color:#111;line-height:1;letter-spacing:-.02em;}
+    .locations__count-text span{font-size:.9rem;color:#888;font-weight:500;}
+    .locations__state-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:640px;margin:0 auto;}
+    .locations__state{background:#fff;border:1.5px solid #e0e0e0;border-radius:24px;padding:11px 20px;font-size:1rem;font-weight:600;color:#333;text-align:center;}
+    .locations__hq{text-align:center;padding-top:48px;margin-top:48px;border-top:1px solid #ddd;}
+    .locations__hq-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#82C112;margin-bottom:8px;}
+    .locations__hq-name{font-size:1.1rem;font-weight:800;color:#111;margin-bottom:6px;}
+    .locations__hq-addr{font-size:.9rem;color:#666;margin-bottom:8px;}
+    .locations__hq-phone{font-size:.95rem;font-weight:700;color:#111;text-decoration:none;}
+    .locations__hq-phone:hover{color:#82C112;}
+  </style>
 </head>
 <body>
   <div id="nav-placeholder"></div>
@@ -16,21 +47,214 @@
   <section class="page-hero">
     <div class="container">
       <p class="hero__eyebrow">Who We Are</p>
-      <h1 class="hero__headline">Leadership</h1>
-      <p class="hero__sub">Placeholder — add your content here.</p>
+      <h1 class="hero__headline">Our Leadership Team</h1>
+      <p class="hero__sub">The team behind the team.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <p style="color:var(--muted)">Page content goes here.</p>
+
+      <!-- Jeff Casterline -->
+      <div class="leader">
+        <div class="leader__photo">
+          <img src="/images/jeff-casterline.png" alt="Jeff Casterline" />
+        </div>
+        <div class="leader__content">
+          <h2 class="leader__name">Jeff Casterline</h2>
+          <p class="leader__title">Co-Founder &amp; CEO</p>
+          <div class="leader__bio">
+            <p>Jeff Casterline is a dynamic leader and co-founder of INNOVATE Real Estate, where he serves as the CEO and Visionary, spearheading the company's strategic direction and innovation. In addition to these critical roles, Jeff focuses on agent retention and communication, fostering a collaborative and supportive environment that empowers agents to thrive. His dedication to creating a forward-thinking real estate firm has been a cornerstone of INNOVATE's success.</p>
+            <div class="leader__more" id="more-jeff">
+              <p>With over two decades of experience in the real estate industry, Jeff brings a wealth of knowledge and expertise to the table. His insights have shaped INNOVATE into a company that not only adapts to industry changes but also sets new standards for excellence. Jeff's commitment to the industry extends beyond his company, as he actively serves on the board of the Coastal Carolina MLS, contributing to the advancement of real estate practices and policies in the area. Additionally, he is a member of the advisory board for Coastal Carolina National Bank, where his experience provides valuable insight to real estate related issues.</p>
+              <p>Jeff's influence in the real estate industry demonstrates his passion for driving progress, whether through mentoring agents, guiding INNOVATE's growth, or shaping the broader industry landscape. His leadership continues to inspire those around him while solidifying INNOVATE Real Estate's reputation as an up-and-coming force in the market.</p>
+            </div>
+            <button class="leader__toggle" onclick="toggleBio('jeff', this)">Read More +</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Darren Woodard -->
+      <div class="leader leader--flip">
+        <div class="leader__photo">
+          <img src="/images/Darren-Woodard.png" alt="Darren Woodard" />
+        </div>
+        <div class="leader__content">
+          <h2 class="leader__name">Darren Woodard</h2>
+          <p class="leader__title">Co-Founder, CFO &amp; Head of Strategic Growth</p>
+          <div class="leader__bio">
+            <p>As Head of Strategic Growth at INNOVATE Real Estate, Darren leverages over two decades of experience to drive the company's expansion, innovation, and market presence. With a proven track record of success, Darren plays a pivotal role in shaping and executing the strategies that position INNOVATE as a leader in the real estate industry.</p>
+            <div class="leader__more" id="more-darren">
+              <p>Darren's leadership has been instrumental in spearheading INNOVATE's ambitious expansion into new markets. His strategic approach has contributed to a 141% revenue increase in key markets in recent years, reflecting his commitment to sustainable growth and market leadership. By identifying opportunities, fostering partnerships, and ensuring operational excellence, Darren continues to chart a course for INNOVATE's success.</p>
+              <p>Darren's vision of empowering agents for the future is at the heart of his strategic leadership, driving innovation and ensuring INNOVATE's mission is realized at every level. His ability to align organizational goals with the needs of agents and clients underscores his effectiveness as a leader. As Head of Strategic Growth, Darren continues to propel INNOVATE forward, ensuring its reputation as a trusted and dynamic force in real estate remains unmatched.</p>
+            </div>
+            <button class="leader__toggle" onclick="toggleBio('darren', this)">Read More +</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lisa Broussard -->
+      <div class="leader">
+        <div class="leader__photo">
+          <img src="/images/Lisa-Broussard.png" alt="Lisa Broussard" />
+        </div>
+        <div class="leader__content">
+          <h2 class="leader__name">Lisa Broussard</h2>
+          <p class="leader__title">Chief Marketing Officer</p>
+          <div class="leader__bio">
+            <p>With a career that began in commercial real estate, overseeing the management and disposition of REO and investor-owned assets across Texas, Louisiana, and Florida, Lisa has honed a unique blend of strategic precision and creative vision. Transitioning from asset management to marketing leadership, she has been a driving force behind INNOVATE Real Estate's rise from a small startup to the top independent brokerage in the Grand Strand area.</p>
+            <div class="leader__more" id="more-lisa">
+              <p>As Chief Marketing Officer, Lisa combines her real estate expertise with a passion for high-end design and innovative storytelling. She spearheads bold, out-of-the-box marketing strategies that elevate the brand, incorporating cutting-edge creative campaigns and striking visual design to position INNOVATE as a market leader across the Southeast. Under her guidance, INNOVATE's expansion efforts are fueled by a strong, recognizable brand that resonates with both clients and agents.</p>
+              <p>Lisa also ensures INNOVATE's agents have access to top-tier, brand-building marketing tools that reflect the company's commitment to sophistication and excellence, empowering them to stand out in a competitive market. Her ability to fuse creativity with strategy has set new benchmarks for what's possible in real estate marketing and brand growth.</p>
+            </div>
+            <button class="leader__toggle" onclick="toggleBio('lisa', this)">Read More +</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Will Kelly -->
+      <div class="leader leader--flip">
+        <div class="leader__photo">
+          <img src="/images/Will-Kelly.png" alt="Will Kelly" />
+        </div>
+        <div class="leader__content">
+          <h2 class="leader__name">Will Kelly</h2>
+          <p class="leader__title">Director of National Growth</p>
+          <div class="leader__bio">
+            <p>Will Kelly is an accomplished executive leader, entrepreneur, and growth strategist with more than 30 years of experience building, scaling, and transforming organizations across multiple industries. Over the past two decades, he has become a respected leader in real estate, specializing in growth strategy, recruiting, culture development, leadership systems, and operational excellence.</p>
+            <div class="leader__more" id="more-will">
+              <p>Prior to joining INNOVATE Real Estate as National Director of Growth, Will served as CEO and Team Leader of Horsham Regional Realty, where he led a complete organizational transformation. Under his leadership, the company grew from 67 agents and $97 million in annual sales volume to more than 125 agents and approximately $375 million in annual closed sales. He implemented leadership structures, coaching programs, and accountability systems that significantly increased agent productivity and organizational performance.</p>
+              <p>A strong advocate of servant-based leadership, Will believes that great organizations are built by investing in people. His leadership philosophy centers on developing future leaders, creating scalable systems, fostering accountability, and building cultures where individuals can thrive. Known for his ability to align people around a shared vision, Will brings a proven track record of helping organizations grow while maintaining the culture and values that drive long-term success.</p>
+            </div>
+            <button class="leader__toggle" onclick="toggleBio('will', this)">Read More +</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carrie Kinney -->
+      <div class="leader">
+        <div class="leader__photo">
+          <img src="/images/Carrie-Kinney.png" alt="Carrie Kinney" />
+        </div>
+        <div class="leader__content">
+          <h2 class="leader__name">Carrie Kinney</h2>
+          <p class="leader__title">Director of Broker Development</p>
+          <div class="leader__bio">
+            <p>A seasoned real estate professional with 13 years of industry experience, Carrie has spent the last two years with INNOVATE Real Estate serving as the Broker in Charge for multiple key offices across North and South Carolina. In her role, Carrie oversees state and local brokers across a 14-state footprint, leading strategic planning and execution of comprehensive training programs while building vital partnerships with industry vendors.</p>
+            <div class="leader__more" id="more-carrie">
+              <p>Carrie's career is defined by her passion for mentorship, compliance, and structural growth. Throughout her 13 years in real estate, she has successfully coached and led teams ranging from boutique offices to massive broker networks. Her background includes a strong foundation in educational leadership and operations management, making her uniquely equipped to design onboarding and professional development programs that elevate broker success.</p>
+              <p>Deeply invested in the real estate community, Carrie serves as the 2026 President-Elect for the Women's Council of Realtors Azalea Coast. Her extensive credentials include being a licensed NC Real Estate Instructor, a licensed broker in both North and South Carolina, and holding designations including the Accredited Buyer's Representative (ABR), Military Relocation Professional (MRP), and NAR's C2EX Endorsement. She holds a Bachelor of Science in Psychology from Greensboro College.</p>
+            </div>
+            <button class="leader__toggle" onclick="toggleBio('carrie', this)">Read More +</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Michael Blum -->
+      <div class="leader leader--flip">
+        <div class="leader__photo">
+          <img src="/images/Mike-Blum.png" alt="Michael Blum" />
+        </div>
+        <div class="leader__content">
+          <h2 class="leader__name">Michael Blum</h2>
+          <p class="leader__title">Director of Agent Development</p>
+          <div class="leader__bio">
+            <p>Michael brings a unique combination of real estate production, brokerage leadership, coaching, and education to his role at INNOVATE. A Pennsylvania Associate Broker, he has spent the past 13 years helping buyers and sellers throughout the Philadelphia suburbs while simultaneously serving as a sales manager, productivity coach, technology trainer, and mentor to agents at every stage of their careers.</p>
+            <div class="leader__more" id="more-michael">
+              <p>His professional journey began outside of real estate. Before entering the industry, Michael spent more than a decade in nonprofit leadership, focusing on informal education, youth development, and community leadership. Although the industries have changed, his mission has remained consistent: helping people navigate change, build confidence, and achieve meaningful growth.</p>
+              <p>Unlike many industry trainers who have stepped away from active sales, Michael continues to work directly with buyers and sellers. Remaining in production allows him to bring current market insight, real-world experience, and proven business strategies into every coaching conversation. As Director of Agent Development, Michael leads INNOVATE's onboarding initiatives, training curriculum, coaching systems, and development pathways designed to support agents from their first transaction through every stage of their careers.</p>
+              <p>Michael lives in Montgomery County, Pennsylvania, with his wife, Rachel, and daughter, Molly. He remains actively involved in his local community through leadership, volunteerism, and charitable organizations.</p>
+            </div>
+            <button class="leader__toggle" onclick="toggleBio('michael', this)">Read More +</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- LOCATIONS -->
+  <section class="section section--stone" id="locations">
+    <div class="container">
+
+      <div class="locations__hero">
+        <p class="section-eyebrow">Where We Are</p>
+        <div class="locations__count">
+          <span class="locations__number">14</span>
+          <div class="locations__count-text">
+            <strong>States</strong>
+            <span>and growing</span>
+          </div>
+        </div>
+        <div class="locations__state-grid">
+          <span class="locations__state">Delaware</span>
+          <span class="locations__state">Florida</span>
+          <span class="locations__state">Georgia</span>
+          <span class="locations__state">Maryland</span>
+          <span class="locations__state">Massachusetts</span>
+          <span class="locations__state">New Hampshire</span>
+          <span class="locations__state">New Jersey</span>
+          <span class="locations__state">North Carolina</span>
+          <span class="locations__state">Ohio</span>
+          <span class="locations__state">Pennsylvania</span>
+          <span class="locations__state">Rhode Island</span>
+          <span class="locations__state">South Carolina</span>
+          <span class="locations__state">Tennessee</span>
+          <span class="locations__state">Virginia</span>
+        </div>
+      </div>
+
+      <div class="locations__hq">
+        <p class="locations__hq-label">Corporate Office</p>
+        <p class="locations__hq-name">INNOVATE Real Estate</p>
+        <p class="locations__hq-addr">1309 Professional Drive &nbsp;&middot;&nbsp; Myrtle Beach, SC 29577</p>
+        <a href="tel:8438393325" class="locations__hq-phone">843.839.3325</a>
+      </div>
+
+    </div>
+  </section>
+  <section class="cta-band">
+    <div class="container">
+      <h2>Ready to meet the team?</h2>
+      <p>Schedule a call and have a real conversation with the people building this company.</p>
+      <a href="/talk.html" class="btn btn--white">Schedule a Call</a>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 INNOVATE Real Estate. All rights reserved.</p>
+      <div class="footer__inner">
+        <p class="footer__copy">&copy; 2026 INNOVATE Real Estate. All rights reserved.</p>
+        <div class="footer__social">
+
+          <a href="https://www.facebook.com/INNOVATErealestatecompany" target="_blank" rel="noopener" aria-label="Facebook" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+
+          <a href="https://www.instagram.com/innovaterealestatecompany/" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.youtube.com/@InnovateRealEstateCompany" target="_blank" rel="noopener" aria-label="YouTube" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.linkedin.com/company/innovateonline-real-estate/" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+
+        </div>
+      </div>
     </div>
   </footer>
+
+  <script>
+    function toggleBio(id, btn) {
+      var el = document.getElementById('more-' + id);
+      var open = el.classList.toggle('is-open');
+      btn.textContent = open ? 'Read Less -' : 'Read More +';
+    }
+  </script>
 </body>
 </html>

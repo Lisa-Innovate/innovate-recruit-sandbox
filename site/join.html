@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join INNOVATE - INNOVATE Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .page-hero { background: #111; }
+    .page-hero .hero__eyebrow { color: #82C112; }
+    .page-hero .hero__headline { color: #fff; }
+    .page-hero .hero__sub { color: rgba(255,255,255,0.72); }
+
+    .join-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .join-benefits__intro {
+      font-size: 1.05rem;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .join-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .join-checklist li {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      font-size: 0.975rem;
+      color: #222;
+      line-height: 1.55;
+    }
+    .join-checklist li::before {
+      content: "";
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+      border-radius: 50%;
+      background: #82C112;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='9' viewBox='0 0 12 9'%3E%3Cpolyline points='1 4 4.5 7.5 11 1' stroke='%23fff' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .join-checklist li strong {
+      display: block;
+    }
+
+    .join-prefer {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e8e8e8;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .join-prefer a {
+      color: #82C112;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .join-prefer a:hover { text-decoration: underline; }
+
+    .join-form-card {
+      background: #f9f9f7;
+      border-radius: 14px;
+      padding: 2.5rem;
+    }
+    .join-form-card h2 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 1.75rem;
+      letter-spacing: -.02em;
+    }
+    .join-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .join-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .join-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .join-field label {
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: #444;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+    }
+    .join-field input,
+    .join-field select {
+      padding: 12px 14px;
+      border: 1.5px solid #ddd;
+      border-radius: 7px;
+      font-size: 0.975rem;
+      font-family: inherit;
+      color: #111;
+      background: #fff;
+      transition: border-color .15s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .join-field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+    .join-field input:focus,
+    .join-field select:focus {
+      outline: none;
+      border-color: #82C112;
+    }
+    .join-form .btn {
+      width: 100%;
+      text-align: center;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+    .join-note {
+      font-size: 0.78rem;
+      color: #999;
+      text-align: center;
+      margin-top: 0.75rem;
+    }
+
+    @media (max-width: 860px) {
+      .join-grid { grid-template-columns: 1fr; gap: 48px; }
+      .join-form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+  <script src="/nav.js"></script>
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="hero__eyebrow">Join INNOVATE</p>
+      <h1 class="hero__headline">Your career. Your terms.</h1>
+      <p class="hero__sub">Already decided to make the move? Skip the appointment. Complete your details and we'll send your onboarding materials right away.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="join-grid">
+
+        <!-- Left: value props -->
+        <div class="join-benefits">
+          <p class="join-benefits__intro">INNOVATE was built around one idea: if our agents win, our company wins. Everything we offer exists to help you build a bigger business and a better life.</p>
+
+          <ul class="join-checklist">
+            <li>
+              <span><strong>High-split, capped comp.</strong> 85/15 with a $15,000 cap, then you keep 100%.</span>
+            </li>
+            <li>
+              <span><strong>Real local leadership.</strong> A real leader in your market who knows your name and answers the phone.</span>
+            </li>
+            <li>
+              <span><strong>Tech included, not upsold.</strong> Your website, agent-powered home search, CRM, and marketing, built in.</span>
+            </li>
+            <li>
+              <span><strong>Ownership and revenue share.</strong> Build long-term wealth, not just a paycheck.</span>
+            </li>
+          </ul>
+
+          <p class="join-prefer">Not quite ready to commit? <a href="/talk.html">Request a confidential conversation instead.</a></p>
+        </div>
+
+        <!-- Right: form -->
+        <div class="join-form-card">
+          <h2>Ready to join INNOVATE?</h2>
+          <form class="join-form" action="https://formspree.io/f/xkodojvy" method="POST">
+
+            <div class="join-form-row">
+              <div class="join-field">
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name" required />
+              </div>
+              <div class="join-field">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name" required />
+              </div>
+            </div>
+
+            <div class="join-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="join-field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+
+            <div class="join-field">
+              <label for="license_state">License State</label>
+              <select id="license_state" name="license_state" required>
+                <option value="" disabled selected>Select your state</option>
+                <option>Delaware</option>
+                <option>Florida</option>
+                <option>Georgia</option>
+                <option>Maryland</option>
+                <option>Massachusetts</option>
+                <option>New Hampshire</option>
+                <option>New Jersey</option>
+                <option>North Carolina</option>
+                <option>Ohio</option>
+                <option>Pennsylvania</option>
+                <option>Rhode Island</option>
+                <option>South Carolina</option>
+                <option>Tennessee</option>
+                <option>Virginia</option>
+              </select>
+            </div>
+
+            <div class="join-field">
+              <label for="license_number">License Number</label>
+              <input type="text" id="license_number" name="license_number" required />
+            </div>
+
+            <div class="join-field">
+              <label for="transfer_date">Target Transfer Date</label>
+              <input type="date" id="transfer_date" name="target_transfer_date" />
+            </div>
+
+            <button type="submit" class="btn btn--primary">Sign Up to Join INNOVATE</button>
+
+          </form>
+          <p class="join-note">By submitting, you'll receive onboarding materials by email. We'll never share your info.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <p class="footer__copy">&copy; 2026 INNOVATE Real Estate. All rights reserved.</p>
+        <div class="footer__social">
+
+          <a href="https://www.facebook.com/INNOVATErealestatecompany" target="_blank" rel="noopener" aria-label="Facebook" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+
+          <a href="https://www.instagram.com/innovaterealestatecompany/" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.youtube.com/@InnovateRealEstateCompany" target="_blank" rel="noopener" aria-label="YouTube" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.linkedin.com/company/innovateonline-real-estate/" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

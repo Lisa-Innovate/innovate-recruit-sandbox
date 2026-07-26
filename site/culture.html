@@ -3,33 +3,388 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Culture — INNOVATE Real Estate</title>
+  <title>Culture - INNOVATE Real Estate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .page-hero { background: #111; }
+    .page-hero .hero__eyebrow { color: #82C112; }
+    .page-hero .hero__headline { color: #fff; }
+    .page-hero .hero__sub { color: rgba(255,255,255,0.72); }
+
+    /* Darren pullquote */
+    .founder-quote {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .founder-quote__mark {
+      font-size: 5rem;
+      line-height: .5;
+      color: #82C112;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .founder-quote__text {
+      font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+      font-weight: 700;
+      color: #111;
+      line-height: 1.6;
+      letter-spacing: -.01em;
+      margin-bottom: 24px;
+    }
+    .founder-quote__attr {
+      font-size: .875rem;
+      font-weight: 600;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .founder-quote__attr span { color: #82C112; }
+
+    /* Give First section */
+    .give-first__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .give-first__body p {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .culture-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .culture-checklist li {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      font-size: 0.95rem;
+      color: #222;
+      line-height: 1.6;
+    }
+    .culture-checklist li::before {
+      content: "";
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      border-radius: 50%;
+      background: #82C112;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='9' viewBox='0 0 11 9'%3E%3Cpolyline points='1 4 4 7 10 1' stroke='%23fff' stroke-width='1.7' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* Video section */
+    .culture-video-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(0,0,0,.12);
+    }
+    .culture-video-wrap video {
+      width: 100%;
+      display: block;
+    }
+
+    /* Flywheel section */
+    .flywheel-box {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #f4f9ec;
+      border-radius: 14px;
+      padding: 3rem;
+      border-left: 5px solid #82C112;
+    }
+    .flywheel-box p {
+      font-size: 1.05rem;
+      color: #2a3a12;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* Core values */
+    .values__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .value-card { background: #fff; border-radius: 12px; padding: 32px 28px; border-top: 4px solid #82C112; box-shadow: 0 2px 16px rgba(0,0,0,.06); }
+    .value-card__icon { width: 48px; height: 48px; background: #82C112; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .value-card__icon svg { width: 24px; height: 24px; }
+    .value-card__title { font-size: 1rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #111; margin-bottom: 12px; }
+    .value-card__body { font-size: .92rem; color: #5b5b5b; line-height: 1.75; }
+
+    .testimonials { grid-template-columns: repeat(2, 1fr); }
+
+    @media (max-width: 860px) {
+      .give-first__grid { grid-template-columns: 1fr; gap: 40px; }
+      .values__grid { grid-template-columns: repeat(2,1fr); }
+      .flywheel-box { padding: 2rem; }
+    }
+    @media (max-width: 560px) {
+      .values__grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
   <div id="nav-placeholder"></div>
   <script src="/nav.js"></script>
 
+  <!-- HERO -->
   <section class="page-hero">
     <div class="container">
       <p class="hero__eyebrow">Who We Are</p>
-      <h1 class="hero__headline">Culture</h1>
-      <p class="hero__sub">Placeholder — add your content here.</p>
+      <h1 class="hero__headline">Agents Helping Agents Win</h1>
+      <p class="hero__sub">You can copy a tech stack. You can match a split. You can't fake a culture.</p>
     </div>
   </section>
 
+  <!-- DARREN QUOTE (replaces "Most Brokerages" problem section) -->
   <section class="section">
     <div class="container">
-      <p style="color:var(--muted)">Page content goes here.</p>
+      <div class="founder-quote">
+        <span class="founder-quote__mark">"</span>
+        <p class="founder-quote__text">If our agents win, our company wins. Every decision starts there. Culture isn't something you create after you grow. It has to grow with you.</p>
+        <p class="founder-quote__attr"><span>Darren Woodard</span> &nbsp;&middot;&nbsp; Co-Founder, INNOVATE Real Estate</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GIVE FIRST -->
+  <section class="section section--stone">
+    <div class="container">
+      <div class="give-first__grid">
+
+        <div>
+          <p class="section-eyebrow">How We Operate</p>
+          <h2 class="section-heading">Give First. Win Together.</h2>
+        </div>
+
+        <div class="give-first__body">
+          <p>At INNOVATE, generosity isn't a perk, it's how we operate. Agents share what works, leadership picks up the phone, and everyone's success makes the whole circle stronger.</p>
+          <p>When the circle wins, you win.</p>
+          <ul class="culture-checklist">
+            <li>Agents openly share scripts, systems, and what's actually working. Your wins don't come at someone else's expense.</li>
+            <li>Leadership is accessible and invested, not hidden behind layers.</li>
+            <li>A give-first mindset that compounds: generosity builds trust, trust builds referrals, referrals build everyone's business.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CULTURE CARDS -->
+  <section class="section">
+    <div class="container">
+      <div class="why__header">
+        <p class="section-eyebrow">What That Looks Like</p>
+        <h2 class="section-heading">Culture in practice, every day.</h2>
+      </div>
+      <div class="why__grid">
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Accessible Leadership</h3>
+          <p class="card__body">A team that answers the phone and knows your name. You're not a number in a downline. You're part of how decisions get made.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Agents Who Lift Each Other</h3>
+          <p class="card__body">Masterminds, shared playbooks, and a floor where the best producers help the newest ones. Knowledge is given, not guarded.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Giving Back, Together</h3>
+          <p class="card__body">Client appreciation events and a culture of generosity that extends past the office, to clients, communities, and each other.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="section section--stone">
+    <div class="container">
+      <div class="why__header">
+        <p class="section-eyebrow">See It For Yourself</p>
+        <h2 class="section-heading">Who we are.</h2>
+      </div>
+      <div class="culture-video-wrap">
+        <video controls>
+          <source src="/videos/who-we-are.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLYWHEEL -->
+  <section class="section">
+    <div class="container">
+      <div class="why__header">
+        <p class="section-eyebrow">Why It Matters</p>
+        <h2 class="section-heading">The Give-First Flywheel</h2>
+      </div>
+      <div class="flywheel-box">
+        <p>Culture isn't just feel-good, it performs. A generous culture keeps agents longer, turns clients into referral engines, and makes recruiting easier because people genuinely want to be here. The tech, the training, the splits, and the ownership all work better inside a culture that actually wants you to win.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE VALUES -->
+  <section class="section section--stone">
+    <div class="container">
+      <div class="why__header">
+        <p class="section-eyebrow">What We Stand For</p>
+        <h2 class="section-heading">Our Core Values</h2>
+      </div>
+      <div class="values__grid">
+
+        <div class="value-card">
+          <div class="value-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+              <path d="M22 11l-3 3-1.5-1.5"/>
+            </svg>
+          </div>
+          <h3 class="value-card__title">Agent Centric</h3>
+          <p class="value-card__body">Every tool, every system, every event, every decision is done for the purpose of making your job as a real estate professional easier, better, more efficient, more rewarding, and more client-focused.</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <h3 class="value-card__title">Client Focused</h3>
+          <p class="value-card__body">We believe that the most important element of any real estate transaction is the relationship between the agent and their client. Everything we build supports that relationship.</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+            </svg>
+          </div>
+          <h3 class="value-card__title">Growth Minded</h3>
+          <p class="value-card__body">If you aren't growing and evolving, you're standing still. We attract agents who are hungry to build something bigger than themselves and push the boundaries of what's possible.</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <h3 class="value-card__title">Family First</h3>
+          <p class="value-card__body">We believe family comes first. That commitment extends to the financial, physical, and mental well-being of every agent and staff member in our community.</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>
+            </svg>
+          </div>
+          <h3 class="value-card__title">Tech Forward</h3>
+          <p class="value-card__body">We continuously research and implement emerging technology to give agents efficient, results-oriented business systems. You should be spending time with clients, not wrestling with outdated tools.</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="value-card__title">Culture of Generosity</h3>
+          <p class="value-card__body">We are dedicated to promoting a culture of generosity through the sharing of ideas, knowledge, education, and financial benefit. A rising tide lifts all boats, and we mean it.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section">
+    <div class="container">
+      <div class="why__header">
+        <p class="section-eyebrow">What Agents Say</p>
+        <h2 class="section-heading">In their own words.</h2>
+      </div>
+      <div class="testimonials">
+
+        <div class="testimonial">
+          <p class="testimonial__text">"It's all about the family, the base, the support, the training...and INNOVATE is all of that!!!"</p>
+          <p class="testimonial__attr">Robert Tichy, INNOVATE Agent</p>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial__text">"The greatest gift of leadership is building a team that wants each other to win."</p>
+          <p class="testimonial__attr">Carolyn Powers, INNOVATE Agent</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Find Your People.</h2>
+      <p>Have a conversation with your local Market Center Leader. No pressure, completely confidential.</p>
+      <a href="/talk.html" class="btn btn--white">Schedule a Call</a>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 INNOVATE Real Estate. All rights reserved.</p>
+      <div class="footer__inner">
+        <p class="footer__copy">&copy; 2026 INNOVATE Real Estate. All rights reserved.</p>
+        <div class="footer__social">
+
+          <a href="https://www.facebook.com/INNOVATErealestatecompany" target="_blank" rel="noopener" aria-label="Facebook" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+
+          <a href="https://www.instagram.com/innovaterealestatecompany/" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.youtube.com/@InnovateRealEstateCompany" target="_blank" rel="noopener" aria-label="YouTube" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.linkedin.com/company/innovateonline-real-estate/" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+
+        </div>
+      </div>
     </div>
   </footer>
 </body>

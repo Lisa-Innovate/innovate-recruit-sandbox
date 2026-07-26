@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding &amp; Tech Training - INNOVATE Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .page-hero { background: #111; }
+    .page-hero .hero__eyebrow { color: #82C112; }
+    .page-hero .hero__headline { color: #fff; }
+    .page-hero .hero__sub { color: rgba(255,255,255,0.72); }
+
+    /* Problem / solution split */
+    .ob-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .ob-split__block h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 1rem;
+      letter-spacing: -.02em;
+    }
+    .ob-split__block p {
+      font-size: 0.975rem;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* 30-day timeline */
+    .ob-timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .ob-milestone {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem 1.75rem;
+      border-top: 4px solid #82C112;
+      box-shadow: 0 2px 16px rgba(0,0,0,.06);
+    }
+    .ob-milestone__label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #82C112;
+      margin-bottom: 0.6rem;
+    }
+    .ob-milestone__title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 0.75rem;
+      letter-spacing: -.01em;
+    }
+    .ob-milestone__body {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* Real Help checklist */
+    .ob-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .ob-checklist li {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+      font-size: 0.975rem;
+      color: #222;
+      line-height: 1.55;
+    }
+    .ob-checklist li::before {
+      content: "";
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+      border-radius: 50%;
+      background: #82C112;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='9' viewBox='0 0 11 9'%3E%3Cpolyline points='1 4 4 7 10 1' stroke='%23fff' stroke-width='1.7' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .ob-help-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .ob-help-grid h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 0.75rem;
+      letter-spacing: -.02em;
+    }
+    .ob-help-grid p {
+      font-size: 0.975rem;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .section--stone .card { background: #fff; box-shadow: 0 2px 16px rgba(0,0,0,.07); }
+    .testimonials { grid-template-columns: repeat(2, 1fr); }
+
+    @media (max-width: 800px) {
+      .ob-split { grid-template-columns: 1fr; gap: 40px; }
+      .ob-timeline { grid-template-columns: 1fr; }
+      .ob-help-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+  <script src="/nav.js"></script>
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="hero__eyebrow">How We INNOVATE</p>
+      <h1 class="hero__headline">From Signed to Selling. Fast.</h1>
+      <p class="hero__sub">Your first 30 days set the tone for everything. At INNOVATE, you won't spend them lost in setup screens or waiting on someone to call you back. You'll have a clear checklist, hands-on help, and a team that gets you launched quickly.</p>
+    </div>
+  </section>
+
+  <!-- Problem / Solution -->
+  <section class="section">
+    <div class="container">
+      <div class="ob-split">
+
+        <div class="ob-split__block">
+          <p class="section-eyebrow">The Problem</p>
+          <h3>Most Agents Lose Their First Month to Setup</h3>
+          <p>Weeks get wasted figuring out logins, with no one to ask. The new license goes cold while the paperwork and tech sit half-finished. Momentum dies before the first deal ever starts.</p>
+        </div>
+
+        <div class="ob-split__block">
+          <p class="section-eyebrow">The Solution</p>
+          <h3>A Step-by-Step Path, Not a Pile of Logins</h3>
+          <p>Onboarding at INNOVATE is a guided runway with a person behind it. Two people own your fast start so nothing stalls.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Two feature cards -->
+  <section class="section section--stone">
+    <div class="container">
+      <div class="why__header">
+        <p class="section-eyebrow">What We Handle For You</p>
+        <h2 class="section-heading">Done for you from day one.</h2>
+      </div>
+      <div class="why__grid">
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Onboarding, Handled for You</h3>
+          <p class="card__body">Your paperwork, compliance, and setup are done right and done quickly. Handled directly so you're not chasing forms.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Tech Setup, Configured for You</h3>
+          <p class="card__body">Your full platform is set up for you. CRM, lead routing, and tools ready to work on day one.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Ongoing Tech Training</h3>
+          <p class="card__body">Training doesn't stop at setup. Regular one-on-one and group sessions keep you sharp as the platform evolves and your business grows.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 30-Day Timeline -->
+  <section class="section">
+    <div class="container">
+      <div class="why__header">
+        <p class="section-eyebrow">The Fast Start</p>
+        <h2 class="section-heading">Your first 30 days, mapped.</h2>
+      </div>
+      <div class="ob-timeline">
+
+        <div class="ob-milestone">
+          <p class="ob-milestone__label">Day 1</p>
+          <h3 class="ob-milestone__title">You're In.</h3>
+          <p class="ob-milestone__body">Accounts created, platform access live, paperwork and compliance squared away. You leave day one already set up.</p>
+        </div>
+
+        <div class="ob-milestone">
+          <p class="ob-milestone__label">Week 1</p>
+          <h3 class="ob-milestone__title">You're Trained.</h3>
+          <p class="ob-milestone__body">Hands-on tech training so you actually know how to use the system. Lead routing, action plans, smart lists, and the open house platform.</p>
+        </div>
+
+        <div class="ob-milestone">
+          <p class="ob-milestone__label">Day 30</p>
+          <h3 class="ob-milestone__title">You're Selling.</h3>
+          <p class="ob-milestone__body">Your pipeline is live, follow-up is automated, and you're working real leads with a daily plan. The goal isn't "onboarded." It's producing.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Real Help -->
+  <section class="section section--stone">
+    <div class="container">
+      <div class="ob-help-grid">
+
+        <div>
+          <p class="section-eyebrow">Real Support</p>
+          <h3>Real Help From Real People</h3>
+          <p>Speed comes from support, not from being rushed. You're never figuring it out alone.</p>
+        </div>
+
+        <ul class="ob-checklist">
+          <li>Dedicated onboarding support that owns your launch</li>
+          <li>Hands-on tech training, not a video library you watch alone</li>
+          <li>A team that answers when you have a question</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section">
+    <div class="container">
+      <div class="why__header">
+        <p class="section-eyebrow">What Agents Say</p>
+        <h2 class="section-heading">From agents who've been through it.</h2>
+      </div>
+      <div class="testimonials">
+
+        <div class="testimonial">
+          <p class="testimonial__text">"It allows for you to really make a seamless transition. When I first made the move over, I had a couple of deals that were popping off right away and I had that panic moment. I made a call to Whitney and within a couple hours, all those questions were answered and I was able to continue moving forward."</p>
+          <p class="testimonial__attr">Eric Graham, INNOVATE Agent</p>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial__text">"We've taken it a step further so when you get onboarded at INNOVATE, you have a one-to-one training session that gets you up and going."</p>
+          <p class="testimonial__attr">Darren Woodard, Co-Founder</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Hit the Ground Running.</h2>
+      <p>See exactly what your first 30 days at INNOVATE would look like.</p>
+      <a href="/talk.html" class="btn btn--white">Schedule a Call</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <p class="footer__copy">&copy; 2026 INNOVATE Real Estate. All rights reserved.</p>
+        <div class="footer__social">
+
+          <a href="https://www.facebook.com/INNOVATErealestatecompany" target="_blank" rel="noopener" aria-label="Facebook" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+
+          <a href="https://www.instagram.com/innovaterealestatecompany/" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.youtube.com/@InnovateRealEstateCompany" target="_blank" rel="noopener" aria-label="YouTube" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          </a>
+
+          <a href="https://www.linkedin.com/company/innovateonline-real-estate/" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
