@@ -1,0 +1,732 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market Center Leader - INNOVATE Real Estate</title>
+  <script>if(localStorage.getItem('innovate-ml-access')==='granted'&&location.search.indexOf('preview')===-1){document.documentElement.setAttribute('data-unlocked','');}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:#111;}
+    .gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;position:relative;}
+    .gate::before{content:"";position:absolute;inset:0;background:url("/images/capture-bg.png") center/cover no-repeat;filter:blur(7px);transform:scale(1.08);z-index:0;}
+    [data-unlocked] .gate{display:none;}
+    .gate__card{background:#fff;border-radius:14px;padding:48px 40px;max-width:480px;width:100%;box-shadow:0 12px 48px rgba(0,0,0,.35);position:relative;z-index:1;}
+    .gate__logo{height:44px;display:block;margin-bottom:32px;}
+    .gate__eyebrow{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:#82C112;margin-bottom:.6rem;display:block;}
+    .gate__heading{font-size:1.75rem;font-weight:900;letter-spacing:-.03em;color:#111;margin-bottom:10px;}
+    .gate__sub{color:#666;font-size:.92rem;line-height:1.65;margin-bottom:28px;}
+    .gate__field{margin-bottom:16px;}
+    .gate__field label{display:block;font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#555;margin-bottom:6px;}
+    .gate__field input{width:100%;padding:11px 13px;border:1.5px solid #ddd;border-radius:7px;font-family:'Inter',sans-serif;font-size:.93rem;color:#111;background:#fff;transition:border-color .2s;}
+    .gate__field input:focus{outline:none;border-color:#82C112;}
+    .gate__row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .gate__btn{width:100%;padding:13px;font-size:1rem;font-family:'Inter',sans-serif;font-weight:700;background:#82C112;color:#fff;border:none;border-radius:7px;cursor:pointer;margin-top:10px;transition:background .2s;}
+    .gate__btn:hover{background:#6ea80e;}
+    .gate__btn:disabled{opacity:.6;cursor:default;}
+    .gate__privacy{text-align:center;font-size:.75rem;color:#bbb;margin-top:12px;}
+    .gate__error{color:#c0392b;font-size:.83rem;margin-top:8px;text-align:center;display:none;}
+    .deck{display:none;}
+    [data-unlocked] .deck{display:block;}
+    .ds-nav{position:sticky;top:0;z-index:100;background:#1a1a1a;border-bottom:1px solid #2a2a2a;}
+    .ds-nav__inner{display:flex;align-items:center;padding:0 28px;overflow-x:auto;gap:2px;}
+    .ds-nav__logo{height:26px;filter:brightness(0) invert(1);flex-shrink:0;margin-right:16px;}
+    .ds-nav__link{display:block;padding:13px 12px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888;text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;flex-shrink:0;}
+    .ds-nav__link:hover,.ds-nav__link.is-active{color:#82C112;border-bottom-color:#82C112;}
+    .ds-nav__link--cta{margin-left:auto;color:#82C112;border:1.5px solid rgba(130,193,18,.5);border-radius:6px;padding:7px 14px;margin-top:7px;margin-bottom:7px;border-bottom:1.5px solid rgba(130,193,18,.5);}
+    .ds-nav__link--cta:hover{background:#82C112;color:#fff;border-color:#82C112;}
+    .ds-section{padding:80px 0;}
+    .ds-section--dark{background:#111;}
+    .ds-section--darker{background:#0d0d0d;}
+    .ds-container{max-width:1100px;margin:0 auto;padding:0 36px;}
+    .ds-split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+    .ds-eyebrow{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:#82C112;margin-bottom:.65rem;display:block;}
+    .ds-headline{font-size:clamp(1.9rem,3.2vw,2.65rem);font-weight:900;letter-spacing:-.03em;line-height:1.1;color:#fff;margin-bottom:1.1rem;}
+    .ds-sub{font-size:1rem;line-height:1.8;color:rgba(255,255,255,.6);margin-bottom:1.25rem;}
+    .ds-section-hd{text-align:center;margin-bottom:3rem;}
+    .ds-section-hd .ds-sub{max-width:660px;margin-left:auto;margin-right:auto;}
+    .ml-hero{padding:100px 0 80px;border-bottom:1px solid #1e1e1e;}
+    .ml-hero__stats{display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;}
+    .ml-hero__stat{display:flex;flex-direction:column;gap:.3rem;}
+    .ml-hero__stat-num{font-size:1.6rem;font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1;}
+    .ml-hero__stat-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#82C112;}
+    .ml-hero__stat-div{width:1px;background:#2a2a2a;align-self:stretch;}
+    .ml-hero__scroll{margin-top:3rem;display:flex;align-items:center;gap:.65rem;color:rgba(255,255,255,.3);font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
+    .ml-hero__scroll-line{flex:1;max-width:60px;height:1px;background:rgba(255,255,255,.15);}
+    .ds-checklist{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.75rem;}
+    .ds-checklist li{display:flex;gap:.85rem;align-items:flex-start;font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.55;}
+    .ds-checklist li::before{content:"";flex-shrink:0;width:20px;height:20px;margin-top:1px;border-radius:50%;background:#82C112 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='9' viewBox='0 0 11 9'%3E%3Cpolyline points='1 4 4 7 10 1' stroke='%23fff' stroke-width='1.7' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C%2Fsvg%3E") no-repeat center;}
+    .ml-comparison{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#2a2a2a;border-radius:14px;overflow:hidden;margin-top:2.5rem;}
+    .ml-comparison__col{background:#161616;padding:2rem 1.5rem;}
+    .ml-comparison__col--hl{background:#141a0e;}
+    .ml-comparison__type{font-size:.67rem;font-weight:800;text-transform:uppercase;letter-spacing:.13em;color:#666;margin-bottom:.75rem;display:block;}
+    .ml-comparison__type--g{color:#82C112;}
+    .ml-comparison__title{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:1.25rem;letter-spacing:-.01em;}
+    .ml-comparison__items{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.7rem;}
+    .ml-comparison__item{font-size:.85rem;color:#999;display:flex;gap:.65rem;align-items:flex-start;line-height:1.4;}
+    .ml-comparison__item--b{color:#ddd;}
+    .ml-ic{flex-shrink:0;width:16px;height:16px;border-radius:50%;margin-top:1px;}
+    .ml-ic--y{background:#82C112 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='6' viewBox='0 0 8 6'%3E%3Cpolyline points='1 3 3 5 7 1' stroke='%23111' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C%2Fsvg%3E") no-repeat center;}
+    .ml-ic--n{background:#2a2a2a url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cline x1='2' y1='2' x2='6' y2='6' stroke='%23555' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='6' y1='2' x2='2' y2='6' stroke='%23555' stroke-width='1.5' stroke-linecap='round'/%3E%3C%2Fsvg%3E") no-repeat center;}
+    .ml-ic--p{background:#333 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='2' viewBox='0 0 8 2'%3E%3Cline x1='1' y1='1' x2='7' y2='1' stroke='%2382C112' stroke-width='1.8' stroke-linecap='round'/%3E%3C%2Fsvg%3E") no-repeat center;}
+    .ml-values{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:2rem;}
+    .ml-value{border-left:3px solid #82C112;padding:1.25rem 1.4rem;background:#161616;border-radius:0 10px 10px 0;}
+    .ml-value h4{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:.4rem;}
+    .ml-value p{font-size:.85rem;color:#888;line-height:1.65;}
+    .ml-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:2rem;}
+    .ml-pillar{background:#161616;border-radius:12px;padding:1.5rem;}
+    .ml-pillar__icon{font-size:1.4rem;margin-bottom:.75rem;display:block;}
+    .ml-pillar h4{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:.4rem;}
+    .ml-pillar p{font-size:.85rem;color:#888;line-height:1.65;}
+    .ml-streams{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:2rem;}
+    .ml-stream{background:#161616;border-radius:12px;padding:1.6rem;position:relative;overflow:hidden;}
+    .ml-stream::after{content:attr(data-n);position:absolute;top:-10px;right:10px;font-size:4.5rem;font-weight:900;color:rgba(130,193,18,.06);line-height:1;pointer-events:none;}
+    .ml-stream__num{font-size:.67rem;font-weight:800;text-transform:uppercase;letter-spacing:.13em;color:#82C112;margin-bottom:.5rem;display:block;}
+    .ml-stream__title{font-size:1rem;font-weight:800;color:#fff;margin-bottom:.5rem;}
+    .ml-stream__desc{font-size:.86rem;color:#888;line-height:1.7;}
+    .ml-stream__callout{margin-top:.9rem;padding:.65rem .9rem;background:rgba(130,193,18,.07);border-left:3px solid rgba(130,193,18,.5);border-radius:0 6px 6px 0;font-size:.8rem;color:#82C112;font-weight:700;}
+    .ml-calc{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;margin-top:2rem;}
+    .ml-calc__panel{background:#161616;border-radius:14px;padding:1.75rem;}
+    .ml-calc__ph{font-size:.9rem;font-weight:800;color:#fff;margin-bottom:1.5rem;letter-spacing:-.01em;}
+    .ml-calc__row{margin-bottom:1.4rem;}
+    .ml-calc__row:last-child{margin-bottom:0;}
+    .ml-calc__lbl{display:flex;justify-content:space-between;align-items:center;font-size:.73rem;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.55rem;}
+    .ml-calc__val{color:#82C112;font-weight:800;font-size:.88rem;}
+    .ml-calc__range{width:100%;accent-color:#82C112;cursor:pointer;}
+    .ml-calc__tog{display:flex;align-items:center;gap:.85rem;padding:1rem 1.2rem;background:#1e1e1e;border-radius:8px;margin-top:1.25rem;cursor:pointer;}
+    .ml-calc__tog input[type=checkbox]{accent-color:#82C112;width:17px;height:17px;cursor:pointer;flex-shrink:0;}
+    .ml-calc__tog-lbl{font-size:.86rem;font-weight:600;color:#ccc;cursor:pointer;}
+    .ml-rl{display:flex;justify-content:space-between;align-items:center;padding:.65rem 0;border-bottom:1px solid #222;}
+    .ml-rl:last-of-type{border-bottom:none;}
+    .ml-rl__k{font-size:.83rem;color:#777;}
+    .ml-rl__k--g{color:#82C112;font-weight:700;}
+    .ml-rl__v{font-size:.88rem;font-weight:700;color:#ccc;}
+    .ml-rl__v--g{color:#82C112;}
+    .ml-rl__p{font-size:.72rem;color:#555;margin-left:.35rem;}
+    .ml-div{border:none;border-top:1px solid #2a2a2a;margin:.85rem 0;}
+    .ml-total{margin-top:1.25rem;padding:1.25rem;background:linear-gradient(135deg,#1c1c1c,#202020);border-radius:10px;border-top:3px solid #82C112;text-align:center;}
+    .ml-total__lbl{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.11em;color:#82C112;margin-bottom:.4rem;}
+    .ml-total__amt{font-size:2.4rem;font-weight:900;color:#fff;letter-spacing:-.03em;}
+    .ml-total__note{font-size:.72rem;color:#555;margin-top:.35rem;}
+    .ml-ar{display:none;}
+    .ml-ar.vis{display:flex;}
+    .ml-milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem;}
+    .ml-milestone{background:#161616;border-radius:12px;padding:1.5rem;border-top:3px solid #2a2a2a;}
+    .ml-milestone__hd{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#82C112;margin-bottom:.5rem;}
+    .ml-milestone__base{font-size:1.3rem;font-weight:900;color:#fff;letter-spacing:-.02em;}
+    .ml-milestone__lbl{font-size:.75rem;color:#666;margin-bottom:.85rem;}
+    .ml-milestone__office{font-size:.9rem;font-weight:700;color:#aaa;}
+    .ml-milestone__olbl{font-size:.72rem;color:#555;}
+    .ml-milestone__note{font-size:.75rem;color:#666;margin-top:.85rem;line-height:1.6;}
+    .ml-role-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2rem;}
+    .ml-role-col h3{font-size:.9rem;font-weight:800;color:#fff;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid #222;text-transform:uppercase;letter-spacing:.06em;}
+    .ml-role-item{display:flex;gap:.85rem;align-items:flex-start;font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.5;padding:.7rem 0;border-bottom:1px solid #1e1e1e;}
+    .ml-role-item:last-child{border-bottom:none;}
+    .ml-role-item strong{color:#fff;display:block;font-size:.88rem;margin-bottom:.15rem;}
+    .ml-role-dot{flex-shrink:0;width:8px;height:8px;border-radius:50%;background:#82C112;margin-top:6px;}
+    .ml-eq-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem;}
+    .ml-eq-cat__title{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#82C112;margin-bottom:1rem;padding-bottom:.55rem;border-bottom:1px solid #222;}
+    .ml-eq-row{display:flex;align-items:flex-start;gap:1rem;padding:.8rem 0;border-bottom:1px solid #1a1a1a;}
+    .ml-eq-row:last-child{border-bottom:none;}
+    .ml-eq-row__title{flex:1;font-size:.88rem;font-weight:700;color:#fff;line-height:1.4;}
+    .ml-eq-row__desc{font-size:.78rem;color:#777;font-weight:400;display:block;margin-top:.2rem;}
+    .ml-eq-badge{flex-shrink:0;background:#82C112;color:#111;font-size:.72rem;font-weight:800;padding:.3rem .65rem;border-radius:5px;white-space:nowrap;text-align:center;line-height:1.35;}
+    .ml-purchase{background:#141a0e;border:1px solid rgba(130,193,18,.25);border-radius:12px;padding:1.75rem;margin-top:2.5rem;}
+    .ml-purchase h3{font-size:1rem;font-weight:800;color:#fff;margin-bottom:.5rem;}
+    .ml-purchase__sub{font-size:.83rem;color:#82C112;font-weight:700;margin-bottom:1.1rem;}
+    .ml-purchase__items{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+    .ml-purchase__item{text-align:center;}
+    .ml-purchase__item-val{font-size:1.1rem;font-weight:900;color:#fff;display:block;}
+    .ml-purchase__item-lbl{font-size:.73rem;color:#888;}
+    .ml-states{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.75rem;}
+    .ml-state{background:rgba(130,193,18,.1);color:#82C112;font-size:.78rem;font-weight:700;padding:.3rem .85rem;border-radius:100px;border:1px solid rgba(130,193,18,.25);}
+    .ml-story-block{background:#161616;border-radius:12px;padding:1.75rem;margin-bottom:2rem;border-left:3px solid #82C112;}
+    .ml-story-block p{font-size:.92rem;color:#aaa;line-height:1.8;margin-bottom:.85rem;}
+    .ml-story-block p:last-child{margin-bottom:0;}
+    .ml-cta{text-align:center;max-width:640px;margin:0 auto;}
+    .ml-cta a.btn{display:inline-flex;align-items:center;gap:.5rem;background:#82C112;color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;padding:15px 32px;border-radius:8px;transition:background .2s;letter-spacing:.01em;}
+    .ml-cta a.btn:hover{background:#6ea80e;}
+    .ml-lc{background:#161616;border-radius:14px;padding:1.75rem;margin-top:2rem;}
+    .ml-lc__title{font-size:.9rem;font-weight:800;color:#fff;margin-bottom:.35rem;letter-spacing:-.01em;}
+    .ml-lc__sub{font-size:.8rem;color:#888;margin-bottom:1.4rem;}
+    .ml-lc__inner{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;}
+    .ml-lc__result{background:linear-gradient(135deg,#1c1c1c,#202020);border-radius:10px;border-top:3px solid rgba(130,193,18,.5);padding:1.5rem;display:flex;flex-direction:column;justify-content:center;text-align:center;}
+    .ml-lc__result-lbl{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.11em;color:#82C112;margin-bottom:.4rem;}
+    .ml-lc__result-amt{font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.03em;}
+    .ml-lc__result-note{font-size:.73rem;color:#555;margin-top:.5rem;line-height:1.5;}
+    .ml-lookup-section{background:#111;padding:72px 0;}
+    .ml-lookup-wrap{max-width:640px;margin:0 auto;text-align:center;}
+    .ml-lookup-wrap .ds-headline{margin-bottom:.75rem;}
+    .ml-lookup-wrap .ds-sub{margin-bottom:2rem;}
+    .ml-lookup__form{display:flex;gap:.75rem;margin-bottom:1.5rem;}
+    .ml-lookup__input{flex:1;padding:13px 16px;background:#1c1c1c;border:1.5px solid #2a2a2a;border-radius:8px;font-family:'Inter',sans-serif;font-size:.95rem;color:#fff;transition:border-color .2s;}
+    .ml-lookup__input:focus{outline:none;border-color:#82C112;}
+    .ml-lookup__input::placeholder{color:#555;}
+    .ml-lookup__btn{padding:12px 24px;background:#82C112;color:#fff;font-family:'Inter',sans-serif;font-size:.88rem;font-weight:700;border:none;border-radius:8px;cursor:pointer;white-space:nowrap;transition:background .2s;}
+    .ml-lookup__btn:hover{background:#6ea80e;}
+    .ml-lookup__result{background:#161616;border-radius:12px;padding:1.5rem 1.75rem;display:none;text-align:left;}
+    .ml-lookup__result.visible{display:block;}
+    .ml-lookup__result--active{border-left:4px solid #82C112;}
+    .ml-lookup__result--expand{border-left:4px solid rgba(130,193,18,.35);}
+    .ml-lookup__status{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;margin-bottom:.5rem;display:block;}
+    .ml-lookup__status--active{color:#82C112;}
+    .ml-lookup__status--expand{color:rgba(130,193,18,.6);}
+    .ml-lookup__msg{font-size:.95rem;color:#ddd;line-height:1.7;margin-bottom:1.1rem;}
+    .ml-lookup__cta{display:inline-flex;align-items:center;gap:.4rem;background:#82C112;color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;padding:.65rem 1.25rem;border-radius:6px;transition:background .2s;}
+    .ml-lookup__cta:hover{background:#6ea80e;}
+    @media(max-width:700px){.ml-lc__inner{grid-template-columns:1fr;}.ml-lookup__form{flex-direction:column;}}
+    .ds-fade{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;}
+    .ds-fade.is-visible{opacity:1;transform:none;}
+    .ds-footnote{font-size:.77rem;color:#555;margin-top:1rem;line-height:1.6;}
+    @media(max-width:960px){
+      .ml-comparison,.ml-values,.ml-pillars,.ml-streams,.ml-calc,.ml-milestones{grid-template-columns:1fr;}
+      .ml-streams{grid-template-columns:1fr 1fr;}
+      .ml-eq-grid,.ml-role-grid,.ds-split{grid-template-columns:1fr;gap:36px;}
+      .ml-purchase__items{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:600px){
+      .ml-values,.ml-pillars,.ml-streams{grid-template-columns:1fr;}
+      .ds-container{padding:0 20px;}
+      .ds-section{padding:60px 0;}
+      .ml-hero{padding:72px 0 56px;}
+      .gate__card{padding:36px 28px;}
+      .gate__row{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+  <div class="gate" id="ml-gate">
+    <div class="gate__card">
+      <img src="/images/innovate-logo.png" alt="INNOVATE Real Estate" class="gate__logo">
+      <span class="gate__eyebrow">Market Center Leader Overview</span>
+      <h1 class="gate__heading">Envision Growth.</h1>
+      <p class="gate__sub">Private overview of the INNOVATE Market Center Leadership model. Enter your details to view the full presentation.</p>
+      <form id="ml-gate-form" action="https://formspree.io/f/xnpaqvpw" method="POST">
+        <div class="gate__row">
+          <div class="gate__field"><label for="ml-fname">First Name</label><input type="text" id="ml-fname" name="first_name" required placeholder="First"></div>
+          <div class="gate__field"><label for="ml-lname">Last Name</label><input type="text" id="ml-lname" name="last_name" required placeholder="Last"></div>
+        </div>
+        <div class="gate__field"><label for="ml-email">Email Address</label><input type="email" id="ml-email" name="email" required placeholder="you@example.com"></div>
+        <div class="gate__row">
+          <div class="gate__field"><label for="ml-phone">Phone</label><input type="tel" id="ml-phone" name="phone" placeholder="(000) 000-0000"></div>
+          <div class="gate__field"><label for="ml-market">Market / City</label><input type="text" id="ml-market" name="market" placeholder="City, State"></div>
+        </div>
+        <input type="hidden" name="_subject" value="Market Center Leader Deck Inquiry">
+        <button type="submit" class="gate__btn" id="ml-gate-btn">View Presentation</button>
+        <p class="gate__privacy">Your information is kept private and not shared.</p>
+        <p class="gate__error" id="ml-gate-err">Something went wrong. Please try again.</p>
+      </form>
+    </div>
+  </div>
+
+  <div class="deck">
+    <nav class="ds-nav">
+      <div class="ds-nav__inner">
+        <img src="/images/innovate-logo.png" alt="INNOVATE" class="ds-nav__logo">
+        <a href="#model" class="ds-nav__link" data-nav="model">The Model</a>
+        <a href="#values" class="ds-nav__link" data-nav="values">Values</a>
+        <a href="#advantages" class="ds-nav__link" data-nav="advantages">Advantages</a>
+        <a href="#resources" class="ds-nav__link" data-nav="resources">Resources</a>
+        <a href="#role" class="ds-nav__link" data-nav="role">Your Role</a>
+        <a href="#compensation" class="ds-nav__link" data-nav="compensation">Income</a>
+        <a href="#calculator" class="ds-nav__link" data-nav="calculator">Calculator</a>
+        <a href="#equity" class="ds-nav__link" data-nav="equity">Equity</a>
+        <a href="#locations" class="ds-nav__link" data-nav="locations">Locations</a>
+        <a href="#cta" class="ds-nav__link ds-nav__link--cta" data-nav="cta">Schedule a Call</a>
+      </div>
+    </nav>
+
+    <section id="hero" class="ds-section ds-section--dark ml-hero">
+      <div class="ds-container">
+        <span class="ds-eyebrow">INNOVATE Real Estate / Market Center Leader</span>
+        <h1 class="ds-headline" style="font-size:clamp(2.6rem,5vw,4rem);max-width:720px;">Envision Growth.</h1>
+        <p class="ds-sub" style="max-width:580px;font-size:1.05rem;">The INNOVATE Market Center Leader model gives you a complete infrastructure, multiple income streams, and the freedom to build a business that extends well beyond any single transaction.</p>
+        <div class="ml-hero__stats ds-fade">
+          <div class="ml-hero__stat"><span class="ml-hero__stat-num">14</span><span class="ml-hero__stat-label">States Operating</span></div>
+          <div class="ml-hero__stat-div"></div>
+          <div class="ml-hero__stat"><span class="ml-hero__stat-num">5</span><span class="ml-hero__stat-label">Income Streams</span></div>
+          <div class="ml-hero__stat-div"></div>
+          <div class="ml-hero__stat"><span class="ml-hero__stat-num">$0</span><span class="ml-hero__stat-label">Franchise Buy-In</span></div>
+          <div class="ml-hero__stat-div"></div>
+          <div class="ml-hero__stat"><span class="ml-hero__stat-num">No</span><span class="ml-hero__stat-label">Long-Term Contracts</span></div>
+        </div>
+        <div class="ml-hero__scroll ds-fade"><span class="ml-hero__scroll-line"></span>Scroll to Explore</div>
+      </div>
+    </section>
+
+    <section id="model" class="ds-section ds-section--darker">
+      <div class="ds-container">
+        <div class="ds-section-hd ds-fade">
+          <span class="ds-eyebrow">The INNOVATE Difference</span>
+          <h2 class="ds-headline">The Industry&rsquo;s First Real<br>Hybrid Growth Model.</h2>
+          <p class="ds-sub">For years, real estate operated under a simple assumption: if you wanted hands-on local support, you joined a traditional brokerage. If you wanted technology, scalability, and long-term financial opportunity, you went cloud. It was always positioned as a trade-off. One or the other.</p>
+          <p class="ds-sub">Today&rsquo;s agents aren&rsquo;t looking to choose between support and opportunity anymore. They expect both. A lot of brokerages are just now starting to figure that out. We didn&rsquo;t just recognize it. We built around it.</p>
+        </div>
+        <div class="ml-comparison ds-fade">
+          <div class="ml-comparison__col">
+            <span class="ml-comparison__type">Traditional Brokerage</span>
+            <p class="ml-comparison__title">Local Support.<br>Limited Upside.</p>
+            <ul class="ml-comparison__items">
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--y"></span>Hands-on broker support</li>
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--y"></span>Local culture and relationships</li>
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--n"></span>Modern scalable technology</li>
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--n"></span>Revenue share income</li>
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--n"></span>Equity ownership</li>
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--n"></span>Expansion opportunity</li>
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--p"></span>Training and development</li>
+            </ul>
+          </div>
+          <div class="ml-comparison__col">
+            <span class="ml-comparison__type">Cloud Brokerage</span>
+            <p class="ml-comparison__title">Flexibility.<br>Less Connection.</p>
+            <ul class="ml-comparison__items">
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--n"></span>Hands-on broker support</li>
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--n"></span>Local culture and relationships</li>
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--y"></span>Modern scalable technology</li>
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--y"></span>Revenue share income</li>
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--p"></span>Equity ownership</li>
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--y"></span>Expansion opportunity</li>
+              <li class="ml-comparison__item"><span class="ml-ic ml-ic--n"></span>Training and development</li>
+            </ul>
+          </div>
+          <div class="ml-comparison__col ml-comparison__col--hl">
+            <span class="ml-comparison__type ml-comparison__type--g">INNOVATE</span>
+            <p class="ml-comparison__title" style="color:#82C112;">Both Sides.<br>No Trade-Off.</p>
+            <ul class="ml-comparison__items">
+              <li class="ml-comparison__item ml-comparison__item--b"><span class="ml-ic ml-ic--y"></span>Hands-on broker support</li>
+              <li class="ml-comparison__item ml-comparison__item--b"><span class="ml-ic ml-ic--y"></span>Local culture and relationships</li>
+              <li class="ml-comparison__item ml-comparison__item--b"><span class="ml-ic ml-ic--y"></span>Modern scalable technology</li>
+              <li class="ml-comparison__item ml-comparison__item--b"><span class="ml-ic ml-ic--y"></span>Revenue share income</li>
+              <li class="ml-comparison__item ml-comparison__item--b"><span class="ml-ic ml-ic--y"></span>Equity ownership</li>
+              <li class="ml-comparison__item ml-comparison__item--b"><span class="ml-ic ml-ic--y"></span>Expansion opportunity</li>
+              <li class="ml-comparison__item ml-comparison__item--b"><span class="ml-ic ml-ic--y"></span>Training and development</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="values" class="ds-section ds-section--dark">
+      <div class="ds-container">
+        <div class="ds-section-hd ds-fade">
+          <span class="ds-eyebrow">Who We Are</span>
+          <h2 class="ds-headline">Built on Six Core Beliefs.</h2>
+          <p class="ds-sub">These aren&rsquo;t aspirational statements. They&rsquo;re the principles behind every decision we make and every system we build.</p>
+        </div>
+        <div class="ml-values ds-fade">
+          <div class="ml-value"><h4>Agent Centric</h4><p>Every tool, every system, every decision exists for one purpose: making your job as a real estate professional easier, more efficient, more rewarding, and more client-focused.</p></div>
+          <div class="ml-value"><h4>Client Focused</h4><p>The most important element of any transaction is the agent-client relationship. We ensure you are well-trained and well-supported to deliver exceptional service.</p></div>
+          <div class="ml-value"><h4>Family First</h4><p>Whether you are an agent or a staff member, we are supportive of the needs and concerns of your family&rsquo;s financial, physical, and mental well-being.</p></div>
+          <div class="ml-value"><h4>Tech Forward</h4><p>We constantly monitor, research, and implement emerging technology to provide our agents with the most efficient and result-oriented systems available.</p></div>
+          <div class="ml-value"><h4>Growth Minded</h4><p>If you aren&rsquo;t growing, you&rsquo;re standing still. We embrace challenges, persist through obstacles, and believe skills and outcomes can always be improved with intention.</p></div>
+          <div class="ml-value"><h4>Culture of Generosity</h4><p>We promote a culture built on sharing ideas, knowledge, education, and financial benefit. Our goal is to cultivate a true sense of teamwork, family, and company ownership at every level.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="advantages" class="ds-section ds-section--darker">
+      <div class="ds-container">
+        <div class="ds-split ds-fade">
+          <div>
+            <span class="ds-eyebrow">Why Market Leadership with INNOVATE</span>
+            <h2 class="ds-headline">The Model Works Because INNOVATE Does the Work.</h2>
+            <p class="ds-sub" style="margin-bottom:2rem;">You focus on leadership, recruiting, and production. We handle the infrastructure that most brokerages leave entirely on your plate.</p>
+            <h3 style="font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#82C112;margin-bottom:1.1rem;">Advantages of Market Leadership</h3>
+            <ul class="ds-checklist">
+              <li>Build a large team without the headaches of creating or managing marketing and lead generation systems</li>
+              <li>No upfront buy-in costs or franchise fees</li>
+              <li>No surprise fees</li>
+              <li>Minimal investment to get started</li>
+              <li>No long-term commitment contracts</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#82C112;margin-bottom:1.1rem;">INNOVATE Does the Heavy Lifting</h3>
+            <ul class="ds-checklist">
+              <li>Onboarding and training of your new agents</li>
+              <li>Commission payouts and accounting</li>
+              <li>Company policy and forms management</li>
+              <li>Support for all INNOVATE systems</li>
+              <li>Communication to your team about ongoing training opportunities</li>
+              <li>Training of your admin staff when applicable</li>
+              <li>Training tools and support for all INNOVATE programs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources" class="ds-section ds-section--dark">
+      <div class="ds-container">
+        <div class="ds-section-hd ds-fade">
+          <span class="ds-eyebrow">Full Support Infrastructure</span>
+          <h2 class="ds-headline">Six Pillars Behind Every Market Center.</h2>
+          <p class="ds-sub">From day one, every Market Center Leader has access to dedicated support across six critical business functions.</p>
+        </div>
+        <div class="ml-pillars ds-fade">
+          <div class="ml-pillar"><span class="ml-pillar__icon">&#9965;</span><h4>Marketing</h4><p>Full marketing platform with quick access to all materials needed to run your business, plus a design department for major custom projects.</p></div>
+          <div class="ml-pillar"><span class="ml-pillar__icon">&#128101;</span><h4>Recruiting</h4><p>Social media recruiting assets, an online recruiting presentation, and expansion director support to create and execute recruiting plans.</p></div>
+          <div class="ml-pillar"><span class="ml-pillar__icon">&#128200;</span><h4>Business Coaching</h4><p>Scheduled meetings with Brokers to discuss initiatives, changes, and challenges. Ongoing access to the Broker Hotline for real-time guidance.</p></div>
+          <div class="ml-pillar"><span class="ml-pillar__icon">&#127979;</span><h4>Education and Training</h4><p>Weekly, quarterly, and annual education events with local and national experts keep your agents informed and connected.</p></div>
+          <div class="ml-pillar"><span class="ml-pillar__icon">&#128203;</span><h4>Operation Support</h4><p>Operations handles administrative tasks critical to smooth business functioning, including commission payouts, invoicing, and processing.</p></div>
+          <div class="ml-pillar"><span class="ml-pillar__icon">&#127981;</span><h4>Lead Generation</h4><p>Strategic listing placement across real estate websites and social media to engage prospective clients and capture leads effectively.</p></div>
+        </div>
+      </div>
+    </section>
+    <section id="role" class="ds-section ds-section--darker">
+      <div class="ds-container">
+        <div class="ds-section-hd ds-fade">
+          <span class="ds-eyebrow">Market Center Leadership</span>
+          <h2 class="ds-headline">Your Focus. Our Infrastructure.</h2>
+          <p class="ds-sub">Market Center Leaders set the vision and build the team. INNOVATE provides the systems, compliance support, and resources to make it work at scale.</p>
+        </div>
+        <div class="ml-role-grid ds-fade">
+          <div class="ml-role-col">
+            <h3>Key Standards for Market Leaders</h3>
+            <div class="ml-role-item"><span class="ml-role-dot"></span><div>Have a clear vision and develop strategic plans to achieve your goals.</div></div>
+            <div class="ml-role-item"><span class="ml-role-dot"></span><div>Build a strong office by enhancing visibility, building trust, and providing value.</div></div>
+            <div class="ml-role-item"><span class="ml-role-dot"></span><div>Be accessible and responsive to agents&rsquo; inquiries.</div></div>
+            <div class="ml-role-item"><span class="ml-role-dot"></span><div>Maintain consistent communication with your team members.</div></div>
+            <div class="ml-role-item"><span class="ml-role-dot"></span><div>Engage with the broker for ongoing training and supervision of agents.</div></div>
+            <div class="ml-role-item"><span class="ml-role-dot"></span><div>Identify new talent and partner with the Expansion Director.</div></div>
+            <div class="ml-role-item"><span class="ml-role-dot"></span><div>Manage your office space when applicable.</div></div>
+          </div>
+          <div class="ml-role-col">
+            <h3>Key Responsibilities: Broker-in-Charge</h3>
+            <div class="ml-role-item"><span class="ml-role-dot"></span><div><strong>Supervise and Stay Compliant</strong>Oversee associates in full compliance with state real estate laws.</div></div>
+            <div class="ml-role-item"><span class="ml-role-dot"></span><div><strong>Review and Approve Contracts</strong>Ensure all agreements and documents are accurate and approved.</div></div>
+            <div class="ml-role-item"><span class="ml-role-dot"></span><div><strong>Train and Coach</strong>Lead Launch Coaching for new agents and support ongoing education initiatives.</div></div>
+            <div class="ml-role-item"><span class="ml-role-dot"></span><div><strong>Recruit and Grow</strong>Partner with the Market Leader to set recruiting goals and build the ideal team.</div></div>
+            <div class="ml-role-item"><span class="ml-role-dot"></span><div><strong>Lead and Connect</strong>Participate in company mastermind meetings and maintain regular communication with associates.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="compensation" class="ds-section ds-section--dark">
+      <div class="ds-container">
+        <div class="ds-section-hd ds-fade">
+          <span class="ds-eyebrow">Competitive Compensation</span>
+          <h2 class="ds-headline">Five Ways to Earn.</h2>
+          <p class="ds-sub">Most brokerages offer one income source. INNOVATE Market Center Leaders earn from five distinct streams simultaneously, and those streams compound as your market grows.</p>
+        </div>
+        <div class="ml-streams ds-fade">
+          <div class="ml-stream" data-n="1"><span class="ml-stream__num">Income Stream 01</span><h3 class="ml-stream__title">Commissions on Every Sale</h3><p class="ml-stream__desc">Market Leaders receive 85/15 commission splits on their personal sales, plus a percentage of company dollar generated by every agent closing in your market center.</p><div class="ml-stream__callout">85% commission split on personal production</div></div>
+          <div class="ml-stream" data-n="2"><span class="ml-stream__num">Income Stream 02</span><h3 class="ml-stream__title">Market Center Override</h3><p class="ml-stream__desc">You earn 15% of the net company dollar generated by every agent in your market center. This recurring income grows with every agent you add and every agent who produces.</p><div class="ml-stream__callout">15% of Net Market Company Dollar (12.75% of total CO$)</div></div>
+          <div class="ml-stream" data-n="3"><span class="ml-stream__num">Income Stream 03</span><h3 class="ml-stream__title">Revenue Share</h3><p class="ml-stream__desc">INNOVATE&rsquo;s five-tier revenue share program generates passive income from agents you personally sponsor into the company, and from their networks across five tiers.</p><div class="ml-stream__callout">5 tiers / 5-4-3-2-1% structure</div></div>
+          <div class="ml-stream" data-n="4"><span class="ml-stream__num">Income Stream 04</span><h3 class="ml-stream__title">Launch Coach Bonus</h3><p class="ml-stream__desc">As the launch coach for new agents joining your market, you receive 25% off the top of each new agent&rsquo;s first three closings as recognition for their early-stage development.</p><div class="ml-stream__callout">25% off the top of each new agent&rsquo;s first 3 closings</div></div>
+          <div class="ml-stream" data-n="5"><span class="ml-stream__num">Income Stream 05</span><h3 class="ml-stream__title">Equity + Broker Fees</h3><p class="ml-stream__desc">INNOVATE gives private equity shares so you share in company growth at every level. Once a physical location is established, broker admin fees are passed directly to you at $240 per transaction.</p><div class="ml-stream__callout">Private equity shares + $240/transaction with office space</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" class="ds-section ds-section--darker">
+      <div class="ds-container">
+        <div class="ds-section-hd ds-fade">
+          <span class="ds-eyebrow">Build Your Projection</span>
+          <h2 class="ds-headline">Estimate Your Market Center Income.</h2>
+          <p class="ds-sub">Adjust the sliders to model different agent counts and production levels. Toggle office space to include admin fee income.</p>
+        </div>
+        <div class="ml-calc ds-fade">
+          <div class="ml-calc__panel">
+            <p class="ml-calc__ph">Configure Your Market</p>
+            <div class="ml-calc__row">
+              <div class="ml-calc__lbl"><span>Agents in Your Market</span><span class="ml-calc__val" id="ml-agents-val">10</span></div>
+              <input type="range" class="ml-calc__range" id="ml-agents" min="1" max="50" value="10">
+            </div>
+            <div class="ml-calc__row">
+              <div class="ml-calc__lbl"><span>Avg Company Dollar / Agent / Year</span><span class="ml-calc__val" id="ml-dollar-val">$8,000</span></div>
+              <input type="range" class="ml-calc__range" id="ml-dollar" min="2500" max="15000" step="500" value="8000">
+            </div>
+            <label class="ml-calc__tog">
+              <input type="checkbox" id="ml-office">
+              <span class="ml-calc__tog-lbl">Include Physical Office Space (adds admin fee income)</span>
+            </label>
+            <p style="font-size:.75rem;color:#555;margin-top:1.1rem;line-height:1.6;">Override = 12.75% of company dollar. Revenue share = 5% of company dollar. Transactions estimated at approx. $720 company dollar each. A capping agent contributes approx. $15,000 company dollar annually.</p>
+          </div>
+          <div class="ml-calc__panel">
+            <p class="ml-calc__ph">Your Income Projection</p>
+            <div class="ml-rl"><span class="ml-rl__k">Company Dollar Generated</span><span class="ml-rl__v" id="ml-r-co">$80,000</span></div>
+            <div class="ml-rl"><span class="ml-rl__k">Net Market Company Dollar<span class="ml-rl__p">(85%)</span></span><span class="ml-rl__v" id="ml-r-net">$68,000</span></div>
+            <hr class="ml-div">
+            <div class="ml-rl"><span class="ml-rl__k ml-rl__k--g">Your Override<span class="ml-rl__p">(15% of net)</span></span><span class="ml-rl__v ml-rl__v--g" id="ml-r-override">$10,200</span></div>
+            <div class="ml-rl"><span class="ml-rl__k ml-rl__k--g">Revenue Share<span class="ml-rl__p">(5% of co$)</span></span><span class="ml-rl__v ml-rl__v--g" id="ml-r-revshare">$4,000</span></div>
+            <div class="ml-rl ml-ar" id="ml-ar"><span class="ml-rl__k ml-rl__k--g">Admin Fees<span class="ml-rl__p" id="ml-r-tnote">($240 x ~111 trans)</span></span><span class="ml-rl__v ml-rl__v--g" id="ml-r-admin">$26,640</span></div>
+            <div class="ml-total">
+              <p class="ml-total__lbl" id="ml-total-lbl">Estimated Annual Income (no office)</p>
+              <p class="ml-total__amt" id="ml-r-total">$14,200</p>
+              <p class="ml-total__note">Does not include personal transaction income or Launch Coach bonuses.</p>
+            </div>
+          </div>
+        </div>
+        <div class="ml-milestones ds-fade">
+          <div class="ml-milestone">
+            <p class="ml-milestone__hd">10 Agents / 111 Transactions</p>
+            <p class="ml-milestone__base">$14,200</p>
+            <p class="ml-milestone__lbl">without office space</p>
+            <p class="ml-milestone__office">$40,840</p>
+            <p class="ml-milestone__olbl">with office (includes $26,640 admin fees)</p>
+            <p class="ml-milestone__note">Example mix: 1 team of 5, 1 solo cap, 2 mid-cap agents, 2 new agents</p>
+          </div>
+          <div class="ml-milestone">
+            <p class="ml-milestone__hd">20 Agents / 172 Transactions</p>
+            <p class="ml-milestone__base">$21,411</p>
+            <p class="ml-milestone__lbl">without office space</p>
+            <p class="ml-milestone__office">$62,691</p>
+            <p class="ml-milestone__olbl">with office (includes $41,280 admin fees)</p>
+            <p class="ml-milestone__note">Example mix: 3 teams of 3, 1 team of 4, 1 couple team, 5 new agents</p>
+          </div>
+          <div class="ml-milestone">
+            <p class="ml-milestone__hd">30 Agents / 334 Transactions</p>
+            <p class="ml-milestone__base">$35,337</p>
+            <p class="ml-milestone__lbl">without office space</p>
+            <p class="ml-milestone__office">$115,497</p>
+            <p class="ml-milestone__olbl">with office (includes $80,160 admin fees)</p>
+            <p class="ml-milestone__note">Example mix: 2 teams of 5, 3 teams of 3, 1 team of 4, mixed producers</p>
+          </div>
+        </div>
+        <p class="ds-footnote" style="text-align:center;margin-top:1.5rem;">Illustrative estimates only. Actual results depend on agent production, market conditions, and individual performance. Does not reflect Market Leader personal transaction income or Launch Coach bonuses.</p>
+        <div class="ml-lc ds-fade">
+          <p class="ml-lc__title">Launch Coach Bonus Estimator</p>
+          <p class="ml-lc__sub">As Launch Coach, you earn 25% off the top of each new agent's first 3 closings.</p>
+          <div class="ml-lc__inner">
+            <div>
+              <div class="ml-calc__row">
+                <div class="ml-calc__lbl"><span>New Agents Joining Per Year</span><span class="ml-calc__val" id="lc-agents-val">3</span></div>
+                <input type="range" class="ml-calc__range" id="lc-agents" min="1" max="20" value="3">
+              </div>
+              <div class="ml-calc__row" style="margin-top:1.25rem;">
+                <div class="ml-calc__lbl"><span>Avg Gross Commission Per Transaction</span><span class="ml-calc__val" id="lc-comm-val">$7,500</span></div>
+                <input type="range" class="ml-calc__range" id="lc-comm" min="3000" max="15000" step="500" value="7500">
+              </div>
+            </div>
+            <div class="ml-lc__result">
+              <p class="ml-lc__result-lbl">Estimated Annual Launch Coach Bonus</p>
+              <p class="ml-lc__result-amt" id="lc-total">$16,875</p>
+              <p class="ml-lc__result-note" id="lc-note">3 agents x 3 closings x 25% of $7,500</p>
+            </div>
+          </div>
+          <p class="ds-footnote">Estimate only. Actual amounts depend on each agent's gross commission per transaction. Launch Coach income is separate from market center override and revenue share.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="equity" class="ds-section ds-section--dark">
+      <div class="ds-container">
+        <div class="ds-split ds-fade">
+          <div>
+            <span class="ds-eyebrow">Long-Term Wealth</span>
+            <h2 class="ds-headline">Own a Piece of What You&rsquo;re Building.</h2>
+            <p class="ds-sub">INNOVATE gives private equity shares to Market Leaders so you share in company growth in every possible way. It&rsquo;s our commitment to the idea that our agents don&rsquo;t work for us. We work for them.</p>
+            <p class="ds-sub">The 2026 equity program rewards production, recruitment, mentorship, and leadership with stock options tied to meaningful milestones.</p>
+          </div>
+          <div class="ml-purchase">
+            <h3>Post-Cap Stock Purchase Program</h3>
+            <p class="ml-purchase__sub">2026 Update: Convert Earnings Into Equity</p>
+            <p style="font-size:.84rem;color:#aaa;line-height:1.7;margin-bottom:1.25rem;">Agents may elect to convert a portion of post-cap or company-side earnings into INNOVATE equity. A Subscription Agreement is required for each conversion.</p>
+            <div class="ml-purchase__items">
+              <div class="ml-purchase__item"><span class="ml-purchase__item-val">$0.10</span><span class="ml-purchase__item-lbl">Per Share</span></div>
+              <div class="ml-purchase__item"><span class="ml-purchase__item-val">3-Year</span><span class="ml-purchase__item-lbl">Vesting Period</span></div>
+              <div class="ml-purchase__item"><span class="ml-purchase__item-val">5% GCI</span><span class="ml-purchase__item-lbl">Annual Limit (max $1,000)</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="ml-eq-grid ds-fade" style="margin-top:3rem;">
+          <div class="ml-eq-cat">
+            <p class="ml-eq-cat__title">Production Based Awards</p>
+            <div class="ml-eq-row"><div class="ml-eq-row__title">Mid-Level Producer<span class="ml-eq-row__desc">$3M net volume</span></div><span class="ml-eq-badge">500 Options</span></div>
+            <div class="ml-eq-row"><div class="ml-eq-row__title">High Producer<span class="ml-eq-row__desc">$6M+ net volume</span></div><span class="ml-eq-badge">1,000 Options</span></div>
+            <div class="ml-eq-row"><div class="ml-eq-row__title">Top 1% Producer<span class="ml-eq-row__desc">Company level</span></div><span class="ml-eq-badge">2,000 Options</span></div>
+          </div>
+          <div class="ml-eq-cat">
+            <p class="ml-eq-cat__title">Recruitment and Growth Awards</p>
+            <div class="ml-eq-row"><div class="ml-eq-row__title">Emerging Agent Recruited<span class="ml-eq-row__desc">First-year or new licensee</span></div><span class="ml-eq-badge">300 Options</span></div>
+            <div class="ml-eq-row"><div class="ml-eq-row__title">Mid-Level Producer Recruited<span class="ml-eq-row__desc">$1M to $3M production</span></div><span class="ml-eq-badge">750 Options</span></div>
+            <div class="ml-eq-row"><div class="ml-eq-row__title">Top Producer Recruited<span class="ml-eq-row__desc">$3M+ per year</span></div><span class="ml-eq-badge">1,500 Options</span></div>
+          </div>
+          <div class="ml-eq-cat">
+            <p class="ml-eq-cat__title">Mentorship and Leadership Awards</p>
+            <div class="ml-eq-row"><div class="ml-eq-row__title">Mentorship Milestone<span class="ml-eq-row__desc">Mentored agent closes first 3 transactions</span></div><span class="ml-eq-badge">500 Options</span></div>
+            <div class="ml-eq-row"><div class="ml-eq-row__title">Leadership Contribution<span class="ml-eq-row__desc">Teaching LAUNCH, leading masterminds, hosting training</span></div><span class="ml-eq-badge">200 Options</span></div>
+            <div class="ml-eq-row"><div class="ml-eq-row__title">Office / Market Builder<span class="ml-eq-row__desc">15+ active agents or $60M+ combined volume</span></div><span class="ml-eq-badge">2,500 Options</span></div>
+          </div>
+          <div class="ml-eq-cat">
+            <p class="ml-eq-cat__title">Branding and Culture Awards</p>
+            <div class="ml-eq-row"><div class="ml-eq-row__title">INNOVATE Agent Attraction Video<span class="ml-eq-row__desc">Create or star in a video</span></div><span class="ml-eq-badge">250 Options</span></div>
+            <div class="ml-eq-row"><div class="ml-eq-row__title">Company Video or Interview<span class="ml-eq-row__desc">Participate in a company feature</span></div><span class="ml-eq-badge">250 Options</span></div>
+            <div class="ml-eq-row"><div class="ml-eq-row__title">INNOVATE University Content<span class="ml-eq-row__desc">Monthly value-based content contribution</span></div><span class="ml-eq-badge">150 Options</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="locations" class="ds-section ds-section--darker">
+      <div class="ds-container">
+        <div class="ds-section-hd ds-fade">
+          <span class="ds-eyebrow">Current Presence / July 2026</span>
+          <h2 class="ds-headline">From Myrtle Beach to 14 States.</h2>
+        </div>
+        <div class="ds-split ds-fade">
+          <div>
+            <div class="ml-story-block">
+              <p>INNOVATE didn&rsquo;t begin with a national expansion plan. It began with two agents and team leaders who believed the brokerage model had stopped serving agents the way it should.</p>
+              <p>Co-founders Darren Woodard and Jeff Casterline built a brokerage designed around what agents actually needed: hands-on support, practical training, modern technology, and real financial upside. What started in Myrtle Beach grew because agents responded to something that felt genuinely different.</p>
+              <p>Today, INNOVATE operates across 14 states with the same core belief it started with: a brokerage should do more than house agents. It should help them build something meaningful.</p>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#82C112;margin-bottom:1rem;">Currently Operating</p>
+            <div class="ml-states">
+              <span class="ml-state">New Hampshire</span><span class="ml-state">Massachusetts</span><span class="ml-state">Rhode Island</span><span class="ml-state">Pennsylvania</span><span class="ml-state">New Jersey</span><span class="ml-state">Maryland</span><span class="ml-state">Delaware</span><span class="ml-state">Ohio</span><span class="ml-state">Tennessee</span><span class="ml-state">Virginia</span><span class="ml-state">North Carolina</span><span class="ml-state">South Carolina</span><span class="ml-state">Georgia</span><span class="ml-state">Florida</span>
+            </div>
+            <p style="font-size:.8rem;color:#555;margin-top:1.25rem;">Actively expanding. Contact us to discuss availability in your target market.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="availability" class="ml-lookup-section">
+      <div class="ds-container">
+        <div class="ml-lookup-wrap ds-fade">
+          <span class="ds-eyebrow">Market Availability</span>
+          <h2 class="ds-headline">Is Your Market Available?</h2>
+          <p class="ds-sub">Enter your state to see if INNOVATE is already operating in your area, or if you could be among the first to bring the model to your market.</p>
+          <div class="ml-lookup__form">
+            <input type="text" class="ml-lookup__input" id="ml-lookup-input" placeholder="Enter state name or abbreviation (e.g. Florida or FL)" autocomplete="off">
+            <button class="ml-lookup__btn" onclick="mlLookup()">Check Availability</button>
+          </div>
+          <div class="ml-lookup__result" id="ml-lookup-result"></div>
+        </div>
+      </div>
+    </section>
+    <section id="cta" class="ds-section ds-section--dark" style="border-top:3px solid #82C112;">
+      <div class="ds-container">
+        <div class="ml-cta ds-fade">
+          <span class="ds-eyebrow">The Next Step</span>
+          <h2 class="ds-headline">Ready to Envision Growth?</h2>
+          <p class="ds-sub" style="margin-bottom:2.25rem;">Schedule a conversation with our team to explore what Market Center Leadership looks like in your market. No obligation, no pressure. Just an honest look at the opportunity.</p>
+          <a href="/talk.html" class="btn">Schedule a Conversation</a>
+          <p style="margin-top:1.5rem;font-size:.8rem;color:#555;">Also see the <a href="/deck.html" style="color:#82C112;">Agent Overview Deck</a> to understand what we offer at the agent level.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    (function(){
+      var KEY='innovate-ml-access';
+      var form=document.getElementById('ml-gate-form');
+      var btn=document.getElementById('ml-gate-btn');
+      var err=document.getElementById('ml-gate-err');
+      if(form){
+        form.addEventListener('submit',function(e){
+          e.preventDefault();
+          btn.disabled=true;btn.textContent='Submitting...';err.style.display='none';
+          var data=new FormData(form);
+          fetch(form.action,{method:'POST',body:data,headers:{'Accept':'application/json'}})
+            .then(function(r){
+              if(r.ok){localStorage.setItem(KEY,'granted');document.documentElement.setAttribute('data-unlocked','');window.scrollTo(0,0);}
+              else{btn.disabled=false;btn.textContent='View Presentation';err.style.display='block';}
+            }).catch(function(){btn.disabled=false;btn.textContent='View Presentation';err.style.display='block';});
+        });
+      }
+      var navLinks=document.querySelectorAll('.ds-nav__link[data-nav]');
+      var sections=document.querySelectorAll('section[id]');
+      function updateNav(){
+        var scrollY=window.scrollY+100;
+        sections.forEach(function(sec){
+          if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){
+            navLinks.forEach(function(l){l.classList.remove('is-active');});
+            var a=document.querySelector('.ds-nav__link[data-nav="'+sec.id+'"]');
+            if(a)a.classList.add('is-active');
+          }
+        });
+      }
+      window.addEventListener('scroll',updateNav,{passive:true});
+      navLinks.forEach(function(link){
+        link.addEventListener('click',function(e){
+          var t=document.querySelector(link.getAttribute('href'));
+          if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+        });
+      });
+      var faders=document.querySelectorAll('.ds-fade');
+      if('IntersectionObserver' in window){
+        var obs=new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('is-visible');obs.unobserve(entry.target);}});
+        },{threshold:0.08});
+        faders.forEach(function(el){obs.observe(el);});
+      } else {faders.forEach(function(el){el.classList.add('is-visible');});}
+    })();
+
+    (function(){
+      function calc(){
+        var agents=parseInt(document.getElementById('ml-agents').value,10);
+        var dollar=parseInt(document.getElementById('ml-dollar').value,10);
+        var office=document.getElementById('ml-office').checked;
+        document.getElementById('ml-agents-val').textContent=agents;
+        document.getElementById('ml-dollar-val').textContent='$'+dollar.toLocaleString();
+        var co=agents*dollar;
+        var net=Math.round(co*0.85);
+        var ov=Math.round(co*0.1275);
+        var rs=Math.round(co*0.05);
+        var trans=Math.round(co/720);
+        var admin=trans*240;
+        var total=office?ov+rs+admin:ov+rs;
+        document.getElementById('ml-r-co').textContent='$'+co.toLocaleString();
+        document.getElementById('ml-r-net').textContent='$'+net.toLocaleString();
+        document.getElementById('ml-r-override').textContent='$'+ov.toLocaleString();
+        document.getElementById('ml-r-revshare').textContent='$'+rs.toLocaleString();
+        document.getElementById('ml-r-tnote').textContent='($240 x ~'+trans.toLocaleString()+' trans)';
+        document.getElementById('ml-r-admin').textContent='$'+admin.toLocaleString();
+        document.getElementById('ml-r-total').textContent='$'+total.toLocaleString();
+        document.getElementById('ml-total-lbl').textContent=office?'Estimated Annual Income (with office)':'Estimated Annual Income (no office)';
+        var ar=document.getElementById('ml-ar');
+        if(office){ar.classList.add('vis');}else{ar.classList.remove('vis');}
+      }
+      ['ml-agents','ml-dollar'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',calc);});
+      var tog=document.getElementById('ml-office');if(tog)tog.addEventListener('change',calc);
+      calc();
+    })();
+
+    (function(){
+      function lcCalc(){
+        var agents=parseInt(document.getElementById('lc-agents').value,10);
+        var comm=parseInt(document.getElementById('lc-comm').value,10);
+        document.getElementById('lc-agents-val').textContent=agents;
+        document.getElementById('lc-comm-val').textContent='$'+comm.toLocaleString();
+        var total=Math.round(agents*3*comm*0.25);
+        document.getElementById('lc-total').textContent='$'+total.toLocaleString();
+        document.getElementById('lc-note').textContent=agents+' agent'+(agents>1?'s':'')+' x 3 closings x 25% of $'+comm.toLocaleString();
+      }
+      ['lc-agents','lc-comm'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',lcCalc);});
+      lcCalc();
+    })();
+
+    (function(){
+      var ACTIVE=['new hampshire','massachusetts','rhode island','pennsylvania','new jersey','maryland','delaware','ohio','tennessee','virginia','north carolina','south carolina','georgia','florida'];
+      var ABBREV={'nh':'new hampshire','ma':'massachusetts','ri':'rhode island','pa':'pennsylvania','nj':'new jersey','md':'maryland','de':'delaware','oh':'ohio','tn':'tennessee','va':'virginia','nc':'north carolina','sc':'south carolina','ga':'georgia','fl':'florida'};
+      function mlLookup(){
+        var raw=(document.getElementById('ml-lookup-input').value||'').trim().toLowerCase();
+        if(!raw) return;
+        var state=ABBREV[raw]||raw;
+        var isActive=ACTIVE.indexOf(state)!==-1;
+        var display=raw.length===2&&ABBREV[raw]?ABBREV[raw].replace(/\b\w/g,function(c){return c.toUpperCase();}):raw.replace(/\b\w/g,function(c){return c.toUpperCase();});
+        var box=document.getElementById('ml-lookup-result');
+        box.className='ml-lookup__result visible '+(isActive?'ml-lookup__result--active':'ml-lookup__result--expand');
+        if(isActive){
+          box.innerHTML='<span class="ml-lookup__status ml-lookup__status--active">Currently Operating</span><p class="ml-lookup__msg">INNOVATE is actively operating in <strong>'+display+'</strong>. Talk to our team about available Market Center opportunities in your specific area.</p><a href="/talk.html" class="ml-lookup__cta">Schedule a Conversation About '+display+' &#8250;</a>';
+        } else {
+          box.innerHTML='<span class="ml-lookup__status ml-lookup__status--expand">Expansion Territory</span><p class="ml-lookup__msg">INNOVATE is not currently operating in <strong>'+display+'</strong>, but we are actively expanding. You could be among the first to bring the Hybrid Growth Model to your market.</p><a href="/talk.html" class="ml-lookup__cta">Explore Expansion Into '+display+' &#8250;</a>';
+        }
+      }
+      window.mlLookup=mlLookup;
+      var inp=document.getElementById('ml-lookup-input');
+      if(inp){inp.addEventListener('keydown',function(e){if(e.key==='Enter')mlLookup();});}
+    })();
+  </script>
+</body>
+</html>
